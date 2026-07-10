@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { Volume2, Pause, Play, Loader2, AlertCircle } from 'lucide-react';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -6,7 +7,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 export default function ResponsePlayer({ text, language }) {
   const [playState, setPlayState] = useState('idle'); 
   const [speed, setSpeed] = useState(1);
-  const [errorToast, setErrorToast] = useState(''); // --- NEW: Custom Error State ---
+  const [errorToast, setErrorToast] = useState('');
   const audioRef = useRef(null);
   const hasAutoPlayedRef = useRef(false);
 
@@ -37,7 +38,7 @@ export default function ResponsePlayer({ text, language }) {
     }
 
     setPlayState('loading');
-    setErrorToast(''); // Clear any previous errors when trying again
+    setErrorToast(''); 
 
     try {
       const targetLang = language ? language.toLowerCase() : 'english';
@@ -87,7 +88,6 @@ export default function ResponsePlayer({ text, language }) {
       }
     } catch (error) {
       setPlayState('idle');
-      // --- SMART NETWORK ERROR HANDLING (NOW USES CUSTOM TOAST) ---
       if (!navigator.onLine || error.message.includes('Failed to fetch')) {
         setErrorToast("🌐 Your internet connection seems unstable. Please check your network and try again.");
       } else {
@@ -96,7 +96,6 @@ export default function ResponsePlayer({ text, language }) {
     }
   }, [text, language, playState, speed]);
 
-  // --- NEW: Auto-hide the error toast after 5 seconds ---
   useEffect(() => {
     if (errorToast) {
       const timer = setTimeout(() => {
@@ -127,12 +126,13 @@ export default function ResponsePlayer({ text, language }) {
 
   return (
     <>
-      {/* --- NEW: Beautiful Custom Toast Notification --- */}
-      {errorToast && (
-        <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-[100] bg-health-surface border border-health-accent/50 shadow-2xl rounded-2xl px-4 py-3 flex items-center gap-3 text-sm font-medium text-health-textPrimary max-w-[90vw] md:max-w-md transition-all duration-300 ease-in-out">
+      {/* --- TELEPORTED TOAST USING createPortal --- */}
+      {errorToast && createPortal(
+        <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-[9999] bg-health-surface border border-health-accent/50 shadow-2xl rounded-2xl px-4 py-3 flex items-center gap-3 text-sm font-medium text-health-textPrimary max-w-[90vw] md:max-w-md transition-all duration-300 ease-in-out">
           <AlertCircle className="text-health-accent shrink-0" size={20} />
           <p>{errorToast}</p>
-        </div>
+        </div>,
+        document.body
       )}
 
       <div className="flex items-center gap-2">
