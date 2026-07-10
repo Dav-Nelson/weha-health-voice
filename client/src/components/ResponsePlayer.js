@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Volume2, Pause, Play, Loader2 } from 'lucide-react';
+import { Volume2, Pause, Play, Loader2, AlertCircle } from 'lucide-react';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export default function ResponsePlayer({ text, language }) {
   const [playState, setPlayState] = useState('idle'); 
   const [speed, setSpeed] = useState(1);
+  const [errorToast, setErrorToast] = useState(''); // --- NEW: Custom Error State ---
   const audioRef = useRef(null);
   const hasAutoPlayedRef = useRef(false);
 
@@ -18,27 +19,26 @@ export default function ResponsePlayer({ text, language }) {
   };
 
   const toggleAudio = useCallback(async () => {
-    // 1. If currently playing, PAUSE it.
     if (playState === 'playing' && audioRef.current) {
       audioRef.current.pause();
       setPlayState('paused');
       return;
     }
 
-    // 2. If currently paused, CONTINUE (resume) it from where it stopped.
     if (playState === 'paused' && audioRef.current) {
       audioRef.current.play();
       setPlayState('playing');
       return;
     }
 
-    // 3. If idle, fetch and start fresh.
     if (window.hbCurrentAudio) {
       window.hbCurrentAudio.pause();
       window.dispatchEvent(new Event('hb-stop-audio'));
     }
 
     setPlayState('loading');
+    setErrorToast(''); // Clear any previous errors when trying again
+
     try {
       const targetLang = language ? language.toLowerCase() : 'english';
 
@@ -87,15 +87,24 @@ export default function ResponsePlayer({ text, language }) {
       }
     } catch (error) {
       setPlayState('idle');
-      // --- SMART NETWORK ERROR HANDLING ---
+      // --- SMART NETWORK ERROR HANDLING (NOW USES CUSTOM TOAST) ---
       if (!navigator.onLine || error.message.includes('Failed to fetch')) {
-        alert("🌐 Your internet connection seems unstable. Please check your network and try playing the audio again.");
+        setErrorToast("🌐 Your internet connection seems unstable. Please check your network and try again.");
       } else {
-        // --- UPDATED ERROR MESSAGE ---
-        alert("⚙️ Sorry, I am having a little technical trouble with my voice right now. Please try again in a few minutes!");
+        setErrorToast("⚙️ Sorry, I am having technical trouble with my voice right now. Please try again in a few minutes!");
       }
     }
   }, [text, language, playState, speed]);
+
+  // --- NEW: Auto-hide the error toast after 5 seconds ---
+  useEffect(() => {
+    if (errorToast) {
+      const timer = setTimeout(() => {
+        setErrorToast('');
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorToast]);
 
   useEffect(() => {
     const stopListener = () => {
@@ -117,42 +126,52 @@ export default function ResponsePlayer({ text, language }) {
   }, [text, toggleAudio]);
 
   return (
-    <div className="flex items-center gap-2">
-      <button
-        onClick={toggleAudio}
-        disabled={playState === 'loading'}
-        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-          playState === 'playing' || playState === 'paused'
-            ? 'bg-health-accent/20 text-health-accentLight border border-health-accent'
-            : 'bg-health-surface text-health-textSecondary border border-health-border hover:bg-health-chat hover:text-health-textPrimary'
-        }`}
-      >
-        {playState === 'loading' ? (
-          <Loader2 size={14} className="animate-spin" />
-        ) : playState === 'playing' ? (
-          <Pause size={14} />
-        ) : playState === 'paused' ? (
-          <Play size={14} />
-        ) : (
-          <Volume2 size={14} />
-        )}
-        
-        {playState === 'loading' 
-          ? 'Loading...' 
-          : playState === 'playing' 
-          ? 'Pause' 
-          : playState === 'paused' 
-          ? 'Resume' 
-          : 'Listen'}
-      </button>
+    <>
+      {/* --- NEW: Beautiful Custom Toast Notification --- */}
+      {errorToast && (
+        <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-[100] bg-health-surface border border-health-accent/50 shadow-2xl rounded-2xl px-4 py-3 flex items-center gap-3 text-sm font-medium text-health-textPrimary max-w-[90vw] md:max-w-md transition-all duration-300 ease-in-out">
+          <AlertCircle className="text-health-accent shrink-0" size={20} />
+          <p>{errorToast}</p>
+        </div>
+      )}
 
-      <button
-        onClick={handleSpeedChange}
-        className="flex items-center justify-center px-2 py-1.5 rounded-lg text-xs font-bold bg-health-surface text-health-textSecondary border border-health-border hover:bg-health-chat hover:text-health-textPrimary transition-colors"
-        title="Change playback speed"
-      >
-        {speed}x
-      </button>
-    </div>
+      <div className="flex items-center gap-2">
+        <button
+          onClick={toggleAudio}
+          disabled={playState === 'loading'}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+            playState === 'playing' || playState === 'paused'
+              ? 'bg-health-accent/20 text-health-accentLight border border-health-accent'
+              : 'bg-health-surface text-health-textSecondary border border-health-border hover:bg-health-chat hover:text-health-textPrimary'
+          }`}
+        >
+          {playState === 'loading' ? (
+            <Loader2 size={14} className="animate-spin" />
+          ) : playState === 'playing' ? (
+            <Pause size={14} />
+          ) : playState === 'paused' ? (
+            <Play size={14} />
+          ) : (
+            <Volume2 size={14} />
+          )}
+          
+          {playState === 'loading' 
+            ? 'Loading...' 
+            : playState === 'playing' 
+            ? 'Pause' 
+            : playState === 'paused' 
+            ? 'Resume' 
+            : 'Listen'}
+        </button>
+
+        <button
+          onClick={handleSpeedChange}
+          className="flex items-center justify-center px-2 py-1.5 rounded-lg text-xs font-bold bg-health-surface text-health-textSecondary border border-health-border hover:bg-health-chat hover:text-health-textPrimary transition-colors"
+          title="Change playback speed"
+        >
+          {speed}x
+        </button>
+      </div>
+    </>
   );
 }
