@@ -15,7 +15,6 @@ const LANGUAGE_ISO_MAP = {
 };
 
 // --- TRANSLATION DICTIONARY ---
-// Removed the hardcoded ack/q strings since the AI handles triage dynamically now!
 const TRANSLATIONS = {
   en: {
     welcome1: "Welcome to HealthBridge Africa 🌍\nI'm your personal health companion, here to listen and help — in your language, at your pace.\nYou are safe here. Everything you share stays between us. 💛",
@@ -189,7 +188,14 @@ User's message: "${textToProcess}"`;
 
       setMessages(prev => [...prev, { sender: 'bot', text: data.response, language: targetCode }]);
     } catch (error) {
-      setMessages(prev => [...prev, { sender: 'bot', text: "Sorry, I am having trouble connecting to the server right now." }]);
+      // --- SMART NETWORK ERROR HANDLING (TEXT) ---
+      let errorMessage = "Sorry, I am having trouble connecting right now.";
+      if (!navigator.onLine || error.message.includes('Failed to fetch')) {
+        errorMessage = "🌐 It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
+      } else {
+        errorMessage = "⚙️ Sorry, I am having technical issues. Please try again in a few minutes!";
+      }
+      setMessages(prev => [...prev, { sender: 'bot', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
@@ -250,7 +256,14 @@ User's message: "${textToProcess}"`;
       if (data.transcribed) setMessages(prev => [...prev, { sender: 'user', text: data.transcribed }]);
       if (data.response) setMessages(prev => [...prev, { sender: 'bot', text: data.response, language: targetCode }]);
     } catch (error) {
-      setMessages(prev => [...prev, { sender: 'bot', text: "Sorry, I couldn't process your voice message." }]);
+      // --- SMART NETWORK ERROR HANDLING (VOICE) ---
+      let errorMessage = "Sorry, I couldn't process your voice message.";
+      if (!navigator.onLine || error.message.includes('Failed to fetch')) {
+        errorMessage = "🌐 It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
+      } else {
+        errorMessage = "⚙️ Sorry, I am having technical issues processing your voice. Please try again in a few minutes!";
+      }
+      setMessages(prev => [...prev, { sender: 'bot', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
