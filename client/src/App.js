@@ -16,57 +16,57 @@ const LANGUAGE_ISO_MAP = {
 
 const TRANSLATIONS = {
   en: {
-    welcome1: "Welcome to HealthBridge Africa. I am your personal health companion, here to listen and help in your language, at your pace. You are safe here. Everything you share stays between us.",
-    welcome2: "Please tell me what is bothering you today, or what health question I can answer for you.",
+    welcome1: "Welcome to HealthBridge Africa 🌍\nI'm your personal health companion, here to listen and help — in your language, at your pace.\nYou are safe here. Everything you share stays between us. 💛",
+    welcome2: "Please tell me — what is bothering you today? Or what health question can I answer for you?",
     placeholder: "Type your health question or symptom...",
     recording: "Listening...",
     wait: "Wait for response...",
-    disclaimer: "This system is not a substitute for professional medical advice. Always consult a certified doctor.",
+    disclaimer: "⚕️ This system is not a substitute for professional medical advice. Always consult a certified doctor.",
     secure: "Secure Clinical Consultation"
   },
   pcm: {
-    welcome1: "Welcome to HealthBridge Africa. I be your personal health companion. I dey here to listen and help you for your own language. You dey safe here. Everything wey you tell me na secret.",
-    welcome2: "Abeg tell me wetin dey do you today, or which health question you want ask.",
+    welcome1: "Welcome to HealthBridge Africa 🌍\nI be your personal health companion. I dey here to listen and help you for your own language.\nYou dey safe here. Everything wey you tell me na secret. 💛",
+    welcome2: "Abeg tell me — wetin dey do you today? Or which health question you want ask?",
     placeholder: "Type wetin dey do you...",
     recording: "I dey listen...",
     wait: "Abeg wait small...",
-    disclaimer: "This system no be doctor substitute. Make you always check certified doctor.",
+    disclaimer: "⚕️ This system no be doctor substitute. Make you always check certified doctor.",
     secure: "Safe Health Tok"
   },
   sw: {
-    welcome1: "Karibu HealthBridge Africa. Mimi ni rafiki yako wa afya, hapa kusikiliza na kusaidia kwa lugha yako. Uko salama hapa. Kila kitu unachoshiriki kinabaki kati yetu.",
-    welcome2: "Tafadhali niambie nini kinakusumbua leo, au ninaweza kujibu swali gani la afya.",
+    welcome1: "Karibu HealthBridge Africa 🌍\nMimi ni rafiki yako wa afya, hapa kusikiliza na kusaidia — kwa lugha yako.\nUko salama hapa. Kila kitu unachoshiriki kinabaki kati yetu. 💛",
+    welcome2: "Tafadhali niambie — nini kinakusumbua leo? Au ninaweza kujibu swali gani la afya?",
     placeholder: "Andika swali lako la afya au dalili...",
     recording: "Inasikiliza...",
     wait: "Subiri majibu...",
-    disclaimer: "Mfumo huu sio mbadala wa ushauri wa kitaalamu wa matibabu. Daima shauriana na daktari.",
+    disclaimer: "⚕️ Mfumo huu sio mbadala wa ushauri wa kitaalamu wa matibabu. Daima shauriana na daktari.",
     secure: "Ushauri Salama wa Kliniki"
   },
   tw: {
-    welcome1: "Akwaaba kɔ HealthBridge Africa. Me yɛ wo apɔwmuden adamfo, me wɔ ha sɛ mɛtie wo na m'aboa wo wɔ wo kasa mu. Wo ho dwo wo wɔ ha. Biribiara a woka kyerɛ me no yɛ kokoam asɛm.",
-    welcome2: "Mesrɛ wo ka kyerɛ me dɛn na ɛhaw wo nnɛ, anaa apɔwmuden asɛm bɛn na wobisa.",
+    welcome1: "Akwaaba kɔ HealthBridge Africa 🌍\nMe yɛ wo apɔwmuden adamfo, me wɔ ha sɛ mɛtie wo na m'aboa wo — wɔ wo kasa mu.\nWo ho dwo wo wɔ ha. Biribiara a woka kyerɛ me no yɛ kokoam asɛm. 💛",
+    welcome2: "Mesrɛ wo ka kyerɛ me — dɛn na ɛhaw wo nnɛ? Anaa apɔwmuden asɛm bɛn na wobisa?",
     placeholder: "Kyerɛw wo apɔwmuden asɛm...",
     recording: "Mretie...",
     wait: "Twɛn mmuae...",
-    disclaimer: "Eyi nsi aduruyɛ ho afutuo ananmu. Bere biara kɔbɔ oduruyɛfoɔ a ɔwɔ tumi krataa kɔkɔ.",
+    disclaimer: "⚕️ Eyi nsi aduruyɛ ho afutuo ananmu. Bere biara kɔbɔ oduruyɛfoɔ a ɔwɔ tumi krataa kɔkɔ.",
     secure: "Ayaresa Nkitahodie a Ɛyɛ Ahobammɔ"
   },
   om: {
-    welcome1: "Baga nagaan gara HealthBridge Africa dhuftan. Ani hiriyyaa fayyaa keeti, dhaggeeffachuu fi si gargaaruuf asan jira. Asitti nageenyi kee eegamaadha. Wanti ati natti himtu hundi icciitidha.",
-    welcome2: "Mee natti himi har'a maaltu si rakkisaa jira, ykn gaaffii fayyaa akkamii qabda.",
+    welcome1: "Baga nagaan gara HealthBridge Africa dhuftan 🌍\nAni hiriyyaa fayyaa keeti, dhaggeeffachuu fi si gargaaruuf asan jira.\nAsitti nageenyi kee eegamaadha. Wanti ati natti himtu hundi icciitidha. 💛",
+    welcome2: "Mee natti himi — har'a maaltu si rakkisaa jira? Ykn gaaffii fayyaa akkamii qabda?",
     placeholder: "Gaaffii fayyaa kee barreessi...",
     recording: "Dhaggeeffachaa jira...",
     wait: "Deebii eegi...",
-    disclaimer: "Sirni kun gorsa yaala ogeessaa bakka hin bu'u. Yeroo mara ogeessa fayyaa mariisisi.",
+    disclaimer: "⚕️ Sirni kun gorsa yaala ogeessaa bakka hin bu'u. Yeroo mara ogeessa fayyaa mariisisi.",
     secure: "Marii Kiliinikaa Icciitii"
   },
   am: {
-    welcome1: "ወደ HealthBridge Africa በደህና መጡ። እኔ የእርስዎ የግል ጤና ጓደኛ ነኝ፣ እርስዎን ለማዳመጥ እና ለመርዳት እዚህ ነኝ። እዚህ ደህንነትዎ የተጠበቀ ነው። የሚያጋሩት ማንኛውም ነገር ሚስጥር ነው።",
-    welcome2: "እባክዎ ይንገሩኝ ዛሬ ምን እየረበሸዎት ነው፣ ወይም ምን የጤና ጥያቄ መመለስ እችላለሁ።",
+    welcome1: "ወደ HealthBridge Africa በደህና መጡ 🌍\nእኔ የእርስዎ የግል ጤና ጓደኛ ነኝ፣ እርስዎን ለማዳመጥ እና ለመርዳት እዚህ ነኝ።\nእዚህ ደህንነትዎ የተጠበቀ ነው። የሚያጋሩት ማንኛውም ነገር ሚስጥር ነው። 💛",
+    welcome2: "እባክዎ ይንገሩኝ — ዛሬ ምን እየረበሸዎት ነው? ወይም ምን የጤና ጥያቄ መመለስ እችላለሁ?",
     placeholder: "የጤና ጥያቄዎን እዚህ ይጻፉ...",
     recording: "እያዳመጥኩ ነው...",
     wait: "ምላሽ ይጠብቁ...",
-    disclaimer: "ይህ ዘዴ የባለሙያ የህክምና ምክርን አይተካም። ሁልጊዜ የተረጋገጠ ዶክተር ያማክሩ።",
+    disclaimer: "⚕️ ይህ ዘዴ የባለሙያ የህክምና ምክርን አይተካም። ሁልጊዜ የተረጋገጠ ዶክተር ያማክሩ።",
     secure: "ደህንነቱ የተጠበቀ የክሊኒክ ምክክር"
   }
 };
@@ -113,8 +113,9 @@ export default function App() {
         setIsTyping(true);
         await new Promise(r => setTimeout(r, 2000));
         setMessages([{ id: Date.now(), sender: 'bot', text: t.welcome1 }]);
+        
         await new Promise(r => setTimeout(r, 1500));
-        setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'bot', text: t.welcome2 }]);
+        setMessages(prev => [...prev, { id: Date.now()+1, sender: 'bot', text: t.welcome2 }]);
         setIsTyping(false);
       };
       runWelcome();
@@ -123,10 +124,9 @@ export default function App() {
 
   const handleLanguageChange = (newLang) => {
     setLanguage(newLang);
-    setMessages([]);
-    const newSessionId = crypto.randomUUID();
-    localStorage.setItem('chat_session_id', newSessionId);
-
+    setMessages([]); 
+    localStorage.setItem('chat_session_id', crypto.randomUUID()); 
+    
     const targetLangCode = LANGUAGE_ISO_MAP[newLang.toLowerCase()] || 'en';
     const newT = TRANSLATIONS[targetLangCode] || TRANSLATIONS['en'];
 
@@ -134,7 +134,7 @@ export default function App() {
     setTimeout(() => {
       setMessages([{ id: Date.now(), sender: 'bot', text: newT.welcome1 }]);
       setTimeout(() => {
-        setMessages(prev => [...prev, { id: Date.now() + 1, sender: 'bot', text: newT.welcome2 }]);
+        setMessages(prev => [...prev, { id: Date.now()+1, sender: 'bot', text: newT.welcome2 }]);
         setIsTyping(false);
       }, 1500);
     }, 1000);
@@ -150,30 +150,46 @@ export default function App() {
     try {
       const targetCode = getCleanLanguageCode();
       const sessionId = getOrCreateSessionId();
+      let finalMessageToSend = textToProcess;
+
+      const isFirstUserMessage = !messages.some(m => m.sender === 'user');
+
+      if (isFirstUserMessage) {
+        finalMessageToSend = `[SYSTEM INSTRUCTIONS - STRICTLY ADHERE TO THESE]
+You are HealthBridge Africa — a warm, culturally grounded AI health companion built for African communities.
+Respond natively in ${language.name || language}.
+
+Analyze the user's opening message: "${textToProcess}"
+
+BEHAVIOUR RULES:
+1. GENERAL QUESTION: If the user is asking a general health fact or question (e.g., "about cancer", "what is malaria"), simply answer the question clearly, warmly, and accurately. Do NOT ask triage questions.
+2. SYMPTOM/COMPLAINT: If the user is describing a personal symptom or feeling sick (e.g., "my head hurts", "I am coughing"), express brief empathy, then act as a triage nurse and ask ONE follow-up question (like onset or severity) to understand better.
+3. When you use any medical term, immediately explain it in plain language using a simple, relatable African analogy.
+4. Never give a definitive diagnosis.
+5. Always close medical guidance with: "⚕️ Remember: I'm here to support, not replace, a certified doctor."
+[END OF SYSTEM INSTRUCTIONS]
+
+User's message: "${textToProcess}"`;
+      }
 
       const response = await fetch(`${API_BASE_URL}/api/voice/text-chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: textToProcess,
-          language: targetCode,
-          sessionId: sessionId
-        }),
+        body: JSON.stringify({ message: finalMessageToSend, language: targetCode, sessionId: sessionId }),
       });
 
       if (!response.ok) throw new Error('API response failed');
       const data = await response.json();
 
-      setMessages(prev => [...prev, {
-        sender: 'bot',
-        text: data.response,
-        language: targetCode
-      }]);
+      setMessages(prev => [...prev, { sender: 'bot', text: data.response, language: targetCode }]);
     } catch (error) {
-      setMessages(prev => [...prev, {
-        sender: 'bot',
-        text: "Sorry, I am having trouble connecting to the server right now."
-      }]);
+      let errorMessage = "Sorry, I am having trouble connecting right now.";
+      if (!navigator.onLine || error.message.includes('Failed to fetch')) {
+        errorMessage = "🌐 It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
+      } else {
+        errorMessage = "⚙️ Sorry, I am having technical issues. Please try again in a few minutes!";
+      }
+      setMessages(prev => [...prev, { sender: 'bot', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
@@ -190,9 +206,7 @@ export default function App() {
       const mediaRecorder = new MediaRecorder(stream);
       mediaRecorderRef.current = mediaRecorder;
       audioChunksRef.current = [];
-      mediaRecorder.ondataavailable = (e) => {
-        if (e.data.size > 0) audioChunksRef.current.push(e.data);
-      };
+      mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) audioChunksRef.current.push(e.data); };
       mediaRecorder.onstop = async () => {
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
         stream.getTracks().forEach(track => track.stop());
@@ -200,9 +214,7 @@ export default function App() {
       };
       mediaRecorder.start();
       setIsRecording(true);
-    } catch (error) {
-      alert("Unable to access the microphone. Please allow permissions.");
-    }
+    } catch (error) { alert("Unable to access the microphone. Please allow permissions."); }
   };
 
   const stopRecording = () => {
@@ -222,28 +234,28 @@ export default function App() {
     formData.append('sessionId', sessionId);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/voice/chat`, {
-        method: 'POST',
-        body: formData
-      });
+      const response = await fetch(`${API_BASE_URL}/api/voice/chat`, { method: 'POST', body: formData });
       if (!response.ok) throw new Error('Voice chat failed');
       const data = await response.json();
+      
+      const isFirstUserMessage = !messages.some(m => m.sender === 'user');
 
-      if (data.transcribed) {
-        setMessages(prev => [...prev, { sender: 'user', text: data.transcribed }]);
+      if (isFirstUserMessage && data.transcribed) {
+        setIsLoading(false); 
+        handleSendMessage(data.transcribed);
+        return;
       }
-      if (data.response) {
-        setMessages(prev => [...prev, {
-          sender: 'bot',
-          text: data.response,
-          language: targetCode
-        }]);
-      }
+
+      if (data.transcribed) setMessages(prev => [...prev, { sender: 'user', text: data.transcribed }]);
+      if (data.response) setMessages(prev => [...prev, { sender: 'bot', text: data.response, language: targetCode }]);
     } catch (error) {
-      setMessages(prev => [...prev, {
-        sender: 'bot',
-        text: "Sorry, I couldn't process your voice message."
-      }]);
+      let errorMessage = "Sorry, I couldn't process your voice message.";
+      if (!navigator.onLine || error.message.includes('Failed to fetch')) {
+        errorMessage = "🌐 It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
+      } else {
+        errorMessage = "⚙️ Sorry, I am having technical issues processing your voice. Please try again in a few minutes!";
+      }
+      setMessages(prev => [...prev, { sender: 'bot', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
@@ -263,14 +275,8 @@ export default function App() {
 
       {showHelp && <HelpModal onClose={() => setShowHelp(false)} language={currentLangName} />}
 
-      <div
-        className={`fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} md:hidden`}
-        onClick={() => setIsMobileMenuOpen(false)}
-      >
-        <aside
-          className={`w-72 bg-health-surface border-r border-health-border h-screen p-6 text-health-textSecondary flex flex-col justify-between transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
-          onClick={(e) => e.stopPropagation()}
-        >
+      <div className={`fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} md:hidden`} onClick={() => setIsMobileMenuOpen(false)}>
+        <aside className={`w-72 bg-health-surface border-r border-health-border h-screen p-6 text-health-textSecondary flex flex-col justify-between transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`} onClick={(e) => e.stopPropagation()}>
           <div className="flex flex-col gap-6 w-full">
             <div className="flex items-center justify-between">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-health-accent to-health-accentLight flex items-center justify-center text-health-bg font-brand font-bold text-lg">
@@ -282,31 +288,19 @@ export default function App() {
             </div>
             <hr className="border-health-border" />
             <nav className="flex flex-col gap-2">
-              <button
-                onClick={() => { setActiveTab('consultation'); setIsMobileMenuOpen(false); }}
-                className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'consultation' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}
-              >
+              <button onClick={() => { setActiveTab('consultation'); setIsMobileMenuOpen(false); }} className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'consultation' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}>
                 <MessageSquare size={20} /><span>Consultation Room</span>
               </button>
-              <button
-                onClick={() => { setActiveTab('history'); setIsMobileMenuOpen(false); }}
-                className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'history' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}
-              >
+              <button onClick={() => { setActiveTab('history'); setIsMobileMenuOpen(false); }} className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'history' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}>
                 <History size={20} /><span>Medical History</span>
               </button>
             </nav>
           </div>
           <div className="flex flex-col gap-2 w-full">
-            <button
-              onClick={() => { setShowHelp(true); setIsMobileMenuOpen(false); }}
-              className="flex items-center gap-3 w-full p-3.5 rounded-xl font-medium hover:bg-health-chat hover:text-health-textPrimary transition"
-            >
+            <button onClick={() => { setShowHelp(true); setIsMobileMenuOpen(false); }} className="flex items-center gap-3 w-full p-3.5 rounded-xl font-medium hover:bg-health-chat hover:text-health-textPrimary transition">
               <HelpCircle size={20} /><span>Help & FAQ</span>
             </button>
-            <button
-              onClick={() => { setActiveTab('settings'); setIsMobileMenuOpen(false); }}
-              className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'settings' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}
-            >
+            <button onClick={() => { setActiveTab('settings'); setIsMobileMenuOpen(false); }} className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'settings' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}>
               <Settings size={20} /><span>System Settings</span>
             </button>
           </div>
@@ -319,30 +313,18 @@ export default function App() {
             HB
           </div>
           <hr className="w-8 border-health-border" />
-          <button
-            onClick={() => setActiveTab('consultation')}
-            className={`p-3 rounded-xl transition relative group ${activeTab === 'consultation' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}
-          >
+          <button onClick={() => setActiveTab('consultation')} className={`p-3 rounded-xl transition relative group ${activeTab === 'consultation' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}>
             <MessageSquare size={22} />
           </button>
-          <button
-            onClick={() => setActiveTab('history')}
-            className={`p-3 rounded-xl transition relative group ${activeTab === 'history' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}
-          >
+          <button onClick={() => setActiveTab('history')} className={`p-3 rounded-xl transition relative group ${activeTab === 'history' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}>
             <History size={22} />
           </button>
         </div>
         <div className="flex flex-col items-center gap-4 w-full">
-          <button
-            onClick={() => setShowHelp(true)}
-            className="p-3 hover:bg-health-chat hover:text-health-textPrimary rounded-xl transition relative group"
-          >
+          <button onClick={() => setShowHelp(true)} className="p-3 hover:bg-health-chat hover:text-health-textPrimary rounded-xl transition relative group">
             <HelpCircle size={22} />
           </button>
-          <button
-            onClick={() => setActiveTab('settings')}
-            className={`p-3 rounded-xl transition relative group ${activeTab === 'settings' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}
-          >
+          <button onClick={() => setActiveTab('settings')} className={`p-3 rounded-xl transition relative group ${activeTab === 'settings' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}>
             <Settings size={22} />
             <span className={`absolute left-0 w-1 h-4 bg-health-accent rounded-r-full top-[18px] transition-transform ${activeTab === 'settings' ? 'scale-100' : 'scale-0'}`}></span>
           </button>
@@ -358,17 +340,11 @@ export default function App() {
         </div>
 
         <div className="flex items-center bg-health-surface border-b border-health-border px-4 md:px-0 z-20">
-          <button
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="p-2 mr-1 text-health-textSecondary hover:bg-health-chat rounded-lg block md:hidden transition"
-          >
+          <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 mr-1 text-health-textSecondary hover:bg-health-chat rounded-lg block md:hidden transition">
             <Menu size={24} />
           </button>
           <div className="flex-1">
-            <Header
-              language={currentLangName}
-              onLanguageChange={handleLanguageChange}
-            />
+            <Header language={currentLangName} />
           </div>
         </div>
 
@@ -376,10 +352,10 @@ export default function App() {
           {activeTab === 'consultation' && (
             <div className="flex flex-col h-full">
               <div className="flex-1 overflow-y-auto px-4 md:px-6 py-4">
-                <ChatDisplay
-                  messages={messages}
-                  isTyping={isTyping}
-                  isLoading={isLoading}
+                <ChatDisplay 
+                  messages={messages} 
+                  isTyping={isTyping} 
+                  isLoading={isLoading} 
                   language={currentLangName}
                   secureText={t.secure}
                 />
@@ -388,12 +364,8 @@ export default function App() {
               <div className="bg-health-surface border-t border-health-border p-3 md:p-4 flex-shrink-0 z-20">
                 <div className="max-w-4xl mx-auto">
                   <form onSubmit={handleTextSubmit} className="flex items-center gap-2 md:gap-3">
-                    <button
-                      type="button"
-                      onClick={isRecording ? stopRecording : startRecording}
-                      className={`p-3.5 md:p-4 rounded-full flex-shrink-0 transition-all ${isRecording ? 'bg-red-900/50 text-red-500 animate-pulse border border-red-500/50' : 'bg-health-bg border border-health-border text-health-textSecondary hover:text-health-accent'}`}
-                    >
-                      {isRecording ? <Square size={18} fill="currentColor" /> : <Mic size={18} />}
+                    <button type="button" onClick={isRecording ? stopRecording : startRecording} className={`p-3.5 md:p-4 rounded-full flex-shrink-0 transition-all ${isRecording ? 'bg-red-900/50 text-red-500 animate-pulse border border-red-500/50' : 'bg-health-bg border border-health-border text-health-textSecondary hover:text-health-accent'}`}>
+                      {isRecording ? <Square size={18} fill="currentColor"/> : <Mic size={18} />}
                     </button>
 
                     <div className="flex-1 bg-health-bg border border-health-border focus-within:border-health-accent rounded-3xl flex items-center px-4 py-2">
@@ -407,11 +379,7 @@ export default function App() {
                       />
                     </div>
 
-                    <button
-                      type="submit"
-                      disabled={!inputValue.trim() || isLoading || isRecording || isTyping}
-                      className={`p-3.5 md:p-4 rounded-full flex-shrink-0 transition-all ${inputValue.trim() && !isTyping && !isLoading ? 'bg-gradient-to-r from-health-accent to-health-accentLight text-health-bg shadow-[0_4px_15px_rgba(212,131,10,0.3)]' : 'bg-health-bg border border-health-border text-health-textSecondary cursor-not-allowed'}`}
-                    >
+                    <button type="submit" disabled={!inputValue.trim() || isLoading || isRecording || isTyping} className={`p-3.5 md:p-4 rounded-full flex-shrink-0 transition-all ${inputValue.trim() && !isTyping && !isLoading ? 'bg-gradient-to-r from-health-accent to-health-accentLight text-health-bg shadow-[0_4px_15px_rgba(212,131,10,0.3)]' : 'bg-health-bg border border-health-border text-health-textSecondary cursor-not-allowed'}`}>
                       <Send size={18} />
                     </button>
                   </form>
@@ -423,9 +391,7 @@ export default function App() {
             </div>
           )}
           {activeTab === 'history' && <HistoryPanel />}
-          {activeTab === 'settings' && (
-            <SettingsPanel language={currentLangName} setLanguage={handleLanguageChange} />
-          )}
+          {activeTab === 'settings' && <SettingsPanel language={currentLangName} setLanguage={handleLanguageChange} />}
         </main>
       </div>
     </div>
