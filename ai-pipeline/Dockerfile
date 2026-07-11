@@ -12,16 +12,15 @@ WORKDIR /app
 
 # 4. Copy requirements and install dependencies
 COPY requirements.txt .
-# Install setuptools first to provide pkg_resources for building wheels
+
 RUN pip install --no-cache-dir --upgrade pip setuptools
-# Now install the project requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 5. Copy the rest of the application code
 COPY . .
 
-# 6. Expose the port FastAPI runs on
+# 6. Expose the port (Railway uses $PORT dynamically)
 EXPOSE 8000
 
-# 7. Start the Uvicorn production server
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# 7. Start Uvicorn using Railway's dynamic $PORT
+CMD ["sh", "-c", "uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-8000}"]

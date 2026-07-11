@@ -14,7 +14,6 @@ const LANGUAGE_ISO_MAP = {
   'english': 'en', 'pidgin': 'pcm', 'swahili': 'sw', 'oromo': 'om', 'twi': 'tw', 'amharic': 'am'
 };
 
-// --- TRANSLATION DICTIONARY ---
 const TRANSLATIONS = {
   en: {
     welcome1: "Welcome to HealthBridge Africa 🌍\nI'm your personal health companion, here to listen and help — in your language, at your pace.\nYou are safe here. Everything you share stays between us. 💛",
@@ -105,7 +104,6 @@ export default function App() {
   const langCode = getCleanLanguageCode();
   const t = TRANSLATIONS[langCode] || TRANSLATIONS['en'];
 
-  // Initial Welcome Flow
   useEffect(() => {
     if (!showOnboarding && !hasWelcomedRef.current) {
       hasWelcomedRef.current = true;
@@ -124,13 +122,11 @@ export default function App() {
     }
   }, [showOnboarding, language, t.welcome1, t.welcome2]);
 
-  // Handle changing languages from the Settings Panel
   const handleLanguageChange = (newLang) => {
     setLanguage(newLang);
-    setMessages([]); // Clear chat history visually
-    localStorage.setItem('chat_session_id', crypto.randomUUID()); // Reset backend memory
+    setMessages([]); 
+    localStorage.setItem('chat_session_id', crypto.randomUUID()); 
     
-    // Immediately greet in the new language
     const targetLangCode = LANGUAGE_ISO_MAP[newLang.toLowerCase()] || 'en';
     const newT = TRANSLATIONS[targetLangCode] || TRANSLATIONS['en'];
 
@@ -156,7 +152,6 @@ export default function App() {
       const sessionId = getOrCreateSessionId();
       let finalMessageToSend = textToProcess;
 
-      // SMART AI TRIAGE: Inject instructions ONLY on the first message so the AI knows how to route it
       const isFirstUserMessage = !messages.some(m => m.sender === 'user');
 
       if (isFirstUserMessage) {
@@ -188,7 +183,6 @@ User's message: "${textToProcess}"`;
 
       setMessages(prev => [...prev, { sender: 'bot', text: data.response, language: targetCode }]);
     } catch (error) {
-      // --- SMART NETWORK ERROR HANDLING (TEXT) ---
       let errorMessage = "Sorry, I am having trouble connecting right now.";
       if (!navigator.onLine || error.message.includes('Failed to fetch')) {
         errorMessage = "🌐 It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
@@ -246,7 +240,6 @@ User's message: "${textToProcess}"`;
       
       const isFirstUserMessage = !messages.some(m => m.sender === 'user');
 
-      // Pass transcribed audio to the text pipeline so the Smart Triage instructions get applied!
       if (isFirstUserMessage && data.transcribed) {
         setIsLoading(false); 
         handleSendMessage(data.transcribed);
@@ -256,7 +249,6 @@ User's message: "${textToProcess}"`;
       if (data.transcribed) setMessages(prev => [...prev, { sender: 'user', text: data.transcribed }]);
       if (data.response) setMessages(prev => [...prev, { sender: 'bot', text: data.response, language: targetCode }]);
     } catch (error) {
-      // --- SMART NETWORK ERROR HANDLING (VOICE) ---
       let errorMessage = "Sorry, I couldn't process your voice message.";
       if (!navigator.onLine || error.message.includes('Failed to fetch')) {
         errorMessage = "🌐 It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";

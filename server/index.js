@@ -9,10 +9,13 @@ require('./db/index');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Required for Railway/Render/any reverse proxy — tells Express to trust
+// the X-Forwarded-For header so rate limiting works correctly
+app.set('trust proxy', 1);
+
 // Security headers
 app.use(helmet());
 
-// CORS — locked to your Vercel frontend only
 const allowedOrigins = [
   'https://healthbridge-africa.vercel.app',
   'http://localhost:3000'
@@ -20,20 +23,18 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, curl, health checks)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json({ limit: '1mb' }));
 
-// Rate limiting — 60 requests per 15 minutes per IP
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 60,
@@ -42,7 +43,6 @@ const limiter = rateLimit({
   message: { error: 'Too many requests. Please wait a few minutes and try again.' }
 });
 
-// Stricter limit on AI endpoints — 20 requests per 15 minutes per IP
 const aiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 20,
@@ -53,7 +53,6 @@ const aiLimiter = rateLimit({
 
 app.use(limiter);
 
-// Health checks
 app.head('/health', (req, res) => res.status(200).end());
 app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
 

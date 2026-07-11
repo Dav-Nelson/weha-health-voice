@@ -126,7 +126,6 @@ export default function ResponsePlayer({ text, language }) {
 
   return (
     <>
-      {/* --- TELEPORTED TOAST USING createPortal --- */}
       {errorToast && createPortal(
         <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-[9999] bg-health-surface border border-health-accent/50 shadow-2xl rounded-2xl px-4 py-3 flex items-center gap-3 text-sm font-medium text-health-textPrimary max-w-[90vw] md:max-w-md transition-all duration-300 ease-in-out">
           <AlertCircle className="text-health-accent shrink-0" size={20} />
