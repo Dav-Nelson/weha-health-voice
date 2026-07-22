@@ -218,9 +218,6 @@ before final submission and is listed as a roadmap item.
 
 No user authentication exists. Sessions are device-bound via localStorage.
 
-The FAQ panel translations were added by Ibukun in Week 6 but have not been
-validated by native speakers for all six languages.
-
 ---
 
 ## Getting Started
