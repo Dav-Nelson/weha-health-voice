@@ -28,10 +28,11 @@ export default function Header({ language, onLanguageChange }) {
       <div className="flex items-center gap-3">
         <div className="relative shrink-0">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-health-accent to-health-aiBubble p-[2px]">
-            <div className="w-full h-full rounded-full bg-health-bg flex items-center justify-center overflow-hidden">
-              <span className="text-xl">👩🏾‍⚕️</span>
-            </div>
-          </div>
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-health-accent to-health-aiBubble p-[2px]">
+  <div className="w-full h-full rounded-full bg-health-bg flex items-center justify-center overflow-hidden">
+    <img src="/logo.png" alt="Weha Health logo" className="w-full h-full object-cover" />
+  </div>
+</div>
 
           <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-health-surface bg-green-500"></div>
         </div>
