@@ -58,6 +58,7 @@ app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
 
 app.use('/api/health', require('./routes/health'));
 app.use('/api/voice', aiLimiter, require('./routes/voice'));
+app.use('/api/intake', aiLimiter, require('./routes/intake'));
 
 app.get('/', (req, res) => {
   res.json({
