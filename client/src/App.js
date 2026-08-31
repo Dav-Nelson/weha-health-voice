@@ -6,6 +6,7 @@ import OnboardingModal from './OnboardingModal';
 import HistoryPanel from './components/HistoryPanel';
 import HelpModal from './components/HelpModal';
 import SettingsPanel from './components/SettingsPanel';
+import VoiceIntake from './components/VoiceIntake';
 import { startSilentTracking } from './utils/tracking';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -113,7 +114,7 @@ export default function App() {
         setIsTyping(true);
         await new Promise(r => setTimeout(r, 2000));
         setMessages([{ id: Date.now(), sender: 'bot', text: t.welcome1 }]);
-        
+
         await new Promise(r => setTimeout(r, 1500));
         setMessages(prev => [...prev, { id: Date.now()+1, sender: 'bot', text: t.welcome2 }]);
         setIsTyping(false);
@@ -124,9 +125,9 @@ export default function App() {
 
   const handleLanguageChange = (newLang) => {
     setLanguage(newLang);
-    setMessages([]); 
-    localStorage.setItem('chat_session_id', crypto.randomUUID()); 
-    
+    setMessages([]);
+    localStorage.setItem('chat_session_id', crypto.randomUUID());
+
     const targetLangCode = LANGUAGE_ISO_MAP[newLang.toLowerCase()] || 'en';
     const newT = TRANSLATIONS[targetLangCode] || TRANSLATIONS['en'];
 
@@ -168,7 +169,6 @@ BEHAVIOUR RULES:
 4. Never give a definitive diagnosis.
 5. Always close medical guidance with: "⚕️ Remember: I'm here to support, not replace, a certified doctor."
 [END OF SYSTEM INSTRUCTIONS]
-
 User's message: "${textToProcess}"`;
       }
 
@@ -237,11 +237,11 @@ User's message: "${textToProcess}"`;
       const response = await fetch(`${API_BASE_URL}/api/voice/chat`, { method: 'POST', body: formData });
       if (!response.ok) throw new Error('Voice chat failed');
       const data = await response.json();
-      
+
       const isFirstUserMessage = !messages.some(m => m.sender === 'user');
 
       if (isFirstUserMessage && data.transcribed) {
-        setIsLoading(false); 
+        setIsLoading(false);
         handleSendMessage(data.transcribed);
         return;
       }
@@ -294,6 +294,9 @@ User's message: "${textToProcess}"`;
               <button onClick={() => { setActiveTab('history'); setIsMobileMenuOpen(false); }} className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'history' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}>
                 <History size={20} /><span>Medical History</span>
               </button>
+              <button onClick={() => { setActiveTab('triage'); setIsMobileMenuOpen(false); }} className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'triage' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}>
+                <Mic size={20} /><span>Voice Triage</span>
+              </button>
             </nav>
           </div>
           <div className="flex flex-col gap-2 w-full">
@@ -318,6 +321,9 @@ User's message: "${textToProcess}"`;
           </button>
           <button onClick={() => setActiveTab('history')} className={`p-3 rounded-xl transition relative group ${activeTab === 'history' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}>
             <History size={22} />
+          </button>
+          <button onClick={() => setActiveTab('triage')} className={`p-3 rounded-xl transition relative group ${activeTab === 'triage' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}>
+            <Mic size={22} />
           </button>
         </div>
         <div className="flex flex-col items-center gap-4 w-full">
@@ -352,10 +358,10 @@ User's message: "${textToProcess}"`;
           {activeTab === 'consultation' && (
             <div className="flex flex-col h-full">
               <div className="flex-1 overflow-y-auto px-4 md:px-6 py-4">
-                <ChatDisplay 
-                  messages={messages} 
-                  isTyping={isTyping} 
-                  isLoading={isLoading} 
+                <ChatDisplay
+                  messages={messages}
+                  isTyping={isTyping}
+                  isLoading={isLoading}
                   language={currentLangName}
                   secureText={t.secure}
                 />
@@ -391,6 +397,7 @@ User's message: "${textToProcess}"`;
             </div>
           )}
           {activeTab === 'history' && <HistoryPanel />}
+          {activeTab === 'triage' && <VoiceIntake language={getCleanLanguageCode()} />}
           {activeTab === 'settings' && <SettingsPanel language={currentLangName} setLanguage={handleLanguageChange} />}
         </main>
       </div>
