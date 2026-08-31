@@ -5,7 +5,6 @@ const SUPPORTED_LANGUAGES = [
   'Pidgin',
   'Swahili',
   'Twi',
-  'Oromo',
   'Amharic',
 ];
 
@@ -16,7 +15,7 @@ const getFlag = (lang) => {
   if (lowerLang.includes('pidgin')) return '🇳🇬';
   if (lowerLang.includes('swahili')) return '🇰🇪';
   if (lowerLang.includes('twi')) return '🇬🇭';
-  if (lowerLang.includes('oromo') || lowerLang.includes('amharic')) return '🇪🇹';
+  if (lowerLang.includes('amharic')) return '🇪🇹';
 
   return '🌍';
 };
@@ -39,7 +38,7 @@ export default function Header({ language, onLanguageChange }) {
 
         <div>
           <h2 className="font-brand font-extrabold text-health-textPrimary text-lg leading-none tracking-wide">
-            HealthBridge <span className="text-emerald-400">Africa</span>
+            Weha <span className="text-emerald-400">Health</span>
           </h2>
 
           <p className="text-health-textSecondary text-[11px] font-medium mt-1 uppercase tracking-wider">
@@ -62,10 +61,7 @@ export default function Header({ language, onLanguageChange }) {
             <option
               key={lang}
               value={lang}
-              style={{
-                backgroundColor: '#352014',
-                color: '#FDF6E3',
-              }}
+              style={{ backgroundColor: '#352014', color: '#FDF6E3' }}
             >
               {lang}
             </option>
