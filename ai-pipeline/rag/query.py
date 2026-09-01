@@ -1,6 +1,6 @@
 """
-rag/query.py - HealthBridge Africa RAG Query Engine
-Uses Gemini embeddings for retrieval + Groq Llama-3.3-70b for generation
+rag/query.py - Weha Health RAG Query Engine
+Uses Gemini embeddings for retrieval + Groq openai/gpt-oss-120b for generation
 """
 import os
 import re
@@ -12,36 +12,34 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Gemini client — embeddings only
 gemini_client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-# Groq client — language detection, translation, AND generation
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
+GROQ_CHAT_MODEL = "openai/gpt-oss-120b"
+
+# Matches Sahara v2.5's code-switch pairs used in this competition build
 SUPPORTED_LANGUAGES = {
-    "English", "Nigerian Pidgin", "Swahili", "Oromo", "Twi", "Amharic"
+    "English", "Nigerian Pidgin", "Yoruba", "Akan", "Amharic"
 }
 
 LANGUAGE_ENFORCEMENT = {
     "English": "Respond entirely in English.",
     "Nigerian Pidgin": "You must respond ENTIRELY in Nigerian Pidgin English — every sentence, no English-only sentences mixed in, no switching back to standard English. Use natural Pidgin phrasing throughout (e.g. 'Your body dey hot' not 'Your body is hot').",
-    "Swahili": "Lazima ujibu KWA KISWAHILI PEKEE — sentensi zote kwa Kiswahili, bila kuchanganya na Kiingereza.",
-    "Oromo": "Deebii kee guutummaatti AFAAN OROMOOTIIN kenni — sentensii hunda Afaan Oromootiin, Ingiliffa wajjin walitti hin makin.",
-    "Twi": "You must respond ENTIRELY in Twi — every sentence, no English-only sentences mixed in. If a medical term has no natural Twi equivalent, keep that single term in English but write the surrounding explanation in Twi.",
+    "Yoruba": "You must respond ENTIRELY in Yoruba — every sentence, no English-only sentences mixed in, no switching back to standard English. If a medical term has no natural Yoruba equivalent, keep that single term in English but write the surrounding explanation in Yoruba.",
+    "Akan": "You must respond ENTIRELY in Akan (Twi) — every sentence, no English-only sentences mixed in. If a medical term has no natural Akan equivalent, keep that single term in English but write the surrounding explanation in Akan.",
     "Amharic": "መልስህን ሙሉ በሙሉ በአማርኛ ስጥ — እያንዳንዱ ዓረፍተ ነገር በአማርኛ መሆን አለበት፣ ከእንግሊዝኛ ጋር አትቀላቅል።"
 }
 
 FALLBACK_MESSAGES = {
     "English": "I don't have enough reliable information to answer that confidently. Please consult a qualified healthcare provider or visit your nearest health facility.",
     "Nigerian Pidgin": "I no get enough correct information to answer dat question well well. Abeg go see correct doctor or visit di health center near you.",
-    "Swahili": "Sina taarifa za kutosha kujibu swali hilo kwa uhakika. Tafadhali wasiliana na mtaalamu wa afya au tembelea kituo cha afya kilicho karibu nawe.",
-    "Oromo": "Gaaffii kanaaf deebii sirrii kennuuf odeeffannoo ga'aa hin qabu. Maaloo ogeessa fayyaa mariisisi yookaan dhaabbata fayyaa naannoo keessanitti argamu daawwadhaa.",
-    "Twi": "Minni nsɛm a edi mu pii a mede bɛyi saa asɛmmisa yi ano yiye. Yɛsrɛ wo, kɔ hwɛ oduruyɛfo anaa kɔ ayaresabea a ɛbɛn wo.",
+    "Yoruba": "Mi ò ní àlàyé tó pé láti dá̀hùn ìbéèrè yìí dáadáa. Jọ̀wọ́ lọ bá dókítà tó gbẹ́kẹ̀lé sọ̀rọ̀ tàbí lọ sí ilé ìwòsàn tó súnmọ́ ọ.",
+    "Akan": "Menni nsɛm a edi mu pii a mede bɛyi saa asɛmmisa yi ano yiye. Yɛsrɛ wo, kɔ hwɛ oduruyɛfo anaa kɔ ayaresabea a ɛbɛn wo.",
     "Amharic": "ለዚህ ጥያቄ በትክክል ለመመለስ በቂ መረጃ የለኝም። እባክዎ ብቁ የጤና ባለሙያ ያማክሩ ወይም በአቅራቢያዎ ወዳለው የጤና ተቋም ይሂዱ።"
 }
 
 
 def strip_markdown(text: str) -> str:
-    """Remove markdown formatting so plain-text frontends render cleanly."""
     if not text:
         return text
     text = re.sub(r'\*\*(.*?)\*\*', r'\1', text)
@@ -54,7 +52,6 @@ def strip_markdown(text: str) -> str:
 
 
 def is_degenerate(text: str) -> bool:
-    """Detect repetitive or looping model output."""
     if not text or len(text) < 10:
         return False
 
@@ -98,10 +95,10 @@ def is_degenerate(text: str) -> bool:
 
 
 def detect_language_and_translate(text: str) -> dict:
-    """Detect language and translate to English using Groq Llama-3.3-70b."""
+    """Detect language and translate to English using Groq."""
     try:
         response = groq_client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=GROQ_CHAT_MODEL,
             messages=[
                 {
                     "role": "system",
@@ -114,12 +111,11 @@ TASK:
 IMPORTANT MEDICAL TERMS:
 
 AMHARIC: ወባ=malaria, ኮሌራ=cholera, ነቀርሳ=tuberculosis, ትኩሳት=fever, ተቅማጥ=diarrhea, የራስ ህመም=headache
-OROMO: busaa=malaria, koleeraa=cholera, dhukkuba sombaa=tuberculosis, hoo'a qaamaa=fever, garaa kaasaa=diarrhea
-SWAHILI: malaria=malaria, kipindupindu=cholera, kifua kikuu=tuberculosis, homa=fever, kuhara=diarrhea
+YORUBA: ibà=fever/malaria, ìgbẹ́gbuuru=diarrhea, ọ̀gbẹ́ni orí=headache
 PIDGIN: body dey hot=fever, running stomach=diarrhea, head dey pain me=headache
-TWI: atiridii=malaria, tirim=headache
+AKAN: atiridii=malaria, tirim=headache
 
-Language codes: am=Amharic, om=Oromo, sw=Swahili, pcm=Nigerian Pidgin, tw=Twi, en=English
+Language codes: am=Amharic, yo=Yoruba, pcm=Nigerian Pidgin, ak=Akan, en=English
 
 Respond EXACTLY in this format:
 LANGUAGE_CODE: code
@@ -147,7 +143,6 @@ ENGLISH: translation"""
 
 
 def get_query_embedding(text: str) -> list:
-    """Generate normalized 768-dim embedding for search query via Gemini."""
     result = gemini_client.models.embed_content(
         model="gemini-embedding-001",
         contents=text,
@@ -163,15 +158,11 @@ def get_query_embedding(text: str) -> list:
 
 
 def ask_rag(question: str, language: str = "English", history: list = []) -> dict:
-    """Full RAG pipeline: detect language → embed → retrieve → generate with Groq Llama-3.3-70b."""
-
-    # Step 1: Detect language and translate to English for search
     detection = detect_language_and_translate(question)
     language_code = detection["language_code"]
     language_name = detection["language_name"]
     search_query = detection["english"]
 
-    # Frontend language selection is authoritative for response language
     response_language = language if language in SUPPORTED_LANGUAGES else language_name
 
     print(f"[Original]  {question}")
@@ -179,7 +170,6 @@ def ask_rag(question: str, language: str = "English", history: list = []) -> dic
     print(f"[Search]    {search_query}")
     print(f"[Respond]   {response_language}")
 
-    # Step 2: Embed English query and retrieve top-5 chunks from pgvector
     query_embedding = get_query_embedding(search_query)
 
     conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
@@ -194,7 +184,6 @@ def ask_rag(question: str, language: str = "English", history: list = []) -> dic
     cur.close()
     conn.close()
 
-    # Step 3: Filter by minimum relevance score
     if not rows or rows[0][2] < 0.30:
         return {
             "answer": FALLBACK_MESSAGES.get(response_language, FALLBACK_MESSAGES["English"]),
@@ -206,7 +195,6 @@ def ask_rag(question: str, language: str = "English", history: list = []) -> dic
     sources = list(set([row[1] for row in rows]))
     best_score = float(rows[0][2])
 
-    # Step 4: Build conversation history
     history_text = ""
     if history:
         history_lines = []
@@ -215,12 +203,11 @@ def ask_rag(question: str, language: str = "English", history: list = []) -> dic
             history_lines.append(f"{role}: {msg.get('text', '')}")
         history_text = "\n".join(history_lines)
 
-    # Step 5: Build system prompt
     language_rule = LANGUAGE_ENFORCEMENT.get(response_language, LANGUAGE_ENFORCEMENT["English"])
 
     system_instruction = (
-        f"You are HealthBridge, a warm and knowledgeable community health companion "
-        f"serving users across Nigeria, Ghana, Ethiopia, and Kenya.\n\n"
+        f"You are Weha Health, a warm and knowledgeable community health companion "
+        f"serving users across Nigeria, Ghana, and Ethiopia.\n\n"
 
         f"=== LANGUAGE REQUIREMENT — HIGHEST PRIORITY ===\n"
         f"The user's selected language is: {response_language}.\n"
@@ -239,8 +226,8 @@ def ask_rag(question: str, language: str = "English", history: list = []) -> dic
 
         f"=== TERMINOLOGY ANCHORS ===\n"
         f"ወባ = malaria | ነቀርሳ = tuberculosis | ኮሌራ = cholera | ትኩሳት = fever | ተቅማጥ = diarrhea\n"
-        f"busaa = malaria | koleeraa = cholera | dhukkuba sombaa = tuberculosis\n"
-        f"kifua kikuu = tuberculosis | kipindupindu = cholera | homa = fever\n"
+        f"ibà = fever/malaria | ìgbẹ́gbuuru = diarrhea\n"
+        f"atiridii = malaria (Akan)\n"
         f"=================================================\n\n"
 
         f"=== BEHAVIOR ===\n"
@@ -265,10 +252,9 @@ def ask_rag(question: str, language: str = "English", history: list = []) -> dic
         f"Give a complete response — do not cut off mid-sentence."
     )
 
-    # Step 6: Generate with Groq Llama-3.3-70b-versatile
     try:
         response = groq_client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=GROQ_CHAT_MODEL,
             messages=[
                 {"role": "system", "content": system_instruction},
                 {"role": "user", "content": (
@@ -288,7 +274,6 @@ def ask_rag(question: str, language: str = "English", history: list = []) -> dic
             "sources": sources
         }
 
-    # Step 7: Safety check — catch degenerate output
     if is_degenerate(answer):
         print(f"Degenerate output detected for language={response_language}")
         return {
@@ -297,10 +282,8 @@ def ask_rag(question: str, language: str = "English", history: list = []) -> dic
             "sources": sources
         }
 
-    # Step 8: Strip any remaining markdown
     answer = strip_markdown(answer)
 
-    # Step 9: Final safety net
     if is_degenerate(answer):
         answer = FALLBACK_MESSAGES.get(response_language, FALLBACK_MESSAGES["English"])
 
