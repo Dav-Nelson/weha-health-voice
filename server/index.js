@@ -9,21 +9,18 @@ require('./db/index');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Required for Railway/Render/any reverse proxy — tells Express to trust
-// the X-Forwarded-For header so rate limiting works correctly
 app.set('trust proxy', 1);
 
-// Security headers
 app.use(helmet());
 
-const allowedOrigins = [
+const explicitAllowedOrigins = [
   'https://healthbridge-africa.vercel.app',
   'http://localhost:3000'
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin || explicitAllowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -62,14 +59,14 @@ app.use('/api/intake', aiLimiter, require('./routes/intake'));
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'HealthBridge Africa API is running',
+    message: 'Weha Health API is running',
     version: '1.0.0',
     status: 'ok'
   });
 });
 
 app.listen(PORT, () => {
-  console.log(`HealthBridge Africa server running on port ${PORT}`);
+  console.log(`Weha Health server running on port ${PORT}`);
 });
 
 module.exports = app;
