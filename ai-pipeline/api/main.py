@@ -7,7 +7,7 @@ Run: uvicorn main:app --reload --port 8000
 """
 import os
 import shutil
-from typing import List, Optional
+from typing import List
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -25,18 +25,19 @@ client = OpenAI(
     base_url="https://api.groq.com/openai/v1"
 )
 
-# Languages actively supported in THIS competition build (Sahara code-switch pairs we're testing)
+# Languages actively supported in THIS competition build
+# (matches Sahara v2.5's code-switch pairs: Yoruba-English, Akan-English,
+# Amharic-English, Nigerian Pidgin-English)
 SUPPORTED_LANGUAGES = {
     "en": "English",
     "am": "Amharic",
-    "sw": "Swahili",
+    "yo": "Yoruba",
     "pcm": "Nigerian Pidgin",
+    "ak": "Akan",
 }
 
 SAHARA_API_URL = os.environ.get("SAHARA_API_URL", "https://api.intron.io/sahara/v2.5/transcribe")
 SAHARA_API_KEY = os.environ.get("SAHARA_API_KEY")
-# Sahara keys go live Sept 1 — until set, we fall back to Whisper so the full
-# pipeline (intake, triage, multi-turn) can be built and tested today.
 USE_SAHARA = bool(SAHARA_API_KEY)
 
 app = FastAPI(
@@ -75,12 +76,14 @@ def get_full_language_name(lang_code: str) -> str:
 
 
 def map_to_whisper_lang(lang_code: str) -> str:
-    whisper_lang_map = {"en": "en", "sw": "sw", "am": "am", "pcm": "en"}
+    # Whisper has no dedicated code for Nigerian Pidgin or Akan/Twi,
+    # so those route through English-mode transcription (same limitation
+    # noted in the original HealthBridge Africa README).
+    whisper_lang_map = {"en": "en", "am": "am", "yo": "yo", "pcm": "en", "ak": "en"}
     return whisper_lang_map.get(lang_code.lower(), "en")
 
 
 def transcribe_with_sahara(file_path: str, language_pair: str) -> dict:
-    """Send audio to Sahara v2.5 for code-switched transcription."""
     with open(file_path, "rb") as audio_file:
         response = requests.post(
             SAHARA_API_URL,
@@ -134,7 +137,6 @@ def home_head():
 
 @app.post("/ask")
 async def ask_question(data: QuestionRequest):
-    """Text question → grounded health answer via RAG + Groq (with history)."""
     from rag.query import ask_rag
     try:
         target_lang_name = get_full_language_name(data.language)
@@ -155,9 +157,8 @@ async def ask_question(data: QuestionRequest):
 async def transcribe_audio(
     file: UploadFile = File(...),
     language: str = "en",
-    model: str = "auto"   # "sahara", "whisper", or "auto" (uses Sahara if key is set, else Whisper)
+    model: str = "auto"
 ):
-    """Audio file → transcribed text. Supports model selection for benchmarking."""
     temp_path = f"temp_{file.filename}"
     try:
         with open(temp_path, "wb") as buffer:
@@ -185,7 +186,6 @@ async def transcribe_audio(
 
 @app.post("/speak")
 async def speak(data: SpeakRequest):
-    """Standalone Text-to-Speech Engine Endpoint."""
     from tts.speak import text_to_speech
     try:
         if not data.text:
@@ -202,13 +202,6 @@ async def speak(data: SpeakRequest):
 
 @app.post("/intake/process")
 async def process_intake(data: IntakeRequest):
-    """
-    Core triage engine. Called once per turn of the voice intake conversation.
-    Takes the latest transcript + whatever fields have been gathered so far.
-    Returns either:
-      - status "need_more_info" + a clarifying question (multi-turn loop continues), or
-      - status "complete" + final structured record + urgency assessment
-    """
     try:
         lang_name = get_full_language_name(data.language)
 
