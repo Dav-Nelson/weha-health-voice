@@ -3,20 +3,18 @@ import React from 'react';
 const SUPPORTED_LANGUAGES = [
   'English',
   'Pidgin',
-  'Swahili',
-  'Twi',
+  'Yoruba',
+  'Akan',
   'Amharic',
 ];
 
 const getFlag = (lang) => {
   const lowerLang = lang?.toLowerCase() || '';
-
   if (lowerLang.includes('english')) return null;
   if (lowerLang.includes('pidgin')) return '🇳🇬';
-  if (lowerLang.includes('swahili')) return '🇰🇪';
-  if (lowerLang.includes('twi')) return '🇬🇭';
+  if (lowerLang.includes('yoruba')) return '🇳🇬';
+  if (lowerLang.includes('akan')) return '🇬🇭';
   if (lowerLang.includes('amharic')) return '🇪🇹';
-
   return '🌍';
 };
 
