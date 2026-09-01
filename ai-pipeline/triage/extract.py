@@ -7,12 +7,10 @@ import json
 
 REQUIRED_FIELDS = ["symptom_category", "symptoms", "duration", "severity"]
 
+GROQ_CHAT_MODEL = "openai/gpt-oss-120b"
+
 
 def extract_fields(transcript: str, existing_fields: dict, language: str, client) -> dict:
-    """
-    Merges new info from the latest transcript into the fields gathered so far.
-    Returns an updated fields dict.
-    """
     prompt = f"""You are a medical intake assistant extracting structured data from a patient's spoken description.
 The patient may be speaking in a mix of {language} and English.
 
@@ -34,7 +32,7 @@ New transcript: "{transcript}"
 Respond ONLY with valid JSON matching the fields above, no extra text.
 """
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model=GROQ_CHAT_MODEL,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.1,
         response_format={"type": "json_object"}
@@ -50,10 +48,6 @@ Respond ONLY with valid JSON matching the fields above, no extra text.
 
 
 def generate_clarifying_question(missing_field: str, fields_so_far: dict, language: str, client) -> str:
-    """
-    Generates a natural, short follow-up question in the patient's language
-    to fill in the next missing required field.
-    """
     prompt = f"""You are a warm, clear voice health assistant speaking to a patient in {language} (mixed with English is fine, matching how they've been speaking).
 
 You already know: {json.dumps(fields_so_far)}
@@ -64,7 +58,7 @@ Ask ONE short, natural, non-clinical-sounding question to get this information.
 Respond with ONLY the question text, nothing else.
 """
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model=GROQ_CHAT_MODEL,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.4
     )
