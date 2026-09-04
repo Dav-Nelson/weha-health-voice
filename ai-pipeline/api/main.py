@@ -25,9 +25,6 @@ client = OpenAI(
     base_url="https://api.groq.com/openai/v1"
 )
 
-# Languages actively supported in THIS competition build
-# (matches Sahara v2.5's code-switch pairs: Yoruba-English, Akan-English,
-# Amharic-English, Nigerian Pidgin-English)
 SUPPORTED_LANGUAGES = {
     "en": "English",
     "am": "Amharic",
@@ -36,14 +33,14 @@ SUPPORTED_LANGUAGES = {
     "ak": "Akan",
 }
 
-SAHARA_API_URL = os.environ.get("SAHARA_API_URL", "https://api.intron.io/sahara/v2.5/transcribe")
+SAHARA_API_URL = "https://infer.voice.intron.io/file/v1/upload/sync"
 SAHARA_API_KEY = os.environ.get("SAHARA_API_KEY")
 USE_SAHARA = bool(SAHARA_API_KEY)
 
 app = FastAPI(
     title="Weha Health — AI Pipeline",
     description="Multilingual voice health triage agent, built for the Sahara CodeSwitch Africa Challenge",
-    version="0.3.0"
+    version="0.4.0"
 )
 
 app.add_middleware(
@@ -76,30 +73,40 @@ def get_full_language_name(lang_code: str) -> str:
 
 
 def map_to_whisper_lang(lang_code: str) -> str:
-    # Whisper has no dedicated code for Nigerian Pidgin or Akan/Twi,
-    # so those route through English-mode transcription (same limitation
-    # noted in the original HealthBridge Africa README).
     whisper_lang_map = {"en": "en", "am": "am", "yo": "yo", "pcm": "en", "ak": "en"}
     return whisper_lang_map.get(lang_code.lower(), "en")
 
 
-def transcribe_with_sahara(file_path: str, language_pair: str) -> dict:
+def transcribe_with_sahara(file_path: str, language_code: str = "en") -> dict:
+    """Send audio to Sahara's File Upload Sync API. Files must be <=120s."""
     with open(file_path, "rb") as audio_file:
         response = requests.post(
             SAHARA_API_URL,
             headers={"Authorization": f"Bearer {SAHARA_API_KEY}"},
-            files={"file": audio_file},
-            data={"language_pair": language_pair},
-            timeout=45
+            files={"audio_file_blob": audio_file},
+            data={
+                "audio_file_name": os.path.basename(file_path),
+                "use_language_asr_input": language_code,
+            },
+            timeout=125
+        )
+
+    if response.status_code == 503:
+        raise HTTPException(
+            status_code=504,
+            detail="Sahara transcription timed out synchronously. File may need async polling (not implemented)."
         )
     if response.status_code != 200:
         raise HTTPException(status_code=502, detail=f"Sahara API error: {response.text}")
+
     result = response.json()
+    data = result.get("data", {})
     return {
-        "text": result.get("text", ""),
-        "detected_language": result.get("detected_language", language_pair),
+        "text": data.get("audio_transcript", ""),
+        "detected_language": language_code,
         "status": "success",
-        "engine": "sahara"
+        "engine": "sahara",
+        "duration_seconds": data.get("processed_audio_duration_in_seconds")
     }
 
 
@@ -124,7 +131,7 @@ def transcribe_with_whisper(file_path: str, language: str) -> dict:
 def home():
     return {
         "message": "Weha Health AI Pipeline running",
-        "version": "0.3.0",
+        "version": "0.4.0",
         "sahara_active": USE_SAHARA,
         "endpoints": ["/ask", "/transcribe", "/speak", "/intake/process"]
     }
@@ -171,7 +178,7 @@ async def transcribe_audio(
         if chosen == "sahara":
             if not USE_SAHARA:
                 raise HTTPException(status_code=503, detail="SAHARA_API_KEY not yet configured.")
-            return transcribe_with_sahara(temp_path, language_pair=f"{language}-en")
+            return transcribe_with_sahara(temp_path, language_code=language)
 
         return transcribe_with_whisper(temp_path, language)
 
