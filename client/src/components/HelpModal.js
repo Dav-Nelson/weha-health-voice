@@ -1,84 +1,74 @@
 import React, { useState } from 'react';
 import { X, HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
 
-// Fully translated UI and FAQ Content
+// NOTE FOR TEAM: Yoruba, Akan, and Amharic FAQ text below is a first pass.
+// Ibsa (Amharic), Peggy (Akan/Twi) — please review wording for naturalness
+// before final submission. This is FAQ copy, not clinical guidance, but
+// accuracy still matters for the judges' inclusion criteria.
 const TRANSLATIONS = {
-  English: { 
-    title: "Help & FAQ", 
-    desc: "Common questions about HealthBridge Africa", 
-    footer: "⚕️ HealthBridge Africa is not a medical service. Always consult a qualified healthcare provider.",
+  English: {
+    title: "Help & FAQ",
+    desc: "Common questions about Weha Health",
+    footer: "⚕️ Weha Health is not a medical service. Always consult a qualified healthcare provider.",
     faqs: [
-      { q: "Is HealthBridge Africa a replacement for a doctor?", a: "No, HealthBridge Africa is a health information and triage tool, not a medical service. It helps you understand symptoms, know when to seek care, and get reliable health information in your language. Always consult a qualified healthcare provider for diagnosis and treatment." },
-      { q: "What languages are supported?", a: "HealthBridge Africa supports English, Nigerian Pidgin, Swahili, Oromo, Twi, and Amharic. You can switch languages anytime using the dropdown in the top right of the screen. The AI will respond in whichever language you select." },
+      { q: "Is Weha Health a replacement for a doctor?", a: "No, Weha Health is a health information and triage tool, not a medical service. It helps you understand symptoms, know when to seek care, and get reliable health information in your language. Always consult a qualified healthcare provider for diagnosis and treatment." },
+      { q: "What languages are supported?", a: "Weha Health supports English, Nigerian Pidgin, Yoruba, Akan, and Amharic. You can switch languages anytime using the dropdown at the top of the screen. The AI will respond in whichever language you select." },
       { q: "Is my conversation private?", a: "Your conversations are stored securely and linked only to your device session. No name, email, or personal identity is collected or required. Clearing your browser data will start a fresh session." },
-      { q: "How accurate is the information?", a: "Responses are grounded in verified sources including WHO guidelines and country-level health data from Nigeria, Ghana, Ethiopia, and Kenya. The AI does not guess or fabricate answers. If it does not have reliable information on a topic, it will say so and recommend consulting a healthcare professional." },
-      { q: "How do I use the voice feature?", a: "Tap the microphone button and speak your health question in your chosen language, then tap stop. HealthBridge will transcribe what you said and respond in text. Tap the Listen button on any response to hear it read back to you." },
-      { q: "What should I do in a medical emergency?", a: "If you or someone nearby is experiencing a medical emergency like difficulty breathing, chest pain, heavy bleeding, or loss of consciousness, do not use HealthBridge Africa. Go to the nearest hospital immediately or call your local emergency services." }
+      { q: "How accurate is the information?", a: "Responses are grounded in verified sources including WHO guidelines and country-level health data. The AI does not guess or fabricate answers. If it does not have reliable information on a topic, it will say so and recommend consulting a healthcare professional." },
+      { q: "How do I use the voice feature?", a: "Tap the microphone button and speak your health question in your chosen language, then tap stop. Weha Health will transcribe what you said and respond in text. Tap Listen on any response to hear it read back to you." },
+      { q: "What should I do in a medical emergency?", a: "If you or someone nearby is experiencing a medical emergency like difficulty breathing, chest pain, heavy bleeding, or loss of consciousness, do not use Weha Health. Go to the nearest hospital immediately or call your local emergency services." }
     ]
   },
-  Pidgin: { 
-    title: "Help & FAQ", 
-    desc: "Question wey people dey always ask about HealthBridge", 
-    footer: "⚕️ HealthBridge Africa no be doctor clinic. Make you always check qualified doctor.",
+  Pidgin: {
+    title: "Help & FAQ",
+    desc: "Question wey people dey always ask about Weha Health",
+    footer: "⚕️ Weha Health no be doctor clinic. Make you always check qualified doctor.",
     faqs: [
-      { q: "HealthBridge Africa fit replace doctor?", a: "No, HealthBridge Africa na tool to help you understand your health, e no be hospital. Always check qualified doctor for proper treatment." },
-      { q: "Which languages dey available?", a: "We get English, Pidgin, Swahili, Oromo, Twi, and Amharic. You fit change am anytime for top." },
+      { q: "Weha Health fit replace doctor?", a: "No, Weha Health na tool to help you understand your health, e no be hospital. Always check qualified doctor for proper treatment." },
+      { q: "Which languages dey available?", a: "We get English, Pidgin, Yoruba, Akan, and Amharic. You fit change am anytime for top of the screen." },
       { q: "My conversation dey private?", a: "Yes, everything wey you tok dey secure and e only tie to your device. We no dey collect your name or email." },
       { q: "How sure the information be?", a: "The answers dey come from verified sources like WHO and country health data. AI no dey guess. If e no know, e go tell you make you see doctor." },
       { q: "How I fit use the voice feature?", a: "Press the mic button, talk wetin dey do you, then press stop. E go write wetin you talk and answer you. You fit press Listen make e read am for you." },
-      { q: "Wetin make I do for medical emergency?", a: "If person no fit breathe well, get chest pain, dey bleed, or faint, no use HealthBridge. Go nearest hospital straight or call emergency number." }
+      { q: "Wetin make I do for medical emergency?", a: "If person no fit breathe well, get chest pain, dey bleed, or faint, no use Weha Health. Go nearest hospital straight or call emergency number." }
     ]
   },
-  Swahili: { 
-    title: "Msaada na Maswali", 
-    desc: "Maswali ya kawaida kuhusu HealthBridge Africa", 
-    footer: "⚕️ HealthBridge Africa sio huduma ya matibabu. Daima shauriana na daktari.",
+  Yoruba: {
+    title: "Ìrànlọ́wọ́ àti Ìbéèrè",
+    desc: "Àwọn ìbéèrè tí a máa ń béèrè nípa Weha Health",
+    footer: "⚕️ Weha Health kì í ṣe iṣẹ́ ìṣègùn gidi. Jọ̀wọ́ máa lọ bá dókítà tó gbẹ́kẹ̀lé nígbà gbogbo.",
     faqs: [
-      { q: "Je, HealthBridge Africa inaweza kuchukua nafasi ya daktari?", a: "Hapana, hii ni zana ya habari za afya, sio huduma ya matibabu. Daima shauriana na daktari kwa matibabu." },
-      { q: "Ni lugha gani zinazotumika?", a: "Kiingereza, Pidgin, Kiswahili, Oromo, Twi, na Kiamhari. Unaweza kubadilisha wakati wowote." },
-      { q: "Je, mazungumzo yangu ni ya faragha?", a: "Ndio, mazungumzo yako yanahifadhiwa kwa usalama na kifaa chako pekee. Hatukusanyi jina lako." },
-      { q: "Taarifa hizi ni sahihi kiasi gani?", a: "Majibu yanatoka kwa vyanzo vilivyothibitishwa kama WHO. AI haibashiri. Kama haina uhakika, itakushauri umuone daktari." },
-      { q: "Ninatumiaje kipengele cha sauti?", a: "Gusa kitufe cha kipaza sauti, ongea, kisha gusa simamisha. Unaweza kusikiliza majibu pia." },
-      { q: "Nifanye nini wakati wa dharura?", a: "Kama ni dharura ya kiafya (kama kushindwa kupumua), nenda hospitali mara moja." }
+      { q: "Ṣé Weha Health lè rọ́pò dókítà?", a: "Rárá, Weha Health jẹ́ irinṣẹ́ ìsọfúnni nípa ìlera, kì í ṣe iṣẹ́ ìṣègùn gidi. Ó ń ràn ọ́ lọ́wọ́ láti mọ àwọn àmì àìsàn àti ìgbà tó yẹ kó o lọ wo dókítà. Jọ̀wọ́ máa bá dókítà tó gbẹ́kẹ̀lé sọ̀rọ̀ fún àyẹ̀wò àti ìtọ́jú." },
+      { q: "Èdè wo ni ó wà?", a: "Weha Health ń sọ èdè Gẹ̀ẹ́sì, Pidgin, Yorùbá, Akan, àti Amharic. O lè yí èdè padà nígbàkigbà pẹ̀lú àṣàyàn tó wà lókè ojú-ìwé." },
+      { q: "Ṣé ìjíròrò mi jẹ́ àṣírí?", a: "Bẹ́ẹ̀ni, ìjíròrò rẹ ni a ń fi pamọ́ ní ààbò, a kò sì gba orúkọ tàbí email rẹ." },
+      { q: "Bawo ni ìsọfúnni náà ṣe dájú tó?", a: "Àwọn ìdáhùn wa láti orísun tó dájú bíi WHO. AI náà kì í fojú-ẹ̀gbọ́n dá àwọn nǹkan mọ̀." },
+      { q: "Báwo ni mo ṣe lè lo ohun ìró?", a: "Tẹ ìka rẹ sórí máìkì, sọ̀rọ̀, lẹ́yìn náà tẹ 'stop'. O lè tẹ Listen láti gbọ́ ìdáhùn náà." },
+      { q: "Kín ni kí n ṣe bí ìṣẹ̀lẹ̀ àjàkálẹ̀ bá ṣẹlẹ̀?", a: "Bí ẹnikẹ́ni kò bá lè mí dáadáa tàbí ẹ̀jẹ̀ pọ̀ jáde, lọ sí ilé ìwòsàn tó súnmọ́ ọ lẹ́sẹ̀kẹsẹ̀." }
     ]
   },
-  Twi: { 
-    title: "Mmoa & Nsɛmbisa", 
-    desc: "Nsɛm a nkurɔfoɔ taa bisa fa HealthBridge ho", 
-    footer: "⚕️ HealthBridge Africa nyɛ ayaresabea. Bere biara kɔhunu oduruyɛfoɔ a ɔwɔ tumi krataa.",
+  Akan: {
+    title: "Mmoa & Nsɛmbisa",
+    desc: "Nsɛm a nkurɔfoɔ taa bisa fa Weha Health ho",
+    footer: "⚕️ Weha Health nyɛ ayaresabea. Bere biara kɔhunu oduruyɛfoɔ a ɔwɔ tumi krataa.",
     faqs: [
-      { q: "HealthBridge Africa bɛtumi asi oduruyɛfoɔ ananmu?", a: "Dabi, ɛyɛ afutuo nko ara, ɛnyɛ ayaresabea. Kɔhunu oduruyɛfoɔ bere biara." },
-      { q: "Kasa bɛn na yɛde di dwuma?", a: "English, Pidgin, Swahili, Oromo, Twi, ne Amharic. Wobɛtumi asesa no bere biara." },
+      { q: "Weha Health bɛtumi asi oduruyɛfoɔ ananmu?", a: "Dabi, ɛyɛ afutuo nko ara, ɛnyɛ ayaresabea. Kɔhunu oduruyɛfoɔ bere biara ma nhwehwɛmu ne ayaresa." },
+      { q: "Kasa bɛn na yɛde di dwuma?", a: "English, Pidgin, Yoruba, Akan, ne Amharic. Wobɛtumi asesa no bere biara wɔ soro hɔ." },
       { q: "Me nsɛm yɛ kokoam?", a: "Aane, wo nsɛm no yɛ kokoam, yɛnkora wo din anaa email so." },
-      { q: "Nsɛm no yɛ nokware?", a: "Nsɛm no firi mmeaeɛ a wɔagye atom te sɛ WHO. AI no ntwen nkyerɛ." },
+      { q: "Nsɛm no yɛ nokware?", a: "Nsɛm no firi mmeaeɛ a wɔagye atom te sɛ WHO. AI no ntwen nkyerɛ nsɛm." },
       { q: "Mɛyɛ sɛn ade nne afiri no awura mu?", a: "Mia mic no so, kasa, na mia stop. Wobɛtumi atie mmuaeɛ no bio." },
       { q: "Sɛ asiane ba a mɛyɛ dɛn?", a: "Sɛ obi ntumi ngye ahome anaa ɔrepira a, kɔ ayaresabea a ɛbɛn wo ntɛm ara." }
     ]
   },
-  Oromo: { 
-    title: "Gargaarsa & Gaaffii", 
-    desc: "Gaaffiilee yeroo baay'ee HealthBridge Africa irratti gaafataman", 
-    footer: "⚕️ HealthBridge Africa tajaajila yaalaa miti. Yeroo mara ogeessa fayyaa mariisisi.",
+  Amharic: {
+    title: "እገዛ እና ጥያቄዎች",
+    desc: "ስለ Weha Health የተለመዱ ጥያቄዎች",
+    footer: "⚕️ Weha Health የህክምና አገልግሎት አይደለም። ሁልጊዜ ብቁ ዶክተር ያማክሩ።",
     faqs: [
-      { q: "HealthBridge Africa ogeessa fayyaa bakka ni bu'aa?", a: "Lakki, kun meeshaa odeeffannoo fayyaa ti, tajaajila yaalaa miti. Yeroo mara ogeessa fayyaa mariisisi." },
-      { q: "Afaanota kamtu jira?", a: "Ingiliffa, Piijiinii, Suwaahilii, Oromoo, Twi, fi Amaariffa. Yeroo barbaaddetti jijjiiruu dandeessa." },
-      { q: "Mariin koo iccitiidhaa?", a: "Eeyyee, mariin kee iccitiidhaan eegama, maqaa kees hin sassaabnu." },
-      { q: "Odeeffannoon kun sirriidhaa?", a: "Deebiin kun madda mirkanaa'e akka WHO irraa dhufa. AI'n tilmaama hin kennu." },
-      { q: "Sagalee akkamittan fayyadama?", a: "Mallattoo maayikii tuqi, dubbadhu, itti aanee dhaabi. Deebii isaas dhaggeeffachuu dandeessa." },
-      { q: "Balaa tasaa yoo mudate maal gochuun qaba?", a: "Yoo rakkoon harganuu, dhukkubbii qomaa ykn dhiigni baay'een jiraate, dafii gara mana yaalaa deemi." }
-    ]
-  },
-  Amharic: { 
-    title: "እገዛ እና ጥያቄዎች", 
-    desc: "ስለ HealthBridge Africa የተለመዱ ጥያቄዎች", 
-    footer: "⚕️ HealthBridge Africa የህክምና አገልግሎት አይደለም። ሁልጊዜ ዶክተር ያማክሩ።",
-    faqs: [
-      { q: "HealthBridge Africa የዶክተር ምትክ ነው?", a: "አላለም፣ ይህ የጤና መረጃ መሳሪያ እንጂ የህክምና አገልግሎት አይደለም። ሁልጊዜ ዶክተር ያማክሩ።" },
-      { q: "ምን ቋንቋዎች ይደገፋሉ?", a: "እንግሊዝኛ፣ ፒጂን፣ ስዋሂሊ፣ ኦሮሞ፣ ትዊ እና አማርኛ። በማንኛውም ጊዜ መቀየር ይችላሉ።" },
-      { q: "ውይይቴ ሚስጥራዊ ነው?", a: "አዎ፣ ውይይቶችዎ ደህንነታቸው የተጠበቀ ነው። ስምዎን አንሰበስብም።" },
-      { q: "መረጃው ምን ያህል ትክክል ነው?", a: "ምላሾቹ እንደ WHO ካሉ የተረጋገጡ ምንጮች የተገኙ ናቸው። AI አይገምትም።" },
-      { q: "የድምጽ ባህሪውን እንዴት እጠቀማለሁ?", a: "ማይክሮፎኑን ይጫኑ፣ ይናገሩ፣ ከዚያ ያቁሙ። ምላሹን ማዳመጥም ይችላሉ።" },
-      { q: "በድንገተኛ አደጋ ጊዜ ምን ላድርግ?", a: "የመተንፈስ ችግር ወይም ከባድ የደም መፍሰስ ካለ፣ ወዲያውኑ ወደ ሆስፒታል ይሂዱ።" }
+      { q: "Weha Health የዶክተር ምትክ ነው?", a: "አይደለም፣ ይህ የጤና መረጃ መሳሪያ እንጂ የህክምና አገልግሎት አይደለም። ሁልጊዜ ብቁ ዶክተር ያማክሩ።" },
+      { q: "ምን ቋንቋዎች ይደገፋሉ?", a: "እንግሊዝኛ፣ ፒጂን፣ ዮሩባ፣ አካን እና አማርኛ። በማንኛውም ጊዜ ከላይ ካለው ዝርዝር መቀየር ይችላሉ።" },
+      { q: "ውይይቴ ሚስጥራዊ ነው?", a: "አዎ፣ ውይይቶችዎ ደህንነታቸው የተጠበቀ ነው። ስምዎን ወይም ኢሜይልዎን አንሰበስብም።" },
+      { q: "መረጃው ምን ያህል ትክክል ነው?", a: "ምላሾቹ እንደ WHO ካሉ የተረጋገጡ ምንጮች የተገኙ ናቸው። AI አይገምትም፤ እርግጠኛ ካልሆነ ዶክተር እንዲያማክሩ ይመክራል።" },
+      { q: "የድምጽ ባህሪውን እንዴት እጠቀማለሁ?", a: "ማይክሮፎኑን ይጫኑ፣ ይናገሩ፣ ከዚያ ያቁሙ። ምላሹን ለማዳመጥ Listen ይጫኑ።" },
+      { q: "በድንገተኛ አደጋ ጊዜ ምን ላድርግ?", a: "የመተንፈስ ችግር ወይም ከባድ የደም መፍሰስ ካለ፣ Weha Health አይጠቀሙ፤ ወዲያውኑ ወደ ሆስፒታል ይሂዱ ወይም የአደጋ ጊዜ ስልክ ይደውሉ።" }
     ]
   }
 };
@@ -87,7 +77,6 @@ function FAQItem({ question, answer }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    // FIX: Added 'shrink-0' so the flex container doesn't crush the items when they open!
     <div className="border border-health-border rounded-xl overflow-hidden shrink-0">
       <button onClick={() => setIsOpen(!isOpen)} className="w-full flex items-center justify-between p-4 text-left bg-health-surface hover:bg-health-chat transition-colors">
         <span className="text-sm font-bold text-health-textPrimary pr-4 leading-snug">{question}</span>
