@@ -7,6 +7,7 @@ Run: uvicorn main:app --reload --port 8000
 """
 import os
 import shutil
+import time
 from typing import List
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -37,10 +38,18 @@ SAHARA_API_URL = "https://infer.voice.intron.io/file/v1/upload/sync"
 SAHARA_API_KEY = os.environ.get("SAHARA_API_KEY")
 USE_SAHARA = bool(SAHARA_API_KEY)
 
+ASSEMBLYAI_API_KEY = os.environ.get("ASSEMBLYAI_API_KEY")
+HF_API_KEY = os.environ.get("HF_API_KEY")
+
+# Hugging Face MMS uses ISO 639-3 codes, different from our app's codes.
+# MMS has no dedicated Nigerian Pidgin adapter — this is an expected,
+# reportable gap for the benchmark, not a bug.
+MMS_LANG_MAP = {"en": "eng", "am": "amh", "yo": "yor", "pcm": None, "ak": "aka"}
+
 app = FastAPI(
     title="Weha Health — AI Pipeline",
     description="Multilingual voice health triage agent, built for the Sahara CodeSwitch Africa Challenge",
-    version="0.4.0"
+    version="0.5.0"
 )
 
 app.add_middleware(
@@ -127,11 +136,98 @@ def transcribe_with_whisper(file_path: str, language: str) -> dict:
     }
 
 
+def transcribe_with_assemblyai(file_path: str, language: str = "en") -> dict:
+    """
+    AssemblyAI has no native support for Yoruba, Akan, Nigerian Pidgin, or
+    Amharic. We use automatic language detection rather than forcing an
+    unsupported code — expect English-biased or degraded output for our
+    four African languages. That gap is itself a valid benchmark finding.
+    """
+    if not ASSEMBLYAI_API_KEY:
+        raise HTTPException(status_code=503, detail="ASSEMBLYAI_API_KEY not configured.")
+
+    headers = {"authorization": ASSEMBLYAI_API_KEY}
+
+    with open(file_path, "rb") as f:
+        upload_response = requests.post(
+            "https://api.assemblyai.com/v2/upload",
+            headers=headers,
+            data=f,
+            timeout=60
+        )
+    if upload_response.status_code != 200:
+        raise HTTPException(status_code=502, detail=f"AssemblyAI upload error: {upload_response.text}")
+
+    audio_url = upload_response.json()["upload_url"]
+
+    transcript_response = requests.post(
+        "https://api.assemblyai.com/v2/transcript",
+        json={"audio_url": audio_url, "language_detection": True},
+        headers=headers,
+        timeout=30
+    )
+    if transcript_response.status_code != 200:
+        raise HTTPException(status_code=502, detail=f"AssemblyAI transcript error: {transcript_response.text}")
+
+    transcript_id = transcript_response.json()["id"]
+    polling_endpoint = f"https://api.assemblyai.com/v2/transcript/{transcript_id}"
+
+    for _ in range(30):
+        polling_response = requests.get(polling_endpoint, headers=headers, timeout=30)
+        result = polling_response.json()
+        if result["status"] == "completed":
+            return {
+                "text": result.get("text") or "",
+                "detected_language": result.get("language_code", "unknown"),
+                "status": "success",
+                "engine": "assemblyai"
+            }
+        if result["status"] == "error":
+            raise HTTPException(status_code=502, detail=f"AssemblyAI transcription failed: {result.get('error')}")
+        time.sleep(2)
+
+    raise HTTPException(status_code=504, detail="AssemblyAI transcription timed out.")
+
+
+def transcribe_with_huggingface(file_path: str, language: str = "en") -> dict:
+    """Facebook MMS-1b-all via Hugging Face Inference API."""
+    if not HF_API_KEY:
+        raise HTTPException(status_code=503, detail="HF_API_KEY not configured.")
+
+    mms_lang = MMS_LANG_MAP.get(language)
+    if mms_lang is None:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Hugging Face MMS has no language adapter for '{language}' — documented model gap, not a bug."
+        )
+
+    with open(file_path, "rb") as f:
+        audio_bytes = f.read()
+
+    response = requests.post(
+        "https://api-inference.huggingface.co/models/facebook/mms-1b-all",
+        headers={"Authorization": f"Bearer {HF_API_KEY}", "Content-Type": "audio/flac"},
+        params={"target_lang": mms_lang},
+        data=audio_bytes,
+        timeout=60
+    )
+    if response.status_code != 200:
+        raise HTTPException(status_code=502, detail=f"Hugging Face MMS error: {response.text}")
+
+    data = response.json()
+    return {
+        "text": data.get("text", ""),
+        "detected_language": language,
+        "status": "success",
+        "engine": "huggingface_mms"
+    }
+
+
 @app.get("/")
 def home():
     return {
         "message": "Weha Health AI Pipeline running",
-        "version": "0.4.0",
+        "version": "0.5.0",
         "sahara_active": USE_SAHARA,
         "endpoints": ["/ask", "/transcribe", "/speak", "/intake/process"]
     }
@@ -179,8 +275,14 @@ async def transcribe_audio(
             if not USE_SAHARA:
                 raise HTTPException(status_code=503, detail="SAHARA_API_KEY not yet configured.")
             return transcribe_with_sahara(temp_path, language_code=language)
-
-        return transcribe_with_whisper(temp_path, language)
+        elif chosen == "whisper":
+            return transcribe_with_whisper(temp_path, language)
+        elif chosen == "assemblyai":
+            return transcribe_with_assemblyai(temp_path, language)
+        elif chosen == "huggingface":
+            return transcribe_with_huggingface(temp_path, language)
+        else:
+            raise HTTPException(status_code=400, detail=f"Unknown model '{chosen}'")
 
     except HTTPException:
         raise
