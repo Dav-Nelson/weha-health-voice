@@ -14,7 +14,7 @@ app.set('trust proxy', 1);
 app.use(helmet());
 
 const explicitAllowedOrigins = [
-  'https://healthbridge-africa.vercel.app',
+  'https://weha-health-voice.vercel.app',
   'http://localhost:3000'
 ];
 
