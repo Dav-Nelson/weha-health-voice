@@ -9,7 +9,7 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 }
 });
 
-const getPipelineUrl = () => process.env.AI_PIPELINE_URL || 'https://healthbridge-africa-ai-pipeline.onrender.com';
+const getPipelineUrl = () => process.env.AI_PIPELINE_URL || 'https://weha-health-voice-ai-pipeline.onrender.com';
 
 const MAX_MESSAGE_LENGTH = 2000;
 
