@@ -103,7 +103,7 @@ export default function OnboardingModal({ onComplete }) {
           </button>
 
           <p className="text-health-textSecondary text-xs opacity-70 px-4">
-            ⚕️ This system is not a substitute for professional medical advice. Always consult a certified doctor.
+            This system is not a substitute for professional medical advice. Always consult a certified doctor.
           </p>
         </div>
 
