@@ -8,7 +8,7 @@ Run: uvicorn main:app --reload --port 8000
 import os
 import shutil
 import time
-from typing import List
+from typing import List, Optional
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -18,9 +18,7 @@ import requests
 
 from triage.rules import assess_urgency
 from triage.extract import extract_fields, generate_clarifying_question, REQUIRED_FIELDS
-from triage.rules import assess_urgency
-from triage.extract import extract_fields, generate_clarifying_question, REQUIRED_FIELDS
-from triage.escalate import send_telegram_alert
+from triage.escalate import send_whatsapp_alert
 from triage.facility import find_nearest_facility
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
@@ -46,14 +44,13 @@ ASSEMBLYAI_API_KEY = os.environ.get("ASSEMBLYAI_API_KEY")
 HF_API_KEY = os.environ.get("HF_API_KEY")
 
 # Hugging Face MMS uses ISO 639-3 codes, different from our app's codes.
-# MMS has no dedicated Nigerian Pidgin adapter — this is an expected,
-# reportable gap for the benchmark, not a bug.
+# MMS has no dedicated Nigerian Pidgin adapter — expected, reportable gap.
 MMS_LANG_MAP = {"en": "eng", "am": "amh", "yo": "yor", "pcm": None, "ak": "aka"}
 
 app = FastAPI(
     title="Weha Health — AI Pipeline",
     description="Multilingual voice health triage agent, built for the Sahara CodeSwitch Africa Challenge",
-    version="0.5.0"
+    version="0.6.0"
 )
 
 app.add_middleware(
@@ -80,8 +77,8 @@ class IntakeRequest(BaseModel):
     language: str = "en"
     existing_fields: dict = {}
     session_id: str = "unknown"
-    lat: float = None
-    lng: float = None
+    lat: Optional[float] = None
+    lng: Optional[float] = None
 
 
 def get_full_language_name(lang_code: str) -> str:
@@ -234,7 +231,7 @@ def transcribe_with_huggingface(file_path: str, language: str = "en") -> dict:
 def home():
     return {
         "message": "Weha Health AI Pipeline running",
-        "version": "0.5.0",
+        "version": "0.6.0",
         "sahara_active": USE_SAHARA,
         "endpoints": ["/ask", "/transcribe", "/speak", "/intake/process"]
     }
@@ -349,7 +346,7 @@ async def process_intake(data: IntakeRequest):
         facility = None
 
         if assessment["urgency"] == "urgent":
-            alert_sent = send_telegram_alert(
+            alert_sent = send_whatsapp_alert(
                 session_id=data.session_id,
                 language=lang_name,
                 fields=updated_fields,
