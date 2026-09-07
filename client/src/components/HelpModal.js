@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { X, HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
 
-// NOTE FOR TEAM: Yoruba, Akan, and Amharic FAQ text below is a first pass.
-// Ibsa (Amharic), Peggy (Akan/Twi) — please review wording for naturalness
-// before final submission. This is FAQ copy, not clinical guidance, but
-// accuracy still matters for the judges' inclusion criteria.
 const TRANSLATIONS = {
   English: {
     title: "Help & FAQ",
     desc: "Common questions about Weha Health",
-    footer: "⚕️ Weha Health is not a medical service. Always consult a qualified healthcare provider.",
+    footer: "Weha Health is not a medical service. Always consult a qualified healthcare provider.",
     faqs: [
       { q: "Is Weha Health a replacement for a doctor?", a: "No, Weha Health is a health information and triage tool, not a medical service. It helps you understand symptoms, know when to seek care, and get reliable health information in your language. Always consult a qualified healthcare provider for diagnosis and treatment." },
       { q: "What languages are supported?", a: "Weha Health supports English, Nigerian Pidgin, Yoruba, Akan, and Amharic. You can switch languages anytime using the dropdown at the top of the screen. The AI will respond in whichever language you select." },
@@ -22,7 +18,7 @@ const TRANSLATIONS = {
   Pidgin: {
     title: "Help & FAQ",
     desc: "Question wey people dey always ask about Weha Health",
-    footer: "⚕️ Weha Health no be doctor clinic. Make you always check qualified doctor.",
+    footer: "Weha Health no be doctor clinic. Make you always check qualified doctor.",
     faqs: [
       { q: "Weha Health fit replace doctor?", a: "No, Weha Health na tool to help you understand your health, e no be hospital. Always check qualified doctor for proper treatment." },
       { q: "Which languages dey available?", a: "We get English, Pidgin, Yoruba, Akan, and Amharic. You fit change am anytime for top of the screen." },
@@ -35,7 +31,7 @@ const TRANSLATIONS = {
   Yoruba: {
     title: "Ìrànlọ́wọ́ àti Ìbéèrè",
     desc: "Àwọn ìbéèrè tí a máa ń béèrè nípa Weha Health",
-    footer: "⚕️ Weha Health kì í ṣe iṣẹ́ ìṣègùn gidi. Jọ̀wọ́ máa lọ bá dókítà tó gbẹ́kẹ̀lé nígbà gbogbo.",
+    footer: "Weha Health kì í ṣe iṣẹ́ ìṣègùn gidi. Jọ̀wọ́ máa lọ bá dókítà tó gbẹ́kẹ̀lé nígbà gbogbo.",
     faqs: [
       { q: "Ṣé Weha Health lè rọ́pò dókítà?", a: "Rárá, Weha Health jẹ́ irinṣẹ́ ìsọfúnni nípa ìlera, kì í ṣe iṣẹ́ ìṣègùn gidi. Ó ń ràn ọ́ lọ́wọ́ láti mọ àwọn àmì àìsàn àti ìgbà tó yẹ kó o lọ wo dókítà. Jọ̀wọ́ máa bá dókítà tó gbẹ́kẹ̀lé sọ̀rọ̀ fún àyẹ̀wò àti ìtọ́jú." },
       { q: "Èdè wo ni ó wà?", a: "Weha Health ń sọ èdè Gẹ̀ẹ́sì, Pidgin, Yorùbá, Akan, àti Amharic. O lè yí èdè padà nígbàkigbà pẹ̀lú àṣàyàn tó wà lókè ojú-ìwé." },
@@ -48,7 +44,7 @@ const TRANSLATIONS = {
   Akan: {
     title: "Mmoa & Nsɛmbisa",
     desc: "Nsɛm a nkurɔfoɔ taa bisa fa Weha Health ho",
-    footer: "⚕️ Weha Health nyɛ ayaresabea. Bere biara kɔhunu oduruyɛfoɔ a ɔwɔ tumi krataa.",
+    footer: "Weha Health nyɛ ayaresabea. Bere biara kɔhunu oduruyɛfoɔ a ɔwɔ tumi krataa.",
     faqs: [
       { q: "Weha Health bɛtumi asi oduruyɛfoɔ ananmu?", a: "Dabi, ɛyɛ afutuo nko ara, ɛnyɛ ayaresabea. Kɔhunu oduruyɛfoɔ bere biara ma nhwehwɛmu ne ayaresa." },
       { q: "Kasa bɛn na yɛde di dwuma?", a: "English, Pidgin, Yoruba, Akan, ne Amharic. Wobɛtumi asesa no bere biara wɔ soro hɔ." },
@@ -61,7 +57,7 @@ const TRANSLATIONS = {
   Amharic: {
     title: "እገዛ እና ጥያቄዎች",
     desc: "ስለ Weha Health የተለመዱ ጥያቄዎች",
-    footer: "⚕️ Weha Health የህክምና አገልግሎት አይደለም። ሁልጊዜ ብቁ ዶክተር ያማክሩ።",
+    footer: "Weha Health የህክምና አገልግሎት አይደለም። ሁልጊዜ ብቁ ዶክተር ያማክሩ።",
     faqs: [
       { q: "Weha Health የዶክተር ምትክ ነው?", a: "አይደለም፣ ይህ የጤና መረጃ መሳሪያ እንጂ የህክምና አገልግሎት አይደለም። ሁልጊዜ ብቁ ዶክተር ያማክሩ።" },
       { q: "ምን ቋንቋዎች ይደገፋሉ?", a: "እንግሊዝኛ፣ ፒጂን፣ ዮሩባ፣ አካን እና አማርኛ። በማንኛውም ጊዜ ከላይ ካለው ዝርዝር መቀየር ይችላሉ።" },
