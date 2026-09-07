@@ -43,14 +43,12 @@ USE_SAHARA = bool(SAHARA_API_KEY)
 ASSEMBLYAI_API_KEY = os.environ.get("ASSEMBLYAI_API_KEY")
 HF_API_KEY = os.environ.get("HF_API_KEY")
 
-# Hugging Face MMS uses ISO 639-3 codes, different from our app's codes.
-# MMS has no dedicated Nigerian Pidgin adapter — expected, reportable gap.
 MMS_LANG_MAP = {"en": "eng", "am": "amh", "yo": "yor", "pcm": None, "ak": "aka"}
 
 app = FastAPI(
     title="Weha Health — AI Pipeline",
     description="Multilingual voice health triage agent, built for the Sahara CodeSwitch Africa Challenge",
-    version="0.6.0"
+    version="0.7.0"
 )
 
 app.add_middleware(
@@ -91,7 +89,6 @@ def map_to_whisper_lang(lang_code: str) -> str:
 
 
 def transcribe_with_sahara(file_path: str, language_code: str = "en") -> dict:
-    """Send audio to Sahara's File Upload Sync API. Files must be <=120s."""
     with open(file_path, "rb") as audio_file:
         response = requests.post(
             SAHARA_API_URL,
@@ -141,12 +138,6 @@ def transcribe_with_whisper(file_path: str, language: str) -> dict:
 
 
 def transcribe_with_assemblyai(file_path: str, language: str = "en") -> dict:
-    """
-    AssemblyAI has no native support for Yoruba, Akan, Nigerian Pidgin, or
-    Amharic. We use automatic language detection rather than forcing an
-    unsupported code — expect English-biased or degraded output for our
-    four African languages. That gap is itself a valid benchmark finding.
-    """
     if not ASSEMBLYAI_API_KEY:
         raise HTTPException(status_code=503, detail="ASSEMBLYAI_API_KEY not configured.")
 
@@ -194,7 +185,6 @@ def transcribe_with_assemblyai(file_path: str, language: str = "en") -> dict:
 
 
 def transcribe_with_huggingface(file_path: str, language: str = "en") -> dict:
-    """Facebook MMS-1b-all via Hugging Face Inference API."""
     if not HF_API_KEY:
         raise HTTPException(status_code=503, detail="HF_API_KEY not configured.")
 
@@ -231,7 +221,7 @@ def transcribe_with_huggingface(file_path: str, language: str = "en") -> dict:
 def home():
     return {
         "message": "Weha Health AI Pipeline running",
-        "version": "0.6.0",
+        "version": "0.7.0",
         "sahara_active": USE_SAHARA,
         "endpoints": ["/ask", "/transcribe", "/speak", "/intake/process"]
     }
@@ -340,13 +330,9 @@ async def process_intake(data: IntakeRequest):
                 "next_question": question
             }
 
-        assessment = assess_urgency(updated_fields)
+        assessment = assess_urgency(updated_fields, language=lang_name)
 
-        alert_sent = False
-        facility = None
-
-        if assessment["urgency"] == "urgent":
-            alert_status = {"whatsapp_sent": False, "telegram_sent": False}
+        alert_status = {"whatsapp_sent": False, "telegram_sent": False}
         facility = None
 
         if assessment["urgency"] == "urgent":
