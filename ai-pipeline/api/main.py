@@ -18,7 +18,7 @@ import requests
 
 from triage.rules import assess_urgency
 from triage.extract import extract_fields, generate_clarifying_question, REQUIRED_FIELDS
-from triage.escalate import send_whatsapp_alert
+from triage.escalate import send_urgent_alerts
 from triage.facility import find_nearest_facility
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
@@ -346,7 +346,11 @@ async def process_intake(data: IntakeRequest):
         facility = None
 
         if assessment["urgency"] == "urgent":
-            alert_sent = send_whatsapp_alert(
+            alert_status = {"whatsapp_sent": False, "telegram_sent": False}
+        facility = None
+
+        if assessment["urgency"] == "urgent":
+            alert_status = send_urgent_alerts(
                 session_id=data.session_id,
                 language=lang_name,
                 fields=updated_fields,
@@ -363,7 +367,8 @@ async def process_intake(data: IntakeRequest):
             "urgency": assessment["urgency"],
             "matched_signs": assessment["matched_signs"],
             "guidance": assessment["guidance"],
-            "alert_sent": alert_sent,
+            "whatsapp_alert_sent": alert_status["whatsapp_sent"],
+            "telegram_alert_sent": alert_status["telegram_sent"],
             "nearest_facility": facility
         }
 
