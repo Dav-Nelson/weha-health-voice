@@ -1,12 +1,16 @@
 // src/utils/tracking.js
 
-// Store API key as a named constant at the top as requested
-const POSTHOG_API_KEY = "https://eu.posthog.com/project/197662/web";
+const POSTHOG_API_KEY = process.env.REACT_APP_POSTHOG_KEY;
+const POSTHOG_HOST = process.env.REACT_APP_POSTHOG_HOST || "https://eu.i.posthog.com";
 
 export const startSilentTracking = async (selectedLanguage) => {
-  // Step 1 — IP Geolocation (silent fetch)
+  if (!POSTHOG_API_KEY) {
+    // Tracking disabled if the key isn't configured — fail silently.
+    return;
+  }
+
   let geoData = { city: "unknown", country: "unknown", country_code: "unknown" };
-  
+
   try {
     const geoResponse = await fetch('https://ipapi.co/json/');
     if (geoResponse.ok) {
@@ -21,26 +25,23 @@ export const startSilentTracking = async (selectedLanguage) => {
     // Fail gracefully and completely silently
   }
 
-  // Step 2 — PostHog Event (silent fetch)
   try {
     const timestamp = new Date().toISOString();
-    // Generate a random 6-character string for the distinct ID
     const random6chars = Math.random().toString(36).substring(2, 8);
     const distinctId = `user_${Date.now()}_${random6chars}`;
-    
-    // Capture browser language safely
-    const languageSecondary = typeof navigator !== 'undefined' && navigator.language 
-      ? navigator.language 
+
+    const languageSecondary = typeof navigator !== 'undefined' && navigator.language
+      ? navigator.language
       : "unknown";
 
     const payload = {
       api_key: POSTHOG_API_KEY,
-      event: "healthbridge_session_start",
+      event: "weha_health_session_start",
       properties: {
         distinct_id: distinctId,
-        platform: "HealthBridge Africa",
+        platform: "Weha Health",
         timestamp: timestamp,
-        language_primary: selectedLanguage?.name || "unknown",
+        language_primary: selectedLanguage?.name || selectedLanguage || "unknown",
         language_secondary: languageSecondary,
         city: geoData.city,
         country: geoData.country,
@@ -48,16 +49,15 @@ export const startSilentTracking = async (selectedLanguage) => {
       }
     };
 
-    // Fire silently using keepalive: true
-    fetch('https://app.posthog.com/capture/', {
+    fetch(`${POSTHOG_HOST}/capture/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
-      keepalive: true // Ensures the request completes even if the user navigates away
+      keepalive: true
     }).catch(() => {
-      // Total silence if the tracking call itself gets blocked (e.g., by Brave or uBlock Origin)
+      // Total silence if the tracking call itself gets blocked
     });
 
   } catch (error) {
