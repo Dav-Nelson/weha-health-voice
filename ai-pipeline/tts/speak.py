@@ -5,20 +5,18 @@ from gtts import gTTS
 
 _EMOJI_PATTERN = re.compile(
     "["
-    "\U0001F300-\U0001FAFF"  # symbols, pictographs, extended-A
-    "\U00002600-\U000027BF"  # misc symbols, dingbats
-    "\U0001F1E6-\U0001F1FF"  # flags
-    "\U00002190-\U000021FF"  # arrows
-    "\U00002B00-\U00002BFF"  # misc symbols and arrows
-    "\U0000FE0F"             # variation selector
+    "\U0001F300-\U0001FAFF"
+    "\U00002600-\U000027BF"
+    "\U0001F1E6-\U0001F1FF"
+    "\U00002190-\U000021FF"
+    "\U00002B00-\U00002BFF"
+    "\U0000FE0F"
     "]+",
     flags=re.UNICODE
 )
 
 
 def strip_emojis(text: str) -> str:
-    """Removes emoji so gTTS never voices them — spoken emoji names
-    (e.g. 'medical symbol') break conversational flow."""
     if not text:
         return text
     return _EMOJI_PATTERN.sub("", text).strip()
@@ -27,27 +25,31 @@ def strip_emojis(text: str) -> str:
 def text_to_speech(text: str, language: str = "en") -> str:
     """
     Converts localized response text into an in-memory MP3 stream,
-    encoding it as a Base64 data URI string to bypass disk write limitations.
-    Dynamically routes regional accents (TLDs) for localized language trust.
+    encoding it as a Base64 data URI string.
+
+    Language codes match our app's ISO codes: en, pcm, yo, ak, am.
+    gTTS has no dedicated Nigerian Pidgin voice, so pcm falls back to
+    English (readable, since Pidgin is English-based). Yoruba and Akan
+    (as "tw" — gTTS's code for Twi/Akan) both have native gTTS voices
+    and should NOT fall back to English — that was the previous bug
+    causing letter-by-letter mispronunciation on tonal/diacritic text.
     """
     text = strip_emojis(text)
 
     gtts_lang_map = {
         "en": "en",
-        "sw": "sw",
-        "am": "am",
-        "om": "om",
         "pcm": "en",
-        "tw": "en"
+        "yo": "yo",
+        "ak": "tw",
+        "am": "am",
     }
 
     gtts_tld_map = {
         "en": "com.ng",
         "pcm": "com.ng",
-        "tw": "com.ng",
-        "om": "co.za",
-        "sw": "com",
-        "am": "com"
+        "yo": "com.ng",
+        "ak": "com.gh",
+        "am": "com",
     }
 
     target_gtts_code = gtts_lang_map.get(language.lower(), "en")
