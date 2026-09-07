@@ -11,9 +11,6 @@ const upload = multer({
 
 const getPipelineUrl = () => process.env.AI_PIPELINE_URL || 'https://weha-health-voice-ai-pipeline.onrender.com';
 
-// POST /api/intake/turn — one turn of the multi-turn voice intake conversation.
-// Accepts an audio file, transcribes it, runs triage extraction,
-// and either asks a follow-up question or returns the final assessment.
 router.post('/turn', upload.single('audio'), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'Audio file is required' });
@@ -23,6 +20,8 @@ router.post('/turn', upload.single('audio'), async (req, res) => {
     const language = req.body.language || 'en';
     const sessionId = req.body.sessionId;
     const existingFields = req.body.existingFields ? JSON.parse(req.body.existingFields) : {};
+    const lat = req.body.lat ? parseFloat(req.body.lat) : null;
+    const lng = req.body.lng ? parseFloat(req.body.lng) : null;
 
     if (!sessionId) {
       return res.status(400).json({ error: 'sessionId is required' });
@@ -30,7 +29,6 @@ router.post('/turn', upload.single('audio'), async (req, res) => {
 
     const pipelineBaseUrl = getPipelineUrl();
 
-    // Step 1: transcribe
     const transcribeForm = new FormData();
     const audioBlob = new Blob([req.file.buffer], { type: req.file.mimetype });
     transcribeForm.append('file', audioBlob, req.file.originalname || 'audio.wav');
@@ -46,16 +44,17 @@ router.post('/turn', upload.single('audio'), async (req, res) => {
       return res.status(422).json({ error: 'Could not understand the audio. Please try again.' });
     }
 
-    // Step 2: run/continue triage extraction
     const intakeResponse = await axios.post(`${pipelineBaseUrl}/intake/process`, {
       transcript,
       language,
-      existing_fields: existingFields
+      existing_fields: existingFields,
+      session_id: sessionId,
+      lat,
+      lng
     }, { timeout: 45000 });
 
     const result = intakeResponse.data;
 
-    // Step 3: persist state (upsert per session)
     if (result.status === 'complete') {
       await pool.query(
         `INSERT INTO triage_records (session_id, language, fields, urgency, matched_signs, guidance, status, updated_at)
@@ -87,7 +86,6 @@ router.post('/turn', upload.single('audio'), async (req, res) => {
   }
 });
 
-// GET /api/intake/:sessionId — fetch the current state of a triage session
 router.get('/:sessionId', async (req, res) => {
   try {
     const { sessionId } = req.params;
