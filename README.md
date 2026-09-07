@@ -1,230 +1,184 @@
-# HealthBridge Africa
+## `README.md`
 
-> Speak in your language. Get reliable health guidance.
+```markdown
+# Weha Health
 
-A multilingual voice health agent for Africa.
-Currently grounded in verified health guidelines from Nigeria, Ghana, Kenya, and Ethiopia, with support for English, Nigerian Pidgin, Swahili, Twi, Oromo, and Amharic.
-Built by Async Africa for The Build 2026 by NSK AI and The Udara Project.
+Speak in your language. Get maternal-health guidance that acts.
 
-Live: https://healthbridge-africa.vercel.app
-GitHub: https://github.com/Dav-Nelson/healthbridge-africa
+A voice-first health agent. Weha Health combines a general RAG-based health companion with a maternal-health voice triage agent that extracts symptoms across a natural, multi-turn conversation, assesses urgency against WHO-aligned danger signs, and when a result is urgent, autonomously alerts a care team via WhatsApp and Telegram, looks up the nearest health facility, and generates a shareable visit record.
 
----
+Live: https://weha-health-voice.vercel.app (custom domain https://wehahealth.me coming before submission)
+GitHub: https://github.com/Dav-Nelson/weha-health-voice
+
+Built on top of HealthBridge Africa, a general multilingual health assistant our team built and shipped. That project validated real demand (300+ visits across 4+ African countries, a 100+ person WhatsApp waitlist) for voice-first, local-language health tools. Weha Health is a substantial evolution of that codebase: rebuilt around a focused maternal-health agentic flow, a new language set, and a four-model speech benchmark.
 
 ## The Problem
 
-Health questions don't wait until you're sitting in a hospital.
-
-Across Africa, millions of people need reliable health guidance long before they can reach a doctor. They turn to Google, but the information is often difficult to understand, written for different healthcare systems, or only available in English. Others rely on WhatsApp messages, social media, or word of mouth, where misinformation spreads quickly.
-
-For many people in Nigeria, Ghana, Ethiopia, and Kenya, the challenge isn't just access to healthcare, it's access to trusted health information in the language they speak every day.
-
-The result is delayed care, unnecessary anxiety, and preventable illnesses becoming emergencies.
-
----
+Pregnant women and their families across Nigeria, Ghana, and Ethiopia often don't recognize the danger signs that mean a pregnancy complication needs urgent care, and they don't always have someone to ask in the moment, in the language they actually speak. General health information exists online, but it isn't grounded in local health guidance, isn't built for how people naturally code-switch between English and Pidgin, Yoruba, Akan, or Amharic mid-sentence, and doesn't do anything with what a person tells it beyond generating text.
 
 ## What We Built
 
-HealthBridge Africa is a voice-first AI health agent that lets people speak
-or type health questions in their own language and receive grounded,
-conversational guidance drawn from a curated knowledge base built on WHO
-guidelines and country-level health protocols for Nigeria, Ghana, Ethiopia,
-and Kenya.
+Weha Health has two integrated flows:
 
-The assistant remembers context across a conversation, asks clarifying
-questions instead of giving flat one-shot answers, and responds in text
-with voice playback at adjustable speed.
+**Voice Triage (the flagship, agentic flow).** A user describes symptoms by voice, in whatever language mix feels natural. The system asks follow-up questions across multiple turns until it has enough structured information, checks it against WHO-aligned maternal and general danger signs, and on an urgent result:
+- Sends an alert with the extracted symptoms to the user's care team over WhatsApp and Telegram, independently, so one channel's outage doesn't lose the alert
+- Looks up the nearest hospital or clinic using OpenStreetMap, with a map link
+- Generates a plain-language Visit Summary the user can share or copy to show a health worker
 
-It does not replace doctors. It helps people know when to see one.
+This is the "voice achieves a downstream task" requirement in practice: voice input drives real action, not just a response.
 
----
+**General Consultation.** A RAG-based health companion grounded in WHO guidelines and country-level health protocols, for everyday health questions beyond the maternal-triage flow.
+
+Both flows support voice input and voice output, and both respond in the user's selected language: English, Nigerian Pidgin, Yoruba, Akan, or Amharic.
 
 ## Supported Languages
 
-English, Nigerian Pidgin, Swahili, Oromo, Twi, Amharic.
+English, Nigerian Pidgin, Yoruba, Akan, Amharic — chosen because they map to our team's own languages across Nigeria, Ghana, and Ethiopia.
 
-Users can switch languages at any time using the dropdown in the header.
-The entire interface responds — welcome messages, placeholders, disclaimers,
-FAQ, and AI responses all adapt to the selected language.
-
-Voice transcription is strongest for English, Swahili, and Amharic, which
-Whisper-large-v3 supports natively. Pidgin and Twi route through English-mode
-transcription since Whisper has no dedicated model for either. Typed input
-in all six languages is unaffected by this limitation.
-
----
+Voice transcription and synthesis quality varies by language, documented honestly in Known Limitations below.
 
 ## How It Works
+
+```
+
 User speaks or types
-
-|
-
+        |
 React Frontend (Vercel)
+  OnboardingModal (language selection)
+  Header (language switch)
+  VoiceIntake (maternal triage flow, GPS capture, TTS playback, Visit Summary)
+  ChatDisplay / General Consultation
+  SettingsPanel, HelpModal, HistoryPanel
+        |
+Node.js + Express Gateway (Render)
+  helmet, CORS locked to weha-health-voice.vercel.app
+  express-rate-limit (60 req/15min general, 20 req/15min AI endpoints)
+  Routes: /api/voice/*, /api/intake/*
+        |
+FastAPI AI Pipeline (Render, Dockerized)
+  Speech-to-text: Sahara v2.5 (primary) | Whisper-large-v3 via Groq
+                  | AssemblyAI | Hugging Face MMS-1b-all
+  Llama-family model via Groq (openai/gpt-oss-120b): language
+    detection, translation, structured field extraction, RAG generation
+  Gemini embedding-001: query embeddings (768-dim, normalized)
+  pgvector search (Neon): top-5 relevant knowledge-base chunks
+  WHO-aligned rule engine: urgency assessment, localized guidance
+  Escalation: Twilio WhatsApp Sandbox + Telegram Bot API, independent
+  Facility lookup: OpenStreetMap Overpass API, no key required
+  gTTS: localized voice synthesis, in-memory, Base64
+        |
+Text response shown immediately; voice playback on demand;
+urgent results trigger care-team alerts, facility lookup, and a
+shareable Visit Summary
 
-Language dropdown in header triggers full interface switch
-
-OnboardingModal, ChatDisplay, BotMessageBubble,
-
-ResponsePlayer (speed control + global audio bouncer),
-
-SettingsPanel (multilingual, session deletion),
-
-HelpModal (FAQ in all 6 languages),
-
-HistoryPanel (session-scoped conversation history)
-
-|
-
-Node.js + Express Gateway (Railway)
-
-helmet (security headers)
-
-CORS locked to healthbridge-africa.vercel.app
-
-express-rate-limit (60 req/15min general, 20 req/15min AI endpoints)
-
-trust proxy enabled for Railway reverse proxy
-
-Input validation (2000 char max, 10MB audio max)
-
-Routes: /api/voice/chat, /text-chat, /speak, /history (GET + DELETE)
-
-Session history stored and retrieved from Neon PostgreSQL
-
-|
-
-FastAPI AI Pipeline (Railway)
-
-Whisper-large-v3 via Groq        voice to text
-Llama-3.3-70b via Groq           language detection + English translation
-
-with medical terminology anchors
-Gemini embedding-001             query embedding (768-dim, normalized)
-pgvector search (Neon)           top-5 semantically relevant chunks
-
-from 65-chunk verified knowledge base
-Llama-3.3-70b via Groq           RAG generation in user's language
-
-with degenerate output detection,
-
-markdown stripping, language enforcement,
-
-character-level and sentence-level
-
-safety checks
-gTTS                             audio synthesis, in-memory, Base64
-
-|
-
-Text response shown immediately
-
-Voice playback on demand at 1x, 1.5x, or 2x speed
-
-Global audio bouncer prevents multiple responses playing simultaneously
-
-
-Conversation history is stored per session in Neon PostgreSQL. The pipeline
-retrieves the last 6 messages for context on every request. Users can delete
-all conversation data from both device and server at any time via Settings.
-
----
+```
 
 ## Tech Stack
 
 | Layer | Technology | Notes |
 |---|---|---|
 | Frontend | React + Tailwind CSS | Vercel |
-| Gateway | Node.js + Express | Railway |
-| Security | helmet + express-rate-limit + trust proxy | CORS locked to Vercel domain |
-| AI Pipeline | FastAPI (Python) | Railway, Dockerized |
-| Database | PostgreSQL + pgvector (Neon) | Conversations + vector embeddings |
-| STT | Whisper-large-v3 via Groq | Voice transcription |
-| Language Detection | Llama-3.3-70b via Groq | With medical terminology anchors |
-| Generation | Llama-3.3-70b via Groq | Multilingual RAG generation |
-| Embeddings | Gemini embedding-001 via Google | 768-dim normalized vectors |
-| TTS | gTTS | In-memory synthesis, Base64 output |
-| Analytics | PostHog | Session tracking, geography, retention |
+| Gateway | Node.js + Express | Render |
+| AI Pipeline | FastAPI (Python) | Render, Dockerized |
+| Database | PostgreSQL + pgvector (Neon) | Conversations, triage records, embeddings |
+| STT (primary) | Intron Sahara v2.5 | Built for African code-switching |
+| STT (benchmark) | Whisper-large-v3 (Groq), AssemblyAI, Hugging Face MMS-1b-all | 4-model comparison |
+| Language model | openai/gpt-oss-120b via Groq | Extraction, detection, RAG generation |
+| Embeddings | Gemini embedding-001 | 768-dim, normalized |
+| TTS | gTTS | Native voices for English, Yoruba, Akan, Amharic; English fallback for Pidgin |
+| Escalation | Twilio WhatsApp Sandbox + Telegram Bot API | Sent independently, both fail silently |
+| Facility lookup | OpenStreetMap Overpass + Nominatim | No API key required |
+| Analytics | PostHog | Session tracking |
 | CI | GitHub Actions | Backend and frontend test suites |
-
----
 
 ## Knowledge Base
 
-15+ conditions covered per country, grounded in official national guidelines.
-65 total chunks embedded via Gemini embedding-001 and stored in Neon with
-pgvector for semantic retrieval.
+15+ conditions across Nigeria, Ghana, Ethiopia, and Kenya, grounded in WHO guidelines and national health protocols, embedded via Gemini embedding-001 and retrieved with pgvector. Powers the General Consultation flow. See `ai-pipeline/knowledge-base/sources.md` for full source attribution.
 
-Conditions covered: Malaria, Typhoid Fever, Cholera, Tuberculosis, HIV/AIDS,
-Lassa Fever, Meningitis, Dengue Fever, Measles, Chickenpox, Mpox,
-Scabies, Ringworm, Eczema, Conjunctivitis, Jaundice, Malnutrition,
-Hypertension, Diabetes, Sickle Cell Disease, Schistosomiasis,
-Maternal and Neonatal Health.
+## Speech Benchmark
 
-Sources:
-- WHO Global Health Guidelines
-- Nigeria: NCDC and Federal Ministry of Health
-- Ghana: Ghana Health Service
-- Kenya: Ministry of Health
-- Ethiopia: FMoH Ethiopia and Ethiopian Public Health Institute
+Compared across four speech-to-text engines on code-switched audio in our five target languages:
 
-See ai-pipeline/knowledge-base/sources.md for full source attribution.
+- **Intron Sahara v2.5** — purpose-built for African code-switching, used in the live product
+- **Whisper-large-v3** (via Groq)
+- **AssemblyAI** — no native support for our four African languages; relies on automatic language detection, included specifically to document that gap
+- **Hugging Face MMS-1b-all** — no dedicated Nigerian Pidgin adapter, a documented model limitation, not a bug
 
----
-
-## Security
-
-| Control | Implementation |
-|---|---|
-| HTTP security headers | helmet.js |
-| CORS | Locked to healthbridge-africa.vercel.app only |
-| Reverse proxy trust | app.set('trust proxy', 1) for Railway |
-| Rate limiting | 60 req/15min general, 20 req/15min AI endpoints |
-| Input validation | 2000 character max on all text inputs |
-| File upload limit | 10 MB via multer |
-| SQL injection | Parameterized queries throughout (psycopg2 + node-postgres) |
-| Secrets management | All keys in .env files, excluded via .gitignore |
-| HTTPS | Enforced at platform level by Vercel and Railway |
-
----
+Benchmark audio draws on Intron's AfriSwitch and AfriSwitchCare datasets (CC BY-NC-SA 4.0, used here for evaluation) plus a small set of team-recorded, consented, simulated clips in Pidgin, Yoruba, Akan, and Amharic. Full methodology and results in `docs/benchmark-report.md`.
 
 ## Data and Privacy
 
-Conversations are stored in Neon PostgreSQL, linked only to an anonymous
-device session ID. No name, email, or personal identity is collected.
+Conversations are linked only to an anonymous device session ID, no name, email, or personal identity is collected. Users can delete all conversation data from both device and server at any time via Settings.
 
-Users can delete all conversation data from both device and server at any
-time via Settings, which calls DELETE /api/voice/history/:sessionId and
-clears localStorage simultaneously.
+The escalation feature is a working prototype demonstrating a real agentic pathway, not a connection to live emergency dispatch — this is stated to users and in the demo video. WhatsApp alerts use Twilio's Sandbox for this prototype; a production deployment would move to WhatsApp Business Cloud API after Meta business verification.
 
-Automatic data expiry after 90 days is planned and not yet implemented.
-
----
+Full detail in `docs/ethics-inclusion-note.md`.
 
 ## Known Limitations
 
-Twi, Amharic, and Oromo language quality is inconsistent. The pipeline
-detects broken or degenerate output using character-level, word-level, and
-sentence-level checks, and substitutes honest fallback messages in the user's
-own language when generation fails. But many queries in these three languages
-still return the fallback rather than a real answer. This is a base model
-training data gap, not a prompt engineering problem.
+- **Pidgin voice synthesis** routes through the English gTTS voice, since Google's TTS engine has no dedicated Nigerian Pidgin voice. Yoruba and Akan now use their native gTTS voices (this was a bug in an earlier build, since fixed).
+- **AssemblyAI** has no native language support for Pidgin, Yoruba, Akan, or Amharic; benchmark results for these languages reflect automatic-detection fallback, not a fair native comparison.
+- **Hugging Face MMS** has no Nigerian Pidgin adapter.
+- **WhatsApp escalation** uses Twilio's Sandbox, which requires each recipient to send a one-time join code and expires after 3 days of inactivity — a known constraint of the free-tier prototype, not the production design.
+- **Facility lookup** depends on OpenStreetMap's health-facility tagging density, which varies by region; sparse-data areas may return no result even with a wide search radius.
+- No user authentication; sessions are device-bound via localStorage.
 
-Pidgin and Twi voice transcription route through English-mode Whisper,
-degrading accuracy for voice input in these two languages specifically.
+## Project Structure
 
-Disease imagery was partially implemented using Wikimedia Commons URLs but
-most images returned 404 in production testing. The feature was removed
-before final submission and is listed as a roadmap item.
+```
 
-No user authentication exists. Sessions are device-bound via localStorage.
+weha-health-voice/
+├── client/                      React frontend (Vercel)
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       │   ├── Header.js
+│       │   ├── OnboardingModal.js
+│       │   ├── ChatDisplay.js
+│       │   ├── VoiceIntake.js       Maternal triage flow, TTS, GPS
+│       │   ├── VisitSummary.js      Shareable post-triage record
+│       │   ├── HistoryPanel.js
+│       │   ├── HelpModal.js
+│       │   └── SettingsPanel.js
+│       ├── utils/tracking.js        PostHog analytics
+│       └── App.js
+├── server/                      Node.js + Express gateway (Render)
+│   ├── routes/
+│   │   ├── voice.js                 /chat, /text-chat, /speak, /history
+│   │   ├── intake.js                /turn — multi-turn triage
+│   │   └── health.js
+│   └── db/
+│       ├── index.js
+│       └── migrations/001_triage_records.sql
+├── ai-pipeline/                 FastAPI AI pipeline (Render, Dockerized)
+│   ├── api/main.py                  All endpoints
+│   ├── rag/
+│   │   ├── query.py                 RAG pipeline, language enforcement
+│   │   └── ingest_to_db.py
+│   ├── triage/
+│   │   ├── extract.py               Structured field extraction (LLM)
+│   │   ├── rules.py                 WHO-aligned urgency rules, localized
+│   │   ├── escalate.py              WhatsApp + Telegram alerts
+│   │   └── facility.py              OSM nearest-facility lookup
+│   ├── tts/speak.py                 gTTS synthesis, emoji stripping
+│   ├── benchmark/
+│   │   ├── run_benchmark.py
+│   │   ├── samples.csv
+│   │   └── audio/
+│   └── knowledge-base/
+├── docs/
+│   ├── solution-description.md
+│   ├── ethics-inclusion-note.md
+│   └── benchmark-report.md
+└── tests/
 
----
+```
 
 ## Getting Started
 
 ```bash
-git clone https://github.com/Dav-Nelson/healthbridge-africa.git
-cd healthbridge-africa
+git clone https://github.com/Dav-Nelson/weha-health-voice.git
+cd weha-health-voice
 
 # Backend dependencies
 npm install
@@ -235,11 +189,8 @@ cd client && npm install && cd ..
 # AI pipeline dependencies
 cd ai-pipeline && pip install -r requirements.txt && cd ..
 
-# Environment variables
+# Environment variables — see table below
 cp .env.example .env
-# Root .env: GROQ_API_KEY, DATABASE_URL
-# client/.env: REACT_APP_API_URL
-# ai-pipeline/.env: GROQ_API_KEY, GEMINI_API_KEY, DATABASE_URL
 
 # Run backend
 npm run dev
@@ -251,143 +202,97 @@ cd client && npm start
 uvicorn api.main:app --reload --port 8000
 ```
 
----
+### Environment Variables
 
-## Ingesting the Knowledge Base
+**Root `.env` (server):**
+```
+DATABASE_URL=
+AI_PIPELINE_URL=https://weha-health-voice-ai-pipeline.onrender.com
+```
 
-Run once after cloning, or whenever knowledge base documents change:
+**`client/.env`:**
+```
+REACT_APP_API_URL=https://weha-health-voice.onrender.com
+REACT_APP_POSTHOG_KEY=
+REACT_APP_POSTHOG_HOST=https://eu.i.posthog.com
+```
+
+**`ai-pipeline/.env`:**
+```
+GROQ_API_KEY=
+GEMINI_API_KEY=
+DATABASE_URL=
+SAHARA_API_KEY=
+ASSEMBLYAI_API_KEY=
+HF_API_KEY=
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_WHATSAPP_FROM=whatsapp:+14155238886
+TEAM_WHATSAPP_NUMBERS=
+```
+
+### Ingesting the Knowledge Base
 
 ```bash
 cd ai-pipeline
 python -m rag.ingest_to_db
 ```
 
-Clears all existing chunks, re-embeds all five documents via Gemini
-embedding-001, and stores vectors in Neon. Requires DATABASE_URL and
-GEMINI_API_KEY in ai-pipeline/.env.
+Clears existing chunks, re-embeds all knowledge-base documents via Gemini embedding-001, stores vectors in Neon.
 
----
-
-## Running Tests
+### Running the Benchmark
 
 ```bash
-# Backend tests
-npm test
+cd ai-pipeline
+python -m benchmark.run_benchmark
+```
 
-# Frontend tests
+Reads `benchmark/samples.csv`, tests all four speech engines against each sample, writes `benchmark/results.csv`.
+
+### Running Tests
+
+```bash
+npm test
 cd client && npm test -- --watchAll=false
 ```
 
----
-
 ## Architecture Decisions and Trade-offs
 
-**Why Groq for generation instead of Gemini 2.5 Flash:**
-Gemini 2.5 Flash's thinking mode consumed the majority of the token budget
-before generating any output, causing responses to be cut off mid-sentence
-in Amharic and Pidgin. Llama-3.3-70b via Groq produces complete responses
-reliably and is already used for language detection, keeping the external
-API surface minimal.
+**Why `openai/gpt-oss-120b` via Groq instead of Llama-3.3-70b:** Llama-3.3-70b was decommissioned in August 2026. This model is already integrated with our Groq client and requires no architecture change.
 
-**Why Gemini embedding-001 for retrieval:**
-Switched from local sentence-transformers in Week 3 because sentence-transformers
-required torch, which exceeded Render's 512MB free tier memory limit and
-caused container crashes on every cold start. Gemini embedding-001 runs via
-API, has no local memory footprint, and produces 768-dim embeddings with
-strong semantic accuracy.
+**Why Gemini embedding-001 for retrieval instead of local sentence-transformers:** `sentence-transformers` requires torch, which exceeded Render's free-tier memory limit and crashed the container on cold start. Gemini's API-based embeddings have no local memory footprint.
 
-**Why Neon PostgreSQL with pgvector instead of a dedicated vector database:**
-Keeps conversation history and vector embeddings in a single free-tier
-database, reducing infrastructure complexity and cost. Neon's serverless
-architecture handles variable load well within the free tier constraints.
+**Why Twilio WhatsApp Sandbox instead of Meta's WhatsApp Business API directly:** Meta's Business API requires business verification and template approval that can take days. Twilio's Sandbox is free, requires no card, and is functional within minutes — sufficient for this prototype. Production deployment would move to WhatsApp Business Cloud API.
 
-**Why Railway instead of Render:**
-Render suspended both services on June 24, 2026 after free tier compute
-hours were exhausted by team testing. Railway provides comparable free tier
-infrastructure without requiring a credit card and supports Docker deployment
-for the Python pipeline.
+**Why Telegram alongside WhatsApp:** redundancy. Twilio's Sandbox expires after 3 days of inactivity; Telegram has no such constraint, so alerts still reach the team if the WhatsApp sandbox session has lapsed.
 
-**Why gTTS instead of Kokoro or ElevenLabs:**
-gTTS is the only free TTS engine that supports Swahili and Amharic natively.
-Kokoro was evaluated in Week 1 and dropped because it required GPU compute
-unavailable on the free tier. ElevenLabs has no free tier for production use.
+**Why OpenStreetMap for facility lookup instead of Google Places:** no API key or billing account required, consistent with our zero-budget constraint. Trade-off: facility data density varies by region.
 
----
+**Why gTTS instead of a commercial TTS provider:** the only free TTS engine with native voices covering English, Yoruba, Akan, and Amharic. Nigerian Pidgin has no dedicated gTTS voice and falls back to English — a documented, not hidden, limitation.
 
-## Project Structure
-healthbridge-africa/
+## Ethics and Responsible AI
 
-client/                   React frontend (Vercel)
+See `docs/ethics-inclusion-note.md` for full detail on consent, privacy, and the honest framing of the escalation prototype's real-world limitations.
 
-src/
+## Safety Disclaimer
 
-components/           Header (language dropdown), ChatDisplay,
-
-BotMessageBubble, ResponsePlayer,
-
-SettingsPanel, HelpModal, HistoryPanel
-
-OnboardingModal.js    Language selection on first visit
-
-App.js                Main app, language state, session management
-
-utils/tracking.js     PostHog analytics
-
-server/                   Node.js + Express gateway (Railway)
-
-routes/
-
-voice.js              /chat, /text-chat, /speak, /history (GET+DELETE)
-
-health.js             /health endpoint
-
-db/                     Neon PostgreSQL connection
-
-ai-pipeline/              FastAPI RAG pipeline (Railway, Dockerized)
-
-api/main.py             /ask, /transcribe, /speak, /health endpoints
-
-rag/
-
-query.py              Full RAG pipeline with safety nets
-
-ingest_to_db.py       Knowledge base chunking and embedding
-
-tts/speak.py            gTTS synthesis with language routing
-
-knowledge-base/         WHO + 4 country health documents (65 chunks)
-
-Dockerfile              Dynamic PORT for Railway deployment
-
-tests/                    Backend test suite
-
-.github/workflows/        CI: backend and frontend on every push
-
----
+Weha Health is an information and triage tool only. It does not diagnose, prescribe, or replace professional medical advice. Every response includes guidance on when to seek professional care. The WhatsApp/Telegram escalation is a working prototype demonstrating an agentic pathway, not a connection to real emergency dispatch services. Always consult a qualified healthcare provider for medical decisions.
 
 ## The Team
 
 | Name | Country | Role |
 |---|---|---|
-| David Nelson | Nigeria | Team lead, backend, RAG pipeline, security, deployment |
-| Ibukun Oluwafemi | Nigeria | Frontend, UI/UX, African design system, multilingual interface |
-| Ibsa Magarsa | Ethiopia | AI pipeline engineering, Amharic and Oromo validation |
-| Peggy Eyram Attah | Ghana | User research, tester recruitment, Twi validation |
+| David Nelson | Nigeria | Team lead, backend, AI pipeline, escalation, deployment |
+| Ibukun Oluwafemi | Nigeria | Frontend, UI/UX, Yoruba/Pidgin validation |
+| Ibsa Magarsa | Ethiopia | AI pipeline engineering, Amharic validation |
+| Peggy Eyram Attah | Ghana | User research, tester recruitment, Akan validation |
 
----
-
-## Safety Disclaimer
-
-HealthBridge Africa is an information and triage tool only. It does not
-diagnose, prescribe, or replace professional medical advice. Every response
-includes guidance on when to seek professional care. Always consult a
-qualified healthcare provider for medical decisions.
-
----
+*(Update roles/names here if team composition has changed since HealthBridge Africa.)*
 
 ## License
 
 MIT. See LICENSE.
 
-Built across Nigeria, Ethiopia, and Ghana.
-The Build 2026 by NSK AI and The Udara Project.
+Built across Nigeria, Ghana, and Ethiopia. Submitted to the Sahara CodeSwitch Africa Challenge, hosted by Intron Health.
