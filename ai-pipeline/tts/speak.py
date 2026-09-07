@@ -1,7 +1,28 @@
-# ai-pipeline/tts/speak.py
 import base64
+import re
 from io import BytesIO
 from gtts import gTTS
+
+_EMOJI_PATTERN = re.compile(
+    "["
+    "\U0001F300-\U0001FAFF"  # symbols, pictographs, extended-A
+    "\U00002600-\U000027BF"  # misc symbols, dingbats
+    "\U0001F1E6-\U0001F1FF"  # flags
+    "\U00002190-\U000021FF"  # arrows
+    "\U00002B00-\U00002BFF"  # misc symbols and arrows
+    "\U0000FE0F"             # variation selector
+    "]+",
+    flags=re.UNICODE
+)
+
+
+def strip_emojis(text: str) -> str:
+    """Removes emoji so gTTS never voices them — spoken emoji names
+    (e.g. 'medical symbol') break conversational flow."""
+    if not text:
+        return text
+    return _EMOJI_PATTERN.sub("", text).strip()
+
 
 def text_to_speech(text: str, language: str = "en") -> str:
     """
@@ -9,6 +30,8 @@ def text_to_speech(text: str, language: str = "en") -> str:
     encoding it as a Base64 data URI string to bypass disk write limitations.
     Dynamically routes regional accents (TLDs) for localized language trust.
     """
+    text = strip_emojis(text)
+
     gtts_lang_map = {
         "en": "en",
         "sw": "sw",
