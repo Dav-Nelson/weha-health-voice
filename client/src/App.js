@@ -17,8 +17,8 @@ const LANGUAGE_ISO_MAP = {
 
 const TRANSLATIONS = {
   en: {
-    welcome1: "Welcome to Weha Health\nI'm your personal health companion, here to listen and help — in your language, at your pace.\nYou are safe here. Everything you share stays between us.",
-    welcome2: "Please tell me — what is bothering you today? Or what health question can I answer for you?",
+    welcome1: "Welcome to Weha Health\nI'm your personal health companion, here to listen and help in your language, at your pace.\nYou are safe here. Everything you share stays between us.",
+    welcome2: "Please tell me what is bothering you today? Or what health question can I answer for you?",
     placeholder: "Type your health question or symptom...",
     recording: "Listening...",
     wait: "Wait for response...",
@@ -27,7 +27,7 @@ const TRANSLATIONS = {
   },
   pcm: {
     welcome1: "Welcome to Weha Health\nI be your personal health companion. I dey here to listen and help you for your own language.\nYou dey safe here. Everything wey you tell me na secret.",
-    welcome2: "Abeg tell me — wetin dey do you today? Or which health question you want ask?",
+    welcome2: "Abeg tell me wetin dey do you today? Or which health question you want ask?",
     placeholder: "Type wetin dey do you...",
     recording: "I dey listen...",
     wait: "Abeg wait small...",
@@ -35,8 +35,8 @@ const TRANSLATIONS = {
     secure: "Safe Health Tok"
   },
   yo: {
-    welcome1: "Kaabo si Weha Health\nEmi ni ọ̀rẹ́ ìlera rẹ, mo wà níbí láti gbọ́ tí o sì rànlọ́wọ́ — ní èdè rẹ, ní ìlò rẹ.\nO wà láìléwu níbí. Ohunkóhun tí o bá pín pẹ̀lú mi yóò dúró láàrin wa.",
-    welcome2: "Jọ̀wọ́ sọ fún mi — kín ni ó ń yọ ọ́ lẹ́nu lónìí? Tàbí ìbéèrè ìlera wo ni mo lè dáhùn fún ọ?",
+    welcome1: "Kaabo si Weha Health\nEmi ni ọ̀rẹ́ ìlera rẹ, mo wà níbí láti gbọ́ tí o sì rànlọ́wọ́ ní èdè rẹ, ní ìlò rẹ.\nO wà láìléwu níbí. Ohunkóhun tí o bá pín pẹ̀lú mi yóò dúró láàrin wa.",
+    welcome2: "Jọ̀wọ́ sọ fún mi kín ni ó ń yọ ọ́ lẹ́nu lónìí? Tàbí ìbéèrè ìlera wo ni mo lè dáhùn fún ọ?",
     placeholder: "Kọ ìbéèrè ìlera rẹ tàbí àmì àìsàn rẹ...",
     recording: "Mò ń gbọ́...",
     wait: "Dúró de ìdáhùn...",
@@ -44,8 +44,8 @@ const TRANSLATIONS = {
     secure: "Ìjíròrò Ìṣègùn Aabo"
   },
   ak: {
-    welcome1: "Akwaaba kɔ Weha Health\nMe yɛ wo apɔwmuden adamfo, me wɔ ha sɛ mɛtie wo na m'aboa wo — wɔ wo kasa mu.\nWo ho dwo wo wɔ ha. Biribiara a woka kyerɛ me no yɛ kokoam asɛm.",
-    welcome2: "Mesrɛ wo ka kyerɛ me — dɛn na ɛhaw wo nnɛ? Anaa apɔwmuden asɛm bɛn na wobisa?",
+    welcome1: "Akwaaba kɔ Weha Health\nMe yɛ wo apɔwmuden adamfo, me wɔ ha sɛ mɛtie wo na m'aboa wo wɔ wo kasa mu.\nWo ho dwo wo wɔ ha. Biribiara a woka kyerɛ me no yɛ kokoam asɛm.",
+    welcome2: "Mesrɛ wo ka kyerɛ me dɛn na ɛhaw wo nnɛ? Anaa apɔwmuden asɛm bɛn na wobisa?",
     placeholder: "Kyerɛw wo apɔwmuden asɛm...",
     recording: "Mretie...",
     wait: "Twɛn mmuae...",
@@ -54,7 +54,7 @@ const TRANSLATIONS = {
   },
   am: {
     welcome1: "ወደ Weha Health በደህና መጡ\nእኔ የእርስዎ የግል ጤና ጓደኛ ነኝ፣ እርስዎን ለማዳመጥ እና ለመርዳት እዚህ ነኝ።\nእዚህ ደህንነትዎ የተጠበቀ ነው። የሚያጋሩት ማንኛውም ነገር ሚስጥር ነው።",
-    welcome2: "እባክዎ ይንገሩኝ — ዛሬ ምን እየረበሸዎት ነው? ወይም ምን የጤና ጥያቄ መመለስ እችላለሁ?",
+    welcome2: "እባክዎ ይንገሩኝ ዛሬ ምን እየረበሸዎት ነው? ወይም ምን የጤና ጥያቄ መመለስ እችላለሁ?",
     placeholder: "የጤና ጥያቄዎን እዚህ ይጻፉ...",
     recording: "እያዳመጥኩ ነው...",
     wait: "ምላሽ ይጠብቁ...",
@@ -80,7 +80,7 @@ export default function App() {
   const [language, setLanguage] = useState('English');
   const [showOnboarding, setShowOnboarding] = useState(true);
   const [showHelp, setShowHelp] = useState(false);
-  const [activeTab, setActiveTab] = useState('consultation');
+  const [activeTab, setActiveTab] = useState('triage');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
@@ -132,6 +132,12 @@ export default function App() {
     }, 1000);
   };
 
+  // Note: no client-side system-prompt injection here anymore. The
+  // previous version built a giant instruction string and sent it as
+  // the "message" — which then got saved verbatim into the database
+  // as the user's turn and displayed in conversation history. All
+  // that behavior now lives server-side in rag/query.py's system
+  // prompt, which is the single source of truth.
   const handleSendMessage = async (textToProcess) => {
     if (!textToProcess.trim()) return;
 
@@ -139,36 +145,14 @@ export default function App() {
     setInputValue('');
     setIsLoading(true);
 
-    try {
+try {
       const targetCode = getCleanLanguageCode();
       const sessionId = getOrCreateSessionId();
-      let finalMessageToSend = textToProcess;
-
-      const isFirstUserMessage = !messages.some(m => m.sender === 'user');
-
-      if (isFirstUserMessage) {
-        finalMessageToSend = `[SYSTEM INSTRUCTIONS - STRICTLY ADHERE TO THESE]
-You are Weha Health — a warm, culturally grounded AI health companion built for African communities.
-Respond natively in ${language.name || language}.
-
-Analyze the user's opening message: "${textToProcess}"
-
-BEHAVIOUR RULES:
-1. GENERAL QUESTION: If the user is asking a general health fact or question (e.g., "about cancer", "what is malaria"), simply answer the question clearly, warmly, and accurately. Do NOT ask triage questions.
-2. SYMPTOM/COMPLAINT: If the user is describing a personal symptom or feeling sick (e.g., "my head hurts", "I am coughing"), express brief empathy, then act as a triage nurse and ask ONE follow-up question (like onset or severity) to understand better.
-3. When you use any medical term, immediately explain it in plain language using a simple, relatable African analogy.
-4. Never give a definitive diagnosis.
-5. Do not use emojis anywhere in your response.
-6. Always close medical guidance with: "Remember: I'm here to support, not replace, a certified doctor."
-[END OF SYSTEM INSTRUCTIONS]
-
-User's message: "${textToProcess}"`;
-      }
 
       const response = await fetch(`${API_BASE_URL}/api/voice/text-chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: finalMessageToSend, language: targetCode, sessionId: sessionId }),
+        body: JSON.stringify({ message: textToProcess, language: targetCode, sessionId: sessionId }),
       });
 
       if (!response.ok) throw new Error('API response failed');
@@ -226,7 +210,7 @@ User's message: "${textToProcess}"`;
     formData.append('language', targetCode);
     formData.append('sessionId', sessionId);
 
-try {
+    try {
       const response = await fetch(`${API_BASE_URL}/api/voice/chat`, { method: 'POST', body: formData });
       if (!response.ok) throw new Error('Voice chat failed');
       const data = await response.json();
@@ -281,14 +265,14 @@ try {
             </div>
             <hr className="border-health-border" />
             <nav className="flex flex-col gap-2">
+              <button onClick={() => { setActiveTab('triage'); setIsMobileMenuOpen(false); }} className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'triage' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}>
+                <Mic size={20} /><span>Voice Triage</span>
+              </button>
               <button onClick={() => { setActiveTab('consultation'); setIsMobileMenuOpen(false); }} className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'consultation' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}>
-                <MessageSquare size={20} /><span>Consultation Room</span>
+                <MessageSquare size={20} /><span>General Consultation</span>
               </button>
               <button onClick={() => { setActiveTab('history'); setIsMobileMenuOpen(false); }} className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'history' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}>
                 <History size={20} /><span>Medical History</span>
-              </button>
-              <button onClick={() => { setActiveTab('triage'); setIsMobileMenuOpen(false); }} className={`flex items-center gap-3 w-full p-3.5 rounded-xl font-medium transition ${activeTab === 'triage' ? 'bg-health-chat text-health-accentLight' : 'hover:bg-health-chat hover:text-health-textPrimary'}`}>
-                <Mic size={20} /><span>Voice Triage</span>
               </button>
             </nav>
           </div>
@@ -309,14 +293,14 @@ try {
             WH
           </div>
           <hr className="w-8 border-health-border" />
+          <button onClick={() => setActiveTab('triage')} className={`p-3 rounded-xl transition relative group ${activeTab === 'triage' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}>
+            <Mic size={22} />
+          </button>
           <button onClick={() => setActiveTab('consultation')} className={`p-3 rounded-xl transition relative group ${activeTab === 'consultation' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}>
             <MessageSquare size={22} />
           </button>
           <button onClick={() => setActiveTab('history')} className={`p-3 rounded-xl transition relative group ${activeTab === 'history' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}>
             <History size={22} />
-          </button>
-          <button onClick={() => setActiveTab('triage')} className={`p-3 rounded-xl transition relative group ${activeTab === 'triage' ? 'bg-health-chat text-health-accentLight shadow-inner' : 'hover:text-health-textPrimary'}`}>
-            <Mic size={22} />
           </button>
         </div>
         <div className="flex flex-col items-center gap-4 w-full">
