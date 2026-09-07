@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Mic, Square, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
+import { Mic, Square, AlertTriangle, CheckCircle, Clock, MapPin, BellRing } from 'lucide-react';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
@@ -28,9 +28,28 @@ export default function VoiceIntake({ language = 'en' }) {
 
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
+  const coordsRef = useRef({ lat: null, lng: null });
+
+  const captureLocationSilently = () => {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        coordsRef.current = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+      },
+      () => {
+        // Permission denied or unavailable — facility lookup just won't run.
+        coordsRef.current = { lat: null, lng: null };
+      },
+      { timeout: 8000, maximumAge: 300000 }
+    );
+  };
 
   const startRecording = async () => {
     try {
+      captureLocationSilently();
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const mediaRecorder = new MediaRecorder(stream);
       mediaRecorderRef.current = mediaRecorder;
@@ -65,6 +84,10 @@ export default function VoiceIntake({ language = 'en' }) {
     formData.append('language', language);
     formData.append('sessionId', sessionId);
     formData.append('existingFields', JSON.stringify(fields));
+    if (coordsRef.current.lat !== null) {
+      formData.append('lat', coordsRef.current.lat);
+      formData.append('lng', coordsRef.current.lng);
+    }
 
     try {
       const response = await fetch(`${API_BASE_URL}/api/intake/turn`, {
@@ -92,6 +115,8 @@ export default function VoiceIntake({ language = 'en' }) {
           urgency: data.urgency,
           matched_signs: data.matched_signs,
           guidance: data.guidance,
+          alert_sent: data.alert_sent,
+          nearest_facility: data.nearest_facility,
         });
       }
     } catch (error) {
@@ -150,15 +175,35 @@ export default function VoiceIntake({ language = 'en' }) {
           </div>
           <p className="text-sm text-health-textPrimary mb-2">{result.guidance}</p>
           {result.matched_signs?.length > 0 && (
-            <ul className="text-xs text-health-textSecondary space-y-1">
+            <ul className="text-xs text-health-textSecondary space-y-1 mb-2">
               {result.matched_signs.map((s, i) => (
                 <li key={i}>• {s.explanation}</li>
               ))}
             </ul>
           )}
+
+          {result.urgency === 'urgent' && result.alert_sent && (
+            <div className="flex items-center gap-2 text-xs text-red-300 bg-red-950/40 rounded-lg p-2 mb-2">
+              <BellRing size={14} />
+              <span>Your care team has been alerted.</span>
+            </div>
+          )}
+
+          {result.nearest_facility && (
+            <a
+              href={result.nearest_facility.maps_link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-xs text-health-accentLight underline bg-health-bg/40 rounded-lg p-2 mb-2"
+            >
+              <MapPin size={14} />
+              <span>Nearest facility: {result.nearest_facility.name}</span>
+            </a>
+          )}
+
           <button
             onClick={startNewSession}
-            className="mt-3 text-xs underline text-health-accentLight"
+            className="mt-1 text-xs underline text-health-accentLight"
           >
             Start a new session
           </button>
