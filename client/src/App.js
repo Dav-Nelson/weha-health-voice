@@ -12,62 +12,53 @@ import { startSilentTracking } from './utils/tracking';
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const LANGUAGE_ISO_MAP = {
-  'english': 'en', 'pidgin': 'pcm', 'swahili': 'sw', 'oromo': 'om', 'twi': 'tw', 'amharic': 'am'
+  'english': 'en', 'pidgin': 'pcm', 'yoruba': 'yo', 'akan': 'ak', 'amharic': 'am'
 };
 
 const TRANSLATIONS = {
   en: {
-    welcome1: "Welcome to Weha Health 🌍\nI'm your personal health companion, here to listen and help — in your language, at your pace.\nYou are safe here. Everything you share stays between us. 💛",
+    welcome1: "Welcome to Weha Health\nI'm your personal health companion, here to listen and help — in your language, at your pace.\nYou are safe here. Everything you share stays between us.",
     welcome2: "Please tell me — what is bothering you today? Or what health question can I answer for you?",
     placeholder: "Type your health question or symptom...",
     recording: "Listening...",
     wait: "Wait for response...",
-    disclaimer: "⚕️ This system is not a substitute for professional medical advice. Always consult a certified doctor.",
+    disclaimer: "This system is not a substitute for professional medical advice. Always consult a certified doctor.",
     secure: "Secure Clinical Consultation"
   },
   pcm: {
-    welcome1: "Welcome to Weha Health 🌍\nI be your personal health companion. I dey here to listen and help you for your own language.\nYou dey safe here. Everything wey you tell me na secret. 💛",
+    welcome1: "Welcome to Weha Health\nI be your personal health companion. I dey here to listen and help you for your own language.\nYou dey safe here. Everything wey you tell me na secret.",
     welcome2: "Abeg tell me — wetin dey do you today? Or which health question you want ask?",
     placeholder: "Type wetin dey do you...",
     recording: "I dey listen...",
     wait: "Abeg wait small...",
-    disclaimer: "⚕️ This system no be doctor substitute. Make you always check certified doctor.",
+    disclaimer: "This system no be doctor substitute. Make you always check certified doctor.",
     secure: "Safe Health Tok"
   },
-  sw: {
-    welcome1: "Karibu Weha Health 🌍\nMimi ni rafiki yako wa afya, hapa kusikiliza na kusaidia — kwa lugha yako.\nUko salama hapa. Kila kitu unachoshiriki kinabaki kati yetu. 💛",
-    welcome2: "Tafadhali niambie — nini kinakusumbua leo? Au ninaweza kujibu swali gani la afya?",
-    placeholder: "Andika swali lako la afya au dalili...",
-    recording: "Inasikiliza...",
-    wait: "Subiri majibu...",
-    disclaimer: "⚕️ Mfumo huu sio mbadala wa ushauri wa kitaalamu wa matibabu. Daima shauriana na daktari.",
-    secure: "Ushauri Salama wa Kliniki"
+  yo: {
+    welcome1: "Kaabo si Weha Health\nEmi ni ọ̀rẹ́ ìlera rẹ, mo wà níbí láti gbọ́ tí o sì rànlọ́wọ́ — ní èdè rẹ, ní ìlò rẹ.\nO wà láìléwu níbí. Ohunkóhun tí o bá pín pẹ̀lú mi yóò dúró láàrin wa.",
+    welcome2: "Jọ̀wọ́ sọ fún mi — kín ni ó ń yọ ọ́ lẹ́nu lónìí? Tàbí ìbéèrè ìlera wo ni mo lè dáhùn fún ọ?",
+    placeholder: "Kọ ìbéèrè ìlera rẹ tàbí àmì àìsàn rẹ...",
+    recording: "Mò ń gbọ́...",
+    wait: "Dúró de ìdáhùn...",
+    disclaimer: "Ètò yìí kì í ṣe ìdípò ìmọ̀ràn ìṣègùn gidi. Jọ̀wọ́ máa bá dókítà tó gbẹ́kẹ̀lé sọ̀rọ̀ nígbà gbogbo.",
+    secure: "Ìjíròrò Ìṣègùn Aabo"
   },
-  tw: {
-    welcome1: "Akwaaba kɔ Weha Health 🌍\nMe yɛ wo apɔwmuden adamfo, me wɔ ha sɛ mɛtie wo na m'aboa wo — wɔ wo kasa mu.\nWo ho dwo wo wɔ ha. Biribiara a woka kyerɛ me no yɛ kokoam asɛm. 💛",
+  ak: {
+    welcome1: "Akwaaba kɔ Weha Health\nMe yɛ wo apɔwmuden adamfo, me wɔ ha sɛ mɛtie wo na m'aboa wo — wɔ wo kasa mu.\nWo ho dwo wo wɔ ha. Biribiara a woka kyerɛ me no yɛ kokoam asɛm.",
     welcome2: "Mesrɛ wo ka kyerɛ me — dɛn na ɛhaw wo nnɛ? Anaa apɔwmuden asɛm bɛn na wobisa?",
     placeholder: "Kyerɛw wo apɔwmuden asɛm...",
     recording: "Mretie...",
     wait: "Twɛn mmuae...",
-    disclaimer: "⚕️ Eyi nsi aduruyɛ ho afutuo ananmu. Bere biara kɔbɔ oduruyɛfoɔ a ɔwɔ tumi krataa kɔkɔ.",
+    disclaimer: "Eyi nsi aduruyɛ ho afutuo ananmu. Bere biara kɔbɔ oduruyɛfoɔ a ɔwɔ tumi krataa kɔkɔ.",
     secure: "Ayaresa Nkitahodie a Ɛyɛ Ahobammɔ"
   },
-  om: {
-    welcome1: "Baga nagaan gara Weha Health dhuftan 🌍\nAni hiriyyaa fayyaa keeti, dhaggeeffachuu fi si gargaaruuf asan jira.\nAsitti nageenyi kee eegamaadha. Wanti ati natti himtu hundi icciitidha. 💛",
-    welcome2: "Mee natti himi — har'a maaltu si rakkisaa jira? Ykn gaaffii fayyaa akkamii qabda?",
-    placeholder: "Gaaffii fayyaa kee barreessi...",
-    recording: "Dhaggeeffachaa jira...",
-    wait: "Deebii eegi...",
-    disclaimer: "⚕️ Sirni kun gorsa yaala ogeessaa bakka hin bu'u. Yeroo mara ogeessa fayyaa mariisisi.",
-    secure: "Marii Kiliinikaa Icciitii"
-  },
   am: {
-    welcome1: "ወደ Weha Health በደህና መጡ 🌍\nእኔ የእርስዎ የግል ጤና ጓደኛ ነኝ፣ እርስዎን ለማዳመጥ እና ለመርዳት እዚህ ነኝ።\nእዚህ ደህንነትዎ የተጠበቀ ነው። የሚያጋሩት ማንኛውም ነገር ሚስጥር ነው። 💛",
+    welcome1: "ወደ Weha Health በደህና መጡ\nእኔ የእርስዎ የግል ጤና ጓደኛ ነኝ፣ እርስዎን ለማዳመጥ እና ለመርዳት እዚህ ነኝ።\nእዚህ ደህንነትዎ የተጠበቀ ነው። የሚያጋሩት ማንኛውም ነገር ሚስጥር ነው።",
     welcome2: "እባክዎ ይንገሩኝ — ዛሬ ምን እየረበሸዎት ነው? ወይም ምን የጤና ጥያቄ መመለስ እችላለሁ?",
     placeholder: "የጤና ጥያቄዎን እዚህ ይጻፉ...",
     recording: "እያዳመጥኩ ነው...",
     wait: "ምላሽ ይጠብቁ...",
-    disclaimer: "⚕️ ይህ ዘዴ የባለሙያ የህክምና ምክርን አይተካም። ሁልጊዜ የተረጋገጠ ዶክተር ያማክሩ።",
+    disclaimer: "ይህ ዘዴ የባለሙያ የህክምና ምክርን አይተካም። ሁልጊዜ የተረጋገጠ ዶክተር ያማክሩ።",
     secure: "ደህንነቱ የተጠበቀ የክሊኒክ ምክክር"
   }
 };
@@ -99,7 +90,7 @@ export default function App() {
 
   const getCleanLanguageCode = () => {
     const currentLang = typeof language === 'string' ? language : language.name;
-    return LANGUAGE_ISO_MAP[currentLang.toLowerCase()] || currentLang.toLowerCase();
+    return LANGUAGE_ISO_MAP[currentLang.toLowerCase()] || 'en';
   };
 
   const langCode = getCleanLanguageCode();
@@ -167,7 +158,8 @@ BEHAVIOUR RULES:
 2. SYMPTOM/COMPLAINT: If the user is describing a personal symptom or feeling sick (e.g., "my head hurts", "I am coughing"), express brief empathy, then act as a triage nurse and ask ONE follow-up question (like onset or severity) to understand better.
 3. When you use any medical term, immediately explain it in plain language using a simple, relatable African analogy.
 4. Never give a definitive diagnosis.
-5. Always close medical guidance with: "⚕️ Remember: I'm here to support, not replace, a certified doctor."
+5. Do not use emojis anywhere in your response.
+6. Always close medical guidance with: "Remember: I'm here to support, not replace, a certified doctor."
 [END OF SYSTEM INSTRUCTIONS]
 
 User's message: "${textToProcess}"`;
@@ -186,9 +178,9 @@ User's message: "${textToProcess}"`;
     } catch (error) {
       let errorMessage = "Sorry, I am having trouble connecting right now.";
       if (!navigator.onLine || error.message.includes('Failed to fetch')) {
-        errorMessage = "🌐 It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
+        errorMessage = "It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
       } else {
-        errorMessage = "⚙️ Sorry, I am having technical issues. Please try again in a few minutes!";
+        errorMessage = "Sorry, I am having technical issues. Please try again in a few minutes!";
       }
       setMessages(prev => [...prev, { sender: 'bot', text: errorMessage }]);
     } finally {
@@ -234,7 +226,7 @@ User's message: "${textToProcess}"`;
     formData.append('language', targetCode);
     formData.append('sessionId', sessionId);
 
-    try {
+try {
       const response = await fetch(`${API_BASE_URL}/api/voice/chat`, { method: 'POST', body: formData });
       if (!response.ok) throw new Error('Voice chat failed');
       const data = await response.json();
@@ -252,9 +244,9 @@ User's message: "${textToProcess}"`;
     } catch (error) {
       let errorMessage = "Sorry, I couldn't process your voice message.";
       if (!navigator.onLine || error.message.includes('Failed to fetch')) {
-        errorMessage = "🌐 It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
+        errorMessage = "It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
       } else {
-        errorMessage = "⚙️ Sorry, I am having technical issues processing your voice. Please try again in a few minutes!";
+        errorMessage = "Sorry, I am having technical issues processing your voice. Please try again in a few minutes!";
       }
       setMessages(prev => [...prev, { sender: 'bot', text: errorMessage }]);
     } finally {
@@ -351,7 +343,7 @@ User's message: "${textToProcess}"`;
             <Menu size={24} />
           </button>
           <div className="flex-1">
-            <Header language={currentLangName} />
+            <Header language={currentLangName} onLanguageChange={handleLanguageChange} />
           </div>
         </div>
 
