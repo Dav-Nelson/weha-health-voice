@@ -1,8 +1,8 @@
 """
 Nearest health facility lookup using free OpenStreetMap services
 (Nominatim for geocoding, Overpass for facility search). No API key
-or card required. Only called on urgent triage results, so request
-volume stays low even on free-tier infrastructure.
+or card required. Retries with a wider radius if nothing is found
+nearby, since OSM's health-facility tagging density varies by area.
 """
 import requests
 
@@ -12,8 +12,6 @@ HEADERS = {"User-Agent": "WehaHealth/1.0 (Sahara CodeSwitch Africa Challenge sub
 
 
 def geocode_place_name(place_name: str) -> dict:
-    """Fallback when the frontend has no GPS lock — converts a spoken
-    town/city name into coordinates."""
     try:
         response = requests.get(
             NOMINATIM_URL,
@@ -30,8 +28,7 @@ def geocode_place_name(place_name: str) -> dict:
         return None
 
 
-def find_nearest_facility(lat: float, lng: float, radius_m: int = 5000) -> dict:
-    """Queries Overpass for the nearest hospital or clinic within radius_m."""
+def _query_overpass(lat: float, lng: float, radius_m: int) -> dict:
     query = f"""
     [out:json][timeout:10];
     (
@@ -63,3 +60,11 @@ def find_nearest_facility(lat: float, lng: float, radius_m: int = 5000) -> dict:
     except Exception as e:
         print(f"[facility] Overpass lookup failed: {e}")
         return None
+
+
+def find_nearest_facility(lat: float, lng: float, radius_m: int = 5000) -> dict:
+    result = _query_overpass(lat, lng, radius_m)
+    if result is None:
+        # Retry wider — some areas have sparse OSM health-facility tagging.
+        result = _query_overpass(lat, lng, 15000)
+    return result
