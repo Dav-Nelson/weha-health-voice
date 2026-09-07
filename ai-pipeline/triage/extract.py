@@ -55,6 +55,8 @@ You already know: {json.dumps(fields_so_far)}
 You still need to find out: "{missing_field}"
 
 Ask ONE short, natural, non-clinical-sounding question to get this information.
+Write in a plain complete sentence. Do not use dashes or hyphens to join clauses.
+Do not use emojis.
 Respond with ONLY the question text, nothing else.
 """
     response = client.chat.completions.create(
