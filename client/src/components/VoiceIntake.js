@@ -40,7 +40,6 @@ export default function VoiceIntake({ language = 'en' }) {
         };
       },
       () => {
-        // Permission denied or unavailable — facility lookup just won't run.
         coordsRef.current = { lat: null, lng: null };
       },
       { timeout: 8000, maximumAge: 300000 }
@@ -177,7 +176,7 @@ export default function VoiceIntake({ language = 'en' }) {
           {result.matched_signs?.length > 0 && (
             <ul className="text-xs text-health-textSecondary space-y-1 mb-2">
               {result.matched_signs.map((s, i) => (
-                <li key={i}>• {s.explanation}</li>
+                <li key={i}>- {s.explanation}</li>
               ))}
             </ul>
           )}
@@ -185,7 +184,7 @@ export default function VoiceIntake({ language = 'en' }) {
           {result.urgency === 'urgent' && result.alert_sent && (
             <div className="flex items-center gap-2 text-xs text-red-300 bg-red-950/40 rounded-lg p-2 mb-2">
               <BellRing size={14} />
-              <span>Your care team has been alerted.</span>
+              <span>Your care team has been alerted on WhatsApp.</span>
             </div>
           )}
 
@@ -229,7 +228,7 @@ export default function VoiceIntake({ language = 'en' }) {
         <p className="text-center text-xs text-health-textSecondary mt-2">Processing...</p>
       )}
       <p className="text-[10px] text-health-textSecondary/60 text-center mt-3">
-        ⚕️ This is not a diagnosis. Please see a health worker for urgent concerns.
+        This is not a diagnosis. Please see a health worker for urgent concerns.
       </p>
     </div>
   );
