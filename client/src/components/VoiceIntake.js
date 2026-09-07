@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Mic, Square, AlertTriangle, CheckCircle, Clock, MapPin, BellRing } from 'lucide-react';
+import { Mic, Square, AlertTriangle, CheckCircle, Clock, MapPin, BellRing, Volume2, Loader2 } from 'lucide-react';
 import VisitSummary from './VisitSummary';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -26,10 +26,12 @@ export default function VoiceIntake({ language = 'en' }) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState(null);
   const [engineUsed, setEngineUsed] = useState(null);
+  const [playingIndex, setPlayingIndex] = useState(null);
 
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const coordsRef = useRef({ lat: null, lng: null });
+  const currentAudioRef = useRef(null);
 
   const captureLocationSilently = () => {
     if (!navigator.geolocation) return;
@@ -45,6 +47,31 @@ export default function VoiceIntake({ language = 'en' }) {
       },
       { timeout: 8000, maximumAge: 300000 }
     );
+  };
+
+  const playText = async (text, index) => {
+    if (currentAudioRef.current) {
+      currentAudioRef.current.pause();
+      currentAudioRef.current = null;
+    }
+    setPlayingIndex(index);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/voice/speak`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, language })
+      });
+      if (!response.ok) throw new Error('Speech generation failed');
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      currentAudioRef.current = audio;
+      audio.onended = () => setPlayingIndex(null);
+      audio.onerror = () => setPlayingIndex(null);
+      await audio.play();
+    } catch (err) {
+      setPlayingIndex(null);
+    }
   };
 
   const startRecording = async () => {
@@ -115,7 +142,8 @@ export default function VoiceIntake({ language = 'en' }) {
           urgency: data.urgency,
           matched_signs: data.matched_signs,
           guidance: data.guidance,
-          alert_sent: data.alert_sent,
+          whatsapp_alert_sent: data.whatsapp_alert_sent,
+          telegram_alert_sent: data.telegram_alert_sent,
           nearest_facility: data.nearest_facility,
         });
       }
@@ -155,13 +183,22 @@ export default function VoiceIntake({ language = 'en' }) {
         {conversation.map((msg, i) => (
           <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div
-              className={`max-w-[85%] p-3 rounded-[18px] text-[15px] leading-relaxed shadow-sm ${
+              className={`max-w-[85%] p-3 rounded-[18px] text-[15px] leading-relaxed shadow-sm flex items-start gap-2 ${
                 msg.sender === 'user'
                   ? 'bg-health-userBubble text-health-textPrimary rounded-tr-[4px]'
                   : 'bg-health-aiBubble text-health-textPrimary rounded-tl-[4px]'
               }`}
             >
-              {msg.text}
+              <span className="flex-1">{msg.text}</span>
+              {msg.sender === 'bot' && (
+                <button
+                  onClick={() => playText(msg.text, i)}
+                  className="shrink-0 mt-0.5 text-health-textSecondary hover:text-health-accent transition"
+                  aria-label="Listen"
+                >
+                  {playingIndex === i ? <Loader2 size={14} className="animate-spin" /> : <Volume2 size={14} />}
+                </button>
+              )}
             </div>
           </div>
         ))}
@@ -173,7 +210,16 @@ export default function VoiceIntake({ language = 'en' }) {
             {React.createElement(URGENCY_STYLES[result.urgency]?.icon || CheckCircle, { size: 18 })}
             <span className="uppercase text-sm tracking-wide">{result.urgency}</span>
           </div>
-          <p className="text-sm text-health-textPrimary mb-2">{result.guidance}</p>
+          <div className="flex items-start gap-2 mb-2">
+            <p className="text-sm text-health-textPrimary flex-1">{result.guidance}</p>
+            <button
+              onClick={() => playText(result.guidance, 'guidance')}
+              className="shrink-0 mt-0.5 text-health-textSecondary hover:text-health-accent transition"
+              aria-label="Listen"
+            >
+              {playingIndex === 'guidance' ? <Loader2 size={14} className="animate-spin" /> : <Volume2 size={14} />}
+            </button>
+          </div>
           {result.matched_signs?.length > 0 && (
             <ul className="text-xs text-health-textSecondary space-y-1 mb-2">
               {result.matched_signs.map((s, i) => (
@@ -182,10 +228,17 @@ export default function VoiceIntake({ language = 'en' }) {
             </ul>
           )}
 
-          {result.urgency === 'urgent' && result.alert_sent && (
+          {result.urgency === 'urgent' && (result.whatsapp_alert_sent || result.telegram_alert_sent) && (
             <div className="flex items-center gap-2 text-xs text-red-300 bg-red-950/40 rounded-lg p-2 mb-2">
               <BellRing size={14} />
-              <span>Your care team has been alerted on WhatsApp.</span>
+              <span>
+                Your care team has been alerted
+                {result.whatsapp_alert_sent && result.telegram_alert_sent
+                  ? ' via WhatsApp and Telegram.'
+                  : result.whatsapp_alert_sent
+                  ? ' via WhatsApp.'
+                  : ' via Telegram.'}
+              </span>
             </div>
           )}
 
@@ -201,11 +254,11 @@ export default function VoiceIntake({ language = 'en' }) {
             </a>
           )}
 
-<VisitSummary fields={fields} result={result} />
+          <VisitSummary fields={fields} result={result} language={language} />
 
           <button
             onClick={startNewSession}
-            className="mt-1 text-xs underline text-health-accentLight"
+            className="mt-2 text-xs underline text-health-accentLight"
           >
             Start a new session
           </button>
