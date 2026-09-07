@@ -2,14 +2,18 @@
 Autonomous escalation for urgent triage results — the agentic "action"
 component of Weha Health's maternal-health triage flow.
 
-Sends a WhatsApp alert (via Twilio's Sandbox) to the team's phone
-numbers. This is a prototype demonstrating the escalation pathway; it
-is NOT connected to real emergency dispatch services. Fails silently
-(logs only) so a WhatsApp/Twilio outage never blocks the user from
-receiving their own triage guidance.
+Sends alerts to the team via WhatsApp (Twilio Sandbox) AND Telegram,
+independently, so a failure in one channel doesn't lose the alert.
+This is a prototype demonstrating the escalation pathway; it is NOT
+connected to real emergency dispatch services. Both channels fail
+silently (logs only) so an alert-delivery issue never blocks the user
+from receiving their own triage guidance.
 """
 import os
 import requests
+
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 TWILIO_ACCOUNT_SID = os.environ.get("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
@@ -21,34 +25,12 @@ TWILIO_MESSAGES_URL = (
 )
 
 
-def _get_team_numbers() -> list:
-    raw = os.environ.get("TEAM_WHATSAPP_NUMBERS", "")
-    numbers = [n.strip() for n in raw.split(",") if n.strip()]
-    return numbers
-
-
-def send_whatsapp_alert(
-    session_id: str,
-    language: str,
-    fields: dict,
-    urgency: str,
-    matched_signs: list,
-    guidance: str
-) -> bool:
-    if not TWILIO_ACCOUNT_SID or not TWILIO_AUTH_TOKEN:
-        print("[escalate] Twilio not configured — skipping alert.")
-        return False
-
-    team_numbers = _get_team_numbers()
-    if not team_numbers:
-        print("[escalate] No TEAM_WHATSAPP_NUMBERS configured — skipping alert.")
-        return False
-
+def _build_alert_text(session_id, language, fields, urgency, matched_signs, guidance) -> str:
     signs_text = ", ".join(
         s["sign"].replace("_", " ") for s in matched_signs
     ) or "severity-based (no specific sign matched)"
 
-    message_body = (
+    return (
         "WEHA HEALTH - URGENT TRIAGE ALERT (prototype)\n\n"
         f"Session: {session_id}\n"
         f"Language: {language}\n"
@@ -62,6 +44,43 @@ def send_whatsapp_alert(
         "Africa Challenge, not a live emergency dispatch."
     )
 
+
+def _get_team_whatsapp_numbers() -> list:
+    raw = os.environ.get("TEAM_WHATSAPP_NUMBERS", "")
+    return [n.strip() for n in raw.split(",") if n.strip()]
+
+
+def send_telegram_alert(session_id, language, fields, urgency, matched_signs, guidance) -> bool:
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        print("[escalate] Telegram not configured — skipping.")
+        return False
+
+    message = _build_alert_text(session_id, language, fields, urgency, matched_signs, guidance)
+
+    try:
+        response = requests.post(
+            f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
+            json={"chat_id": TELEGRAM_CHAT_ID, "text": message},
+            timeout=10
+        )
+        return response.status_code == 200
+    except Exception as e:
+        print(f"[escalate] Telegram alert failed: {e}")
+        return False
+
+
+def send_whatsapp_alert(session_id, language, fields, urgency, matched_signs, guidance) -> bool:
+    if not TWILIO_ACCOUNT_SID or not TWILIO_AUTH_TOKEN:
+        print("[escalate] Twilio not configured — skipping.")
+        return False
+
+    team_numbers = _get_team_whatsapp_numbers()
+    if not team_numbers:
+        print("[escalate] No TEAM_WHATSAPP_NUMBERS configured — skipping.")
+        return False
+
+    message_body = _build_alert_text(session_id, language, fields, urgency, matched_signs, guidance)
+
     any_success = False
     for number in team_numbers:
         to_address = number if number.startswith("whatsapp:") else f"whatsapp:{number}"
@@ -69,11 +88,7 @@ def send_whatsapp_alert(
             response = requests.post(
                 TWILIO_MESSAGES_URL,
                 auth=(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN),
-                data={
-                    "From": TWILIO_WHATSAPP_FROM,
-                    "To": to_address,
-                    "Body": message_body
-                },
+                data={"From": TWILIO_WHATSAPP_FROM, "To": to_address, "Body": message_body},
                 timeout=10
             )
             if response.status_code in (200, 201):
@@ -84,3 +99,10 @@ def send_whatsapp_alert(
             print(f"[escalate] WhatsApp send exception for {to_address}: {e}")
 
     return any_success
+
+
+def send_urgent_alerts(session_id, language, fields, urgency, matched_signs, guidance) -> dict:
+    """Fires both channels independently and reports each outcome."""
+    whatsapp_sent = send_whatsapp_alert(session_id, language, fields, urgency, matched_signs, guidance)
+    telegram_sent = send_telegram_alert(session_id, language, fields, urgency, matched_signs, guidance)
+    return {"whatsapp_sent": whatsapp_sent, "telegram_sent": telegram_sent}
