@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Mic, Square, AlertTriangle, CheckCircle, Clock, MapPin, BellRing } from 'lucide-react';
+import VisitSummary from './VisitSummary';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
@@ -199,6 +200,8 @@ export default function VoiceIntake({ language = 'en' }) {
               <span>Nearest facility: {result.nearest_facility.name}</span>
             </a>
           )}
+
+<VisitSummary fields={fields} result={result} />
 
           <button
             onClick={startNewSession}
