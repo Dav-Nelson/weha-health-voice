@@ -19,6 +19,14 @@ const URGENCY_STYLES = {
   routine: { bg: 'bg-green-900/30', border: 'border-green-500/50', text: 'text-green-400', icon: CheckCircle },
 };
 
+const HEADER_TEXT = {
+  en: { title: "Voice Health Triage", desc: "Speak naturally, in whatever language mix feels comfortable. I'll ask a few follow-up questions if I need more detail." },
+  pcm: { title: "Voice Health Check", desc: "Talk anyhow you like, mix your language as e dey come. I go ask small follow-up questions if I need more detail." },
+  yo: { title: "Àyẹ̀wò Ìlera Ohùn", desc: "Sọ̀rọ̀ ní ti ẹ̀dá, ní èdè tí ó bá wù ọ́. Èmi yóò béèrè àwọn ìbéèrè díẹ̀ bí mo bá nílò àlàyé síwájú sí i." },
+  ak: { title: "Nne Nhwehwɛmu", desc: "Kasa sɛnea ɛfata wo, fa wo kasa fra biara a wopɛ. Mɛbisa wo nsɛm kakra sɛ ehia me nkyerɛkyerɛmu pii." },
+  am: { title: "የድምጽ ጤና ምርመራ", desc: "እንደወደዱት ቋንቋ ቀላቅለው በተፈጥሮ ይናገሩ። ተጨማሪ ዝርዝር ካስፈለገኝ ጥቂት ተከታይ ጥያቄዎችን እጠይቃለሁ።" },
+};
+
 export default function VoiceIntake({ language = 'en' }) {
   const [conversation, setConversation] = useState([]);
   const [fields, setFields] = useState({});
@@ -167,10 +175,11 @@ export default function VoiceIntake({ language = 'en' }) {
   return (
     <div className="flex flex-col h-full max-w-2xl mx-auto p-4 md:p-6">
       <div className="mb-4">
-        <h2 className="text-lg font-semibold text-health-textPrimary">Voice Health Triage</h2>
+        <h2 className="text-lg font-semibold text-health-textPrimary">
+          {(HEADER_TEXT[language] || HEADER_TEXT.en).title}
+        </h2>
         <p className="text-sm text-health-textSecondary">
-          Speak naturally, in whatever language mix feels comfortable. I'll ask a
-          few follow-up questions if I need more detail.
+          {(HEADER_TEXT[language] || HEADER_TEXT.en).desc}
         </p>
         {engineUsed && (
           <p className="text-xs text-health-textSecondary/60 mt-1">
