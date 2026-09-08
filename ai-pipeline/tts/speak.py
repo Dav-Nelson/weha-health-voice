@@ -1,5 +1,6 @@
 import base64
 import re
+import unicodedata
 from io import BytesIO
 from gtts import gTTS
 
@@ -22,18 +23,21 @@ def strip_emojis(text: str) -> str:
     return _EMOJI_PATTERN.sub("", text).strip()
 
 
-def text_to_speech(text: str, language: str = "en") -> str:
+def strip_diacritics(text: str) -> str:
     """
-    Converts localized response text into an in-memory MP3 stream,
-    encoding it as a Base64 data URI string.
+    Removes tone marks/diacritics (e.g. Yoruba ọ́, ẹ̀) before TTS only —
+    the displayed chat text is untouched. Google's TTS engine sometimes
+    can't parse words carrying these marks and falls back to spelling
+    letters instead of speaking words. This trades tonal accuracy for
+    actually being intelligible speech.
+    """
+    if not text:
+        return text
+    normalized = unicodedata.normalize("NFKD", text)
+    return "".join(c for c in normalized if not unicodedata.combining(c))
 
-    Language codes match our app's ISO codes: en, pcm, yo, ak, am.
-    gTTS has no dedicated Nigerian Pidgin voice, so pcm falls back to
-    English (readable, since Pidgin is English-based). Yoruba and Akan
-    (as "tw" — gTTS's code for Twi/Akan) both have native gTTS voices
-    and should NOT fall back to English — that was the previous bug
-    causing letter-by-letter mispronunciation on tonal/diacritic text.
-    """
+
+def text_to_speech(text: str, language: str = "en") -> str:
     text = strip_emojis(text)
 
     gtts_lang_map = {
@@ -51,6 +55,11 @@ def text_to_speech(text: str, language: str = "en") -> str:
         "ak": "com.gh",
         "am": "com",
     }
+
+    # Diacritics only stripped for languages known to carry heavy tone
+    # marks that have caused letter-spelling behavior in testing.
+    if language.lower() in ("yo", "ak"):
+        text = strip_diacritics(text)
 
     target_gtts_code = gtts_lang_map.get(language.lower(), "en")
     target_tld = gtts_tld_map.get(language.lower(), "com.ng")
