@@ -1,15 +1,12 @@
 """
-Autonomous escalation for urgent triage results — the agentic "action"
-component of Weha Health's maternal-health triage flow.
-
-Sends alerts to the team via WhatsApp (Twilio Sandbox) AND Telegram,
-independently, so a failure in one channel doesn't lose the alert.
-This is a prototype demonstrating the escalation pathway; it is NOT
-connected to real emergency dispatch services. Both channels fail
-silently (logs only) so an alert-delivery issue never blocks the user
-from receiving their own triage guidance.
+Autonomous escalation for urgent triage results.
+Sends alerts via WhatsApp (Twilio, using an approved Content Template
+— WhatsApp requires this for business-initiated messages) AND
+Telegram, independently, so a failure in one doesn't lose the alert.
+Both fail silently (logs only).
 """
 import os
+import json
 import requests
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
@@ -18,6 +15,7 @@ TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 TWILIO_ACCOUNT_SID = os.environ.get("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
 TWILIO_WHATSAPP_FROM = os.environ.get("TWILIO_WHATSAPP_FROM", "whatsapp:+14155238886")
+TWILIO_CONTENT_SID = os.environ.get("TWILIO_CONTENT_SID")
 
 TWILIO_MESSAGES_URL = (
     f"https://api.twilio.com/2010-04-01/Accounts/{TWILIO_ACCOUNT_SID}/Messages.json"
@@ -31,17 +29,13 @@ def _build_alert_text(session_id, language, fields, urgency, matched_signs, guid
     ) or "severity-based (no specific sign matched)"
 
     return (
-        "WEHA HEALTH - URGENT TRIAGE ALERT (prototype)\n\n"
-        f"Session: {session_id}\n"
-        f"Language: {language}\n"
-        f"Urgency: {urgency.upper()}\n"
-        f"Danger signs: {signs_text}\n"
-        f"Symptoms: {', '.join(fields.get('symptoms', []) or [])}\n"
-        f"Duration: {fields.get('duration', 'unknown')}\n"
-        f"Pregnant: {fields.get('is_pregnant', 'unknown')}\n"
-        f"Guidance given to user: {guidance}\n\n"
-        "This is a demo/benchmark session for the Sahara CodeSwitch "
-        "Africa Challenge, not a live emergency dispatch."
+        "URGENT TRIAGE - "
+        f"Session: {session_id}. Language: {language}. "
+        f"Urgency: {urgency.upper()}. Danger signs: {signs_text}. "
+        f"Symptoms: {', '.join(fields.get('symptoms', []) or [])}. "
+        f"Duration: {fields.get('duration', 'unknown')}. "
+        f"Guidance given: {guidance}. "
+        "This is a demo/benchmark session for the Sahara CodeSwitch Africa Challenge."
     )
 
 
@@ -74,6 +68,12 @@ def send_whatsapp_alert(session_id, language, fields, urgency, matched_signs, gu
         print("[escalate] Twilio not configured — skipping.")
         return False
 
+    if not TWILIO_CONTENT_SID:
+        print("[escalate] TWILIO_CONTENT_SID not set — WhatsApp business-initiated "
+              "messages require an approved Content Template (Twilio error 21654 "
+              "otherwise). Skipping WhatsApp; Telegram still sends independently.")
+        return False
+
     team_numbers = _get_team_whatsapp_numbers()
     if not team_numbers:
         print("[escalate] No TEAM_WHATSAPP_NUMBERS configured — skipping.")
@@ -88,7 +88,12 @@ def send_whatsapp_alert(session_id, language, fields, urgency, matched_signs, gu
             response = requests.post(
                 TWILIO_MESSAGES_URL,
                 auth=(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN),
-                data={"From": TWILIO_WHATSAPP_FROM, "To": to_address, "Body": message_body},
+                data={
+                    "From": TWILIO_WHATSAPP_FROM,
+                    "To": to_address,
+                    "ContentSid": TWILIO_CONTENT_SID,
+                    "ContentVariables": json.dumps({"1": message_body[:1000]}),
+                },
                 timeout=10
             )
             if response.status_code in (200, 201):
@@ -102,7 +107,6 @@ def send_whatsapp_alert(session_id, language, fields, urgency, matched_signs, gu
 
 
 def send_urgent_alerts(session_id, language, fields, urgency, matched_signs, guidance) -> dict:
-    """Fires both channels independently and reports each outcome."""
     whatsapp_sent = send_whatsapp_alert(session_id, language, fields, urgency, matched_signs, guidance)
     telegram_sent = send_telegram_alert(session_id, language, fields, urgency, matched_signs, guidance)
     return {"whatsapp_sent": whatsapp_sent, "telegram_sent": telegram_sent}
