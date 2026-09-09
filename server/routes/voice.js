@@ -166,10 +166,20 @@ router.post('/speak', async (req, res) => {
     return res.send(Buffer.from(pythonResponse.data, 'binary'));
 
   } catch (error) {
-    console.error('Voice proxy /speak failure:', error.response?.data || error.message);
-    return res.status(500).json({
+    const upstreamStatus = error.response?.status;
+    const upstreamBody = error.response?.data;
+    console.error('Voice proxy /speak failure:', upstreamStatus || '(no status)', upstreamBody || error.message);
+
+    if (upstreamStatus === 429) {
+      return res.status(429).json({
+        error: 'Voice service is rate limited right now',
+        message: 'Too many speech requests in a short window. Please wait a moment and try again.'
+      });
+    }
+
+    return res.status(upstreamStatus || 500).json({
       error: 'Proxy text-to-speech generation failure',
-      message: error.message
+      message: upstreamBody || error.message
     });
   }
 });
