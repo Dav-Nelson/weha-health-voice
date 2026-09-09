@@ -54,6 +54,7 @@ def _try_mms_tts(text: str, language: str) -> str:
             return None
         content_type = response.headers.get("content-type", "audio/flac")
         audio_base64 = base64.b64encode(response.content).decode("utf-8")
+        print(f"[tts] MMS-TTS success for language={language}")
         return f"data:{content_type};base64,{audio_base64}"
     except Exception as e:
         print(f"[tts] MMS-TTS request failed: {e}")
