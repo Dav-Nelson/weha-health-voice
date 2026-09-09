@@ -27,6 +27,14 @@ const HEADER_TEXT = {
   am: { title: "የድምጽ ጤና ምርመራ", desc: "እንደወደዱት ቋንቋ ቀላቅለው በተፈጥሮ ይናገሩ። ተጨማሪ ዝርዝር ካስፈለገኝ ጥቂት ተከታይ ጥያቄዎችን እጠይቃለሁ።" },
 };
 
+const FOOTER_TEXT = {
+  en: { disclaimer: "This is not a diagnosis. Please see a health worker for urgent concerns.", alertedBoth: "Your care team has been alerted via WhatsApp and Telegram.", alertedWhatsapp: "Your care team has been alerted via WhatsApp.", alertedTelegram: "Your care team has been alerted via Telegram." },
+  pcm: { disclaimer: "This no be diagnosis. Abeg see health worker if e serious.", alertedBoth: "We don alert your care team for WhatsApp and Telegram.", alertedWhatsapp: "We don alert your care team for WhatsApp.", alertedTelegram: "We don alert your care team for Telegram." },
+  yo: { disclaimer: "Èyí kì í ṣe àyẹ̀wò dókítà. Jọ̀wọ́ lọ bá òṣìṣẹ́ ìlera bí ọ̀rọ̀ bá pọ̀jù.", alertedBoth: "A ti kìlọ̀ fún ẹgbẹ́ ìtọ́jú rẹ nípasẹ̀ WhatsApp àti Telegram.", alertedWhatsapp: "A ti kìlọ̀ fún ẹgbẹ́ ìtọ́jú rẹ nípasẹ̀ WhatsApp.", alertedTelegram: "A ti kìlọ̀ fún ẹgbẹ́ ìtọ́jú rẹ nípasẹ̀ Telegram." },
+  ak: { disclaimer: "Wei nyɛ oduruyɛfo nhwehwɛmu. Yɛsrɛ wo, kɔhwɛ ɔyaresafo sɛ ɛho hia ntɛm.", alertedBoth: "Yɛabɔ wo dɔfo kuo amanneɛ wɔ WhatsApp ne Telegram so.", alertedWhatsapp: "Yɛabɔ wo dɔfo kuo amanneɛ wɔ WhatsApp so.", alertedTelegram: "Yɛabɔ wo dɔfo kuo amanneɛ wɔ Telegram so." },
+  am: { disclaimer: "ይህ ምርመራ አይደለም። አስቸኳይ ጉዳይ ካለ እባክዎ የጤና ባለሙያ ያማክሩ።", alertedBoth: "የእንክብካቤ ቡድንዎ በWhatsApp እና Telegram ተጠንቅቋል።", alertedWhatsapp: "የእንክብካቤ ቡድንዎ በWhatsApp ተጠንቅቋል።", alertedTelegram: "የእንክብካቤ ቡድንዎ በTelegram ተጠንቅቋል።" },
+};
+
 export default function VoiceIntake({ language = 'en' }) {
   const [conversation, setConversation] = useState([]);
   const [fields, setFields] = useState({});
@@ -241,12 +249,11 @@ export default function VoiceIntake({ language = 'en' }) {
             <div className="flex items-center gap-2 text-xs text-red-300 bg-red-950/40 rounded-lg p-2 mb-2">
               <BellRing size={14} />
               <span>
-                Your care team has been alerted
                 {result.whatsapp_alert_sent && result.telegram_alert_sent
-                  ? ' via WhatsApp and Telegram.'
+                  ? (FOOTER_TEXT[language] || FOOTER_TEXT.en).alertedBoth
                   : result.whatsapp_alert_sent
-                  ? ' via WhatsApp.'
-                  : ' via Telegram.'}
+                  ? (FOOTER_TEXT[language] || FOOTER_TEXT.en).alertedWhatsapp
+                  : (FOOTER_TEXT[language] || FOOTER_TEXT.en).alertedTelegram}
               </span>
             </div>
           )}
@@ -293,7 +300,7 @@ export default function VoiceIntake({ language = 'en' }) {
         <p className="text-center text-xs text-health-textSecondary mt-2">Processing...</p>
       )}
       <p className="text-[10px] text-health-textSecondary/60 text-center mt-3">
-        This is not a diagnosis. Please see a health worker for urgent concerns.
+        {(FOOTER_TEXT[language] || FOOTER_TEXT.en).disclaimer}
       </p>
     </div>
   );
