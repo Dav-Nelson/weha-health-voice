@@ -1,6 +1,25 @@
-Solution Description
+Weha Health — Code-Switching Speech Benchmark Report
 
-Problem: Millions of people across Nigeria, Ghana, Ethiopia, and Kenya need reliable health guidance in the languages they actually speak — mixing English with Pidgin, Yoruba, Akan, or Amharic mid-sentence, the way people naturally talk. Existing tools are English-only or force a single language, and general search results aren't grounded in local health guidance or built for how people describe symptoms informally.
-Target users: Primary: pregnant women and their families seeking maternal-health guidance and danger-sign triage in their own language mix. Secondary: anyone seeking general grounded health information via voice or text in Pidgin, Yoruba, Akan, Amharic, or English.
-Solution: Weha Health is a voice-first health companion with two integrated flows. A general RAG-based consultation grounded in WHO and national health guidelines, and a maternal-health voice triage agent that extracts structured clinical fields across multi-turn conversation, applies WHO-aligned danger-sign rules, and — on urgent results — autonomously alerts the user's care team via WhatsApp and Telegram, looks up the nearest health facility, and generates a shareable visit summary the user can show a health worker. This is the agentic downstream action: voice input drives a real action, not just a text response.
-Key technical decisions: Groq-hosted openai/gpt-oss-120b for extraction/generation (fast, free-tier friendly, avoided the August Llama-3.3-70b decommission). Gemini embedding-001 for retrieval (avoids the local sentence-transformers/torch memory footprint that crashed our free-tier container). Neon Postgres with pgvector keeps conversation history and embeddings in one free database. Facility lookup uses OpenStreetMap Overpass — no API key, no cost. Escalation uses Twilio's WhatsApp Sandbox and a Telegram bot in parallel for reliability, with the production path (WhatsApp Business Cloud API) documented as a roadmap item.
+## Methodology
+- N audio samples per language (Pidgin, Yoruba, Akan, Amharic, English)
+- Ground-truth transcripts: human-verified, bilingual annotator [or team-verified]
+- Metric: Word Error Rate (WER) + latency (seconds)
+- Models: Sahara v2.5, Whisper-large-v3 (via Groq), AssemblyAI, Hugging Face MMS-1b-all
+
+## Results by language
+
+| Language | Sahara WER | Whisper WER | AssemblyAI WER | MMS WER | Fastest engine |
+|----------|-----------|--------------|------------------|---------|-----------------|
+| Pidgin   |           |              |                  | N/A (no adapter) | |
+| Yoruba   |           |              |                  |         | |
+| Akan     |           |              |                  |         | |
+| Amharic  |           |              |                  |         | |
+| English  |           |              |                  |         | |
+
+## Qualitative findings
+- AssemblyAI: no native language support for our 4 African languages; relies on auto-detection, expect English-biased output.
+- Hugging Face MMS: no Nigerian Pidgin adapter — documented model gap.
+- [Add: where Sahara specifically outperforms on code-switched mid-sentence transitions, with example transcript excerpts]
+
+## Conclusion
+[Which engine you're shipping with in production and why — likely Sahara given it's purpose-built for this exact code-switching problem]
