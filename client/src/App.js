@@ -23,7 +23,9 @@ const TRANSLATIONS = {
     recording: "Listening...",
     wait: "Wait for response...",
     disclaimer: "This system is not a substitute for professional medical advice. Always consult a certified doctor.",
-    secure: "Secure Clinical Consultation"
+    secure: "Secure Clinical Consultation",
+    networkError: "It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.",
+    generalError: "Sorry, I am having technical issues. Please try again in a few minutes!"
   },
   pcm: {
     welcome1: "Welcome to Weha Health\nI be your personal health companion. I dey here to listen and help you for your own language.\nYou dey safe here. Everything wey you tell me na secret.",
@@ -32,7 +34,9 @@ const TRANSLATIONS = {
     recording: "I dey listen...",
     wait: "Abeg wait small...",
     disclaimer: "This system no be doctor substitute. Make you always check certified doctor.",
-    secure: "Safe Health Tok"
+    secure: "Safe Health Tok",
+    networkError: "E be like say your network no stable. Make you check your data or WiFi and try again.",
+    generalError: "Sorry, small technical issue dey. Abeg try am again small time!"
   },
   yo: {
     welcome1: "Kaabo si Weha Health\nEmi ni ọ̀rẹ́ ìlera rẹ, mo wà níbí láti gbọ́ tí o sì rànlọ́wọ́ ní èdè rẹ, ní ìlò rẹ.\nO wà láìléwu níbí. Ohunkóhun tí o bá pín pẹ̀lú mi yóò dúró láàrin wa.",
@@ -41,7 +45,9 @@ const TRANSLATIONS = {
     recording: "Mò ń gbọ́...",
     wait: "Dúró de ìdáhùn...",
     disclaimer: "Ètò yìí kì í ṣe ìdípò ìmọ̀ràn ìṣègùn gidi. Jọ̀wọ́ máa bá dókítà tó gbẹ́kẹ̀lé sọ̀rọ̀ nígbà gbogbo.",
-    secure: "Ìjíròrò Ìṣègùn Aabo"
+    secure: "Ìjíròrò Ìṣègùn Aabo",
+    networkError: "Ó dà bí pé àsopọ̀ ayélujára rẹ kò dúró ṣinṣin báyìí. Jọ̀wọ́ ṣàyẹ̀wò dátà tàbí WiFi rẹ kí o sì tún gbiyanju rẹ̀.",
+    generalError: "Má bínú, mo ní ìṣọ̀ro ẹ̀rọ díẹ̀. Jọ̀wọ́ tún gbiyanju rẹ̀ lẹ́ẹ̀kan sí i lọ́jọ́ iwájú!"
   },
   ak: {
     welcome1: "Akwaaba kɔ Weha Health\nMe yɛ wo apɔwmuden adamfo, me wɔ ha sɛ mɛtie wo na m'aboa wo wɔ wo kasa mu.\nWo ho dwo wo wɔ ha. Biribiara a woka kyerɛ me no yɛ kokoam asɛm.",
@@ -50,7 +56,9 @@ const TRANSLATIONS = {
     recording: "Mretie...",
     wait: "Twɛn mmuae...",
     disclaimer: "Eyi nsi aduruyɛ ho afutuo ananmu. Bere biara kɔbɔ oduruyɛfoɔ a ɔwɔ tumi krataa kɔkɔ.",
-    secure: "Ayaresa Nkitahodie a Ɛyɛ Ahobammɔ"
+    secure: "Ayaresa Nkitahodie a Ɛyɛ Ahobammɔ",
+    networkError: "Ɛte sɛ wo intanɛt nkitahodie no nni hɔ yie. Mesrɛ wo hwɛ wo data anaasɛ WiFi na sɔhwɛ bio.",
+    generalError: "Kɛse pa ara, me wɔ mfiridwuma haw kakra. Mesrɛ wo sɔhwɛ bio kakra ankyɛ!"
   },
   am: {
     welcome1: "ወደ Weha Health በደህና መጡ\nእኔ የእርስዎ የግል ጤና ጓደኛ ነኝ፣ እርስዎን ለማዳመጥ እና ለመርዳት እዚህ ነኝ።\nእዚህ ደህንነትዎ የተጠበቀ ነው። የሚያጋሩት ማንኛውም ነገር ሚስጥር ነው።",
@@ -59,7 +67,9 @@ const TRANSLATIONS = {
     recording: "እያዳመጥኩ ነው...",
     wait: "ምላሽ ይጠብቁ...",
     disclaimer: "ይህ ዘዴ የባለሙያ የህክምና ምክርን አይተካም። ሁልጊዜ የተረጋገጠ ዶክተር ያማክሩ።",
-    secure: "ደህንነቱ የተጠበቀ የክሊኒክ ምክክር"
+    secure: "ደህንነቱ የተጠበቀ የክሊኒክ ምክክር",
+    networkError: "የኢንተርኔት ግንኙነትዎ የተረጋጋ አይመስልም። እባክዎ ዳታዎን ወይም ዋይ ፋይዎን ያረጋግጡ።",
+    generalError: "ይቅርታ፣ የቴክኒክ ችግር አጋጥሞናል። እባክዎ ከጥቂት ደቂቃዎች በኋላ እንደገና ይሞክሩ!"
   }
 };
 
@@ -132,12 +142,6 @@ export default function App() {
     }, 1000);
   };
 
-  // Note: no client-side system-prompt injection here anymore. The
-  // previous version built a giant instruction string and sent it as
-  // the "message" — which then got saved verbatim into the database
-  // as the user's turn and displayed in conversation history. All
-  // that behavior now lives server-side in rag/query.py's system
-  // prompt, which is the single source of truth.
   const handleSendMessage = async (textToProcess) => {
     if (!textToProcess.trim()) return;
 
@@ -145,7 +149,7 @@ export default function App() {
     setInputValue('');
     setIsLoading(true);
 
-try {
+    try {
       const targetCode = getCleanLanguageCode();
       const sessionId = getOrCreateSessionId();
 
@@ -160,11 +164,9 @@ try {
 
       setMessages(prev => [...prev, { sender: 'bot', text: data.response, language: targetCode }]);
     } catch (error) {
-      let errorMessage = "Sorry, I am having trouble connecting right now.";
+      let errorMessage = t.generalError;
       if (!navigator.onLine || error.message.includes('Failed to fetch')) {
-        errorMessage = "It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
-      } else {
-        errorMessage = "Sorry, I am having technical issues. Please try again in a few minutes!";
+        errorMessage = t.networkError;
       }
       setMessages(prev => [...prev, { sender: 'bot', text: errorMessage }]);
     } finally {
@@ -226,11 +228,9 @@ try {
       if (data.transcribed) setMessages(prev => [...prev, { sender: 'user', text: data.transcribed }]);
       if (data.response) setMessages(prev => [...prev, { sender: 'bot', text: data.response, language: targetCode }]);
     } catch (error) {
-      let errorMessage = "Sorry, I couldn't process your voice message.";
+      let errorMessage = t.generalError;
       if (!navigator.onLine || error.message.includes('Failed to fetch')) {
-        errorMessage = "It looks like your internet connection is unstable right now. Please check your data or WiFi and try again.";
-      } else {
-        errorMessage = "Sorry, I am having technical issues processing your voice. Please try again in a few minutes!";
+        errorMessage = t.networkError;
       }
       setMessages(prev => [...prev, { sender: 'bot', text: errorMessage }]);
     } finally {
