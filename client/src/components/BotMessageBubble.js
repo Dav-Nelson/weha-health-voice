@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ThumbsUp, ThumbsDown, Copy, Check, Share2, ShieldCheck } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, Copy, Check, Share2 } from 'lucide-react';
 import ResponsePlayer from './ResponsePlayer';
 
 export default function BotMessageBubble({ text, language }) {
@@ -18,7 +18,7 @@ export default function BotMessageBubble({ text, language }) {
 
   const handleShare = async () => {
     if (navigator.share) {
-      try { await navigator.share({ title: 'HealthBridge Africa', text }); } catch (err) {}
+      try { await navigator.share({ title: 'Weha Health', text }); } catch (err) {}
     } else {
       await handleCopy();
       alert('Response copied to clipboard to share!');
@@ -28,9 +28,8 @@ export default function BotMessageBubble({ text, language }) {
   return (
     <div className="max-w-[92%] md:max-w-[85%] rounded-[18px] rounded-tl-[4px] px-4 py-3 md:px-5 md:py-4 bg-health-aiBubble text-health-textPrimary self-start shadow-sm">
 
-      <div className="flex items-center gap-1.5 mb-2 text-health-accentLight">
-        <ShieldCheck size={14} />
-        <span className="text-[10px] font-bold uppercase tracking-widest font-brand">HealthBridge</span>
+      <div className="mb-2 text-health-accentLight">
+        <span className="text-[10px] font-bold uppercase tracking-widest font-brand">Weha Health</span>
       </div>
 
       <p className="leading-relaxed text-[15px] whitespace-pre-line">{text}</p>
