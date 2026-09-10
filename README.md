@@ -1,11 +1,8 @@
-## `README.md`
-
-```markdown
-# Weha Health
+# Weha Health app
 
 Speak in your language. Get maternal-health guidance that acts.
 
-A voice-first health agent. Weha Health combines a general RAG-based health companion with a maternal-health voice triage agent that extracts symptoms across a natural, multi-turn conversation, assesses urgency against WHO-aligned danger signs, and when a result is urgent, autonomously alerts a care team via WhatsApp and Telegram, looks up the nearest health facility, and generates a shareable visit record.
+A voice-first health agent. Weha Health combines a general RAG-based healtha companion with a maternal-health voice triage agent that extracts symptoms across a natural, multi-turn conversation, assesses urgency against WHO-aligned danger signs, and when a result is urgent, autonomously alerts a care team via WhatsApp and Telegram, looks up the nearest health facility, and generates a shareable visit record.
 
 Live: https://weha-health-voice.vercel.app (custom domain https://wehahealth.me coming before submission)
 GitHub: https://github.com/Dav-Nelson/weha-health-voice
@@ -22,7 +19,7 @@ Weha Health has two integrated flows:
 
 **Voice Triage (the flagship, agentic flow).** A user describes symptoms by voice, in whatever language mix feels natural. The system asks follow-up questions across multiple turns until it has enough structured information, checks it against WHO-aligned maternal and general danger signs, and on an urgent result:
 - Sends an alert with the extracted symptoms to the user's care team over WhatsApp and Telegram, independently, so one channel's outage doesn't lose the alert
-- Looks up the nearest hospital or clinic using OpenStreetMap, with a map link
+- Looks up the nearest hospital or clinic using OpenStreetMap, with a map link, and falls back to a curated list of known facilities per language/region if the live lookup is unavailable
 - Generates a plain-language Visit Summary the user can share or copy to show a health worker
 
 This is the "voice achieves a downstream task" requirement in practice: voice input drives real action, not just a response.
@@ -40,7 +37,6 @@ Voice transcription and synthesis quality varies by language, documented honestl
 ## How It Works
 
 ```
-
 User speaks or types
         |
 React Frontend (Vercel)
@@ -64,13 +60,13 @@ FastAPI AI Pipeline (Render, Dockerized)
   pgvector search (Neon): top-5 relevant knowledge-base chunks
   WHO-aligned rule engine: urgency assessment, localized guidance
   Escalation: Twilio WhatsApp Sandbox + Telegram Bot API, independent
-  Facility lookup: OpenStreetMap Overpass API, no key required
-  gTTS: localized voice synthesis, in-memory, Base64
+  Facility lookup: OpenStreetMap Overpass API + language-matched static fallback
+  Text-to-speech: Intron Sahara TTS (Pidgin/Yoruba/Amharic) | Meta MMS-TTS
+    (Akan, and fallback for the other three) | gTTS (last-resort fallback)
         |
 Text response shown immediately; voice playback on demand;
 urgent results trigger care-team alerts, facility lookup, and a
 shareable Visit Summary
-
 ```
 
 ## Tech Stack
@@ -85,9 +81,9 @@ shareable Visit Summary
 | STT (benchmark) | Whisper-large-v3 (Groq), AssemblyAI, Hugging Face MMS-1b-all | 4-model comparison |
 | Language model | openai/gpt-oss-120b via Groq | Extraction, detection, RAG generation |
 | Embeddings | Gemini embedding-001 | 768-dim, normalized |
-| TTS | gTTS | Native voices for English, Yoruba, Akan, Amharic; English fallback for Pidgin |
+| TTS | Intron Sahara TTS (primary), Meta MMS-TTS, gTTS | Sahara covers Pidgin/Yoruba/Amharic natively; MMS-TTS covers Akan (Sahara has no Akan voice) and backs up the other three; gTTS is a last-resort English-only fallback |
 | Escalation | Twilio WhatsApp Sandbox + Telegram Bot API | Sent independently, both fail silently |
-| Facility lookup | OpenStreetMap Overpass + Nominatim | No API key required |
+| Facility lookup | OpenStreetMap Overpass + Nominatim, static fallback | No API key required; fallback matched to spoken language |
 | Analytics | PostHog | Session tracking |
 | CI | GitHub Actions | Backend and frontend test suites |
 
@@ -104,7 +100,7 @@ Compared across four speech-to-text engines on code-switched audio in our five t
 - **AssemblyAI** — no native support for our four African languages; relies on automatic language detection, included specifically to document that gap
 - **Hugging Face MMS-1b-all** — no dedicated Nigerian Pidgin adapter, a documented model limitation, not a bug
 
-Benchmark audio draws on Intron's AfriSwitch and AfriSwitchCare datasets (CC BY-NC-SA 4.0, used here for evaluation) plus a small set of team-recorded, consented, simulated clips in Pidgin, Yoruba, Akan, and Amharic. Full methodology and results in `docs/benchmark-report.md`.
+Benchmark audio combines Intron's AfriSwitch dataset (CC BY-NC-SA 4.0, real-world code-switched speech, used here for evaluation, covering Pidgin, Yoruba, and Amharic) with team-recorded, consented, simulated clips in all four target languages — Akan relies solely on team recordings, since no Intron dataset covers it. Full methodology and results in `docs/benchmark-report.md`.
 
 ## Data and Privacy
 
@@ -116,17 +112,17 @@ Full detail in `docs/ethics-inclusion-note.md`.
 
 ## Known Limitations
 
-- **Pidgin voice synthesis** routes through the English gTTS voice, since Google's TTS engine has no dedicated Nigerian Pidgin voice. Yoruba and Akan now use their native gTTS voices (this was a bug in an earlier build, since fixed).
+- **Nigerian Pidgin has no dedicated MMS-TTS voice**, so Pidgin relies entirely on Sahara TTS as primary, with English-voice gTTS as the only fallback if Sahara is unavailable.
+- **Akan has no Sahara TTS voice**, so Akan relies on MMS-TTS as primary, with English-voice gTTS as fallback.
 - **AssemblyAI** has no native language support for Pidgin, Yoruba, Akan, or Amharic; benchmark results for these languages reflect automatic-detection fallback, not a fair native comparison.
-- **Hugging Face MMS** has no Nigerian Pidgin adapter.
+- **Hugging Face MMS** has no Nigerian Pidgin adapter (STT or TTS).
 - **WhatsApp escalation** uses Twilio's Sandbox, which requires each recipient to send a one-time join code and expires after 3 days of inactivity — a known constraint of the free-tier prototype, not the production design.
-- **Facility lookup** depends on OpenStreetMap's health-facility tagging density, which varies by region; sparse-data areas may return no result even with a wide search radius.
+- **Facility lookup** depends on OpenStreetMap's health-facility tagging density, which varies by region; a static, language-matched fallback list covers cases where the live lookup fails or returns nothing.
 - No user authentication; sessions are device-bound via localStorage.
 
 ## Project Structure
 
 ```
-
 weha-health-voice/
 ├── client/                      React frontend (Vercel)
 │   ├── public/
@@ -159,8 +155,8 @@ weha-health-voice/
 │   │   ├── extract.py               Structured field extraction (LLM)
 │   │   ├── rules.py                 WHO-aligned urgency rules, localized
 │   │   ├── escalate.py              WhatsApp + Telegram alerts
-│   │   └── facility.py              OSM nearest-facility lookup
-│   ├── tts/speak.py                 gTTS synthesis, emoji stripping
+│   │   └── facility.py              OSM nearest-facility lookup + fallback
+│   ├── tts/speak.py                 Sahara TTS / MMS-TTS / gTTS chain
 │   ├── benchmark/
 │   │   ├── run_benchmark.py
 │   │   ├── samples.csv
@@ -171,7 +167,6 @@ weha-health-voice/
 │   ├── ethics-inclusion-note.md
 │   └── benchmark-report.md
 └── tests/
-
 ```
 
 ## Getting Started
@@ -268,9 +263,9 @@ cd client && npm test -- --watchAll=false
 
 **Why Telegram alongside WhatsApp:** redundancy. Twilio's Sandbox expires after 3 days of inactivity; Telegram has no such constraint, so alerts still reach the team if the WhatsApp sandbox session has lapsed.
 
-**Why OpenStreetMap for facility lookup instead of Google Places:** no API key or billing account required, consistent with our zero-budget constraint. Trade-off: facility data density varies by region.
+**Why OpenStreetMap for facility lookup instead of Google Places:** no API key or billing account required, consistent with our zero-budget constraint. Trade-off: facility data density varies by region, addressed with a language-matched static fallback list.
 
-**Why gTTS instead of a commercial TTS provider:** the only free TTS engine with native voices covering English, Yoruba, Akan, and Amharic. Nigerian Pidgin has no dedicated gTTS voice and falls back to English — a documented, not hidden, limitation.
+**Why Sahara TTS as primary voice synthesis:** as the challenge's own partner API, it provides native voices for three of our four target languages (Pidgin, Yoruba, Amharic) at no cost under the same key used for transcription. Akan has no Sahara TTS voice, so Meta's MMS-TTS covers Akan and backs up the other three; gTTS remains only as a last-resort English-voice fallback if both are unavailable.
 
 ## Ethics and Responsible AI
 
@@ -288,8 +283,6 @@ Weha Health is an information and triage tool only. It does not diagnose, prescr
 | Ibukun Oluwafemi | Nigeria | Frontend, UI/UX, Yoruba/Pidgin validation |
 | Ibsa Magarsa | Ethiopia | AI pipeline engineering, Amharic validation |
 | Peggy Eyram Attah | Ghana | User research, tester recruitment, Akan validation |
-
-*(Update roles/names here if team composition has changed since HealthBridge Africa.)*
 
 ## License
 
