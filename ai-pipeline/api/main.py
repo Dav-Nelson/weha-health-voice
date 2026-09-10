@@ -345,7 +345,7 @@ async def process_intake(data: IntakeRequest):
                 guidance=assessment["guidance"]
             )
             if data.lat is not None and data.lng is not None:
-                facility = find_nearest_facility(data.lat, data.lng)
+                facility = find_nearest_facility(data.lat, data.lng, language=data.language)
 
         return {
             "status": "complete",
