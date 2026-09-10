@@ -1,6 +1,6 @@
 """
 Nearest health facility lookup using OpenStreetMap's Overpass API,
-with a static fallback list for demo reliability.
+with a language-aware static fallback list for demo reliability.
 Only overpass.kumi.systems is reachable from Render's network per
 production logs (other public mirrors returned hard connection failures).
 """
@@ -13,12 +13,20 @@ HEADERS = {"User-Agent": "WehaHealth/1.0 (Sahara CodeSwitch Africa Challenge sub
 # Fallback facilities used only if the live Overpass lookup fails or
 # times out. This guarantees the feature still works on camera even
 # if Overpass is slow or down at the exact moment you're recording.
+# NOTE: coordinates approximate — verify against OpenStreetMap/Google
+# Maps before relying on this for the demo video.
 FALLBACK_FACILITIES = {
-    "abuja": {
+    "abuja_general": {
         "name": "National Hospital Abuja",
         "lat": 9.0579,
         "lng": 7.4951,
         "maps_link": "https://www.openstreetmap.org/?mlat=9.0579&mlon=7.4951#map=17/9.0579/7.4951"
+    },
+    "abuja_phc": {
+        "name": "Nyanya Primary Health Care Centre, Abuja",
+        "lat": 9.0084,
+        "lng": 7.5539,
+        "maps_link": "https://www.openstreetmap.org/?mlat=9.0084&mlon=7.5539#map=17/9.0084/7.5539"
     },
     "lagos": {
         "name": "Lagos University Teaching Hospital (LUTH)",
@@ -39,7 +47,16 @@ FALLBACK_FACILITIES = {
         "maps_link": "https://www.openstreetmap.org/?mlat=9.0333&mlon=38.7500#map=17/9.0333/38.7500"
     }
 }
-DEFAULT_FALLBACK_KEY = "abuja"
+
+# Maps each supported language code to its fallback facility.
+LANGUAGE_TO_FALLBACK = {
+    "en": "abuja_general",
+    "pcm": "abuja_phc",
+    "yo": "lagos",
+    "ak": "accra",
+    "am": "addis_ababa",
+}
+DEFAULT_FALLBACK_KEY = "abuja_general"
 
 
 def geocode_place_name(place_name: str) -> dict:
@@ -91,7 +108,7 @@ def _query_overpass(lat: float, lng: float, radius_m: int, timeout_s: int) -> di
         return None
 
 
-def find_nearest_facility(lat: float, lng: float, radius_m: int = 8000, fallback_key: str = DEFAULT_FALLBACK_KEY) -> dict:
+def find_nearest_facility(lat: float, lng: float, radius_m: int = 8000, language: str = "en") -> dict:
     # Single fast attempt — no blocking retry. Leaves plenty of room
     # inside node's 45s intake budget alongside transcription,
     # extraction, and escalation.
@@ -99,6 +116,7 @@ def find_nearest_facility(lat: float, lng: float, radius_m: int = 8000, fallback
     if result is not None:
         return result
 
-    print(f"[facility] Live lookup failed, using static fallback for '{fallback_key}'")
+    fallback_key = LANGUAGE_TO_FALLBACK.get(language.lower(), DEFAULT_FALLBACK_KEY)
+    print(f"[facility] Live lookup failed, using static fallback for language='{language}' -> '{fallback_key}'")
     fallback = FALLBACK_FACILITIES.get(fallback_key, FALLBACK_FACILITIES[DEFAULT_FALLBACK_KEY])
     return dict(fallback, name=f"{fallback['name']} (nearest known facility)")
