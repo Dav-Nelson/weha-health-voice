@@ -199,7 +199,7 @@ def transcribe_with_huggingface(file_path: str, language: str = "en") -> dict:
         audio_bytes = f.read()
 
     response = requests.post(
-        "https://api-inference.huggingface.co/models/facebook/mms-1b-all",
+        "https://router.huggingface.co/hf-inference/models/facebook/mms-1b-all",
         headers={"Authorization": f"Bearer {HF_API_KEY}", "Content-Type": "audio/flac"},
         params={"target_lang": mms_lang},
         data=audio_bytes,
