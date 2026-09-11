@@ -155,9 +155,13 @@ def _try_sahara_tts(text: str, language: str, voice_gender: str = "female") -> s
 
 
 def _try_mms_tts(text: str, language: str, max_retries: int = 2) -> str:
-    """Meta's MMS models on HF Inference API. Retries on 429 with
-    backoff; returns None on any other failure so the caller can fall
-    back further."""
+    """Meta's MMS models via Hugging Face's router API. Retries on 429
+    with backoff; returns None on any other failure so the caller can
+    fall back further.
+
+    Note: HF retired the old api-inference.huggingface.co host — it now
+    returns hard errors telling callers to migrate. This uses the
+    replacement router endpoint instead."""
     model = MMS_TTS_MODELS.get(language.lower())
     if not model or not HF_API_KEY:
         return None
@@ -165,7 +169,7 @@ def _try_mms_tts(text: str, language: str, max_retries: int = 2) -> str:
     for attempt in range(max_retries + 1):
         try:
             response = requests.post(
-                f"https://api-inference.huggingface.co/models/{model}",
+                f"https://router.huggingface.co/hf-inference/models/{model}",
                 headers={"Authorization": f"Bearer {HF_API_KEY}"},
                 json={"inputs": text},
                 timeout=30
