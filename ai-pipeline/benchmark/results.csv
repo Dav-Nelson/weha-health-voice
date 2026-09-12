@@ -1,0 +1,731 @@
+audio,language,engine,transcript,wer,latency_sec,reference_urgency,actual_urgency,downstream_match
+benchmark/audio/yo_00.wav,yo,sahara,"Ẹni torí pé obìnrin kan ṣe nǹkan tó dùn yín àbí tó ṣe nǹkan tí ò da fún yín ká rò pé gbogbo obìnrin ni ò dá o need to base your
+",0.727,2.42,routine,routine,True
+benchmark/audio/yo_00.wav,yo,whisper," Ənni ƈtə ʈorik pəyə əʉoi bəyə nè əkwən ʐiə əŋkɔ tə ʉod ʉu ʉu, ər ə bəy ə ʃiə ə ə ʈiə ə ʈə ʉod ʈiə ʉod ʈiè ə ʉiè, ə ʈiə ə ʉoi pèy ə ʈiə ʉoi bəy ə ʉod ʉiè nè ʉod ʉiè wò. You need to base your",1.394,2.62,routine,routine,True
+benchmark/audio/yo_00.wav,yo,assemblyai,You need to base your,0.848,3.0,routine,routine,True
+benchmark/audio/yo_00.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_01.wav,yo,sahara,"Ìwọ ni problem mi o ti já ní Gut láti wọnú ilé mi wá?
+",0.833,2.19,routine,routine,True
+benchmark/audio/yo_01.wav,yo,whisper," oulder, oulder problem is you wanted to see the world you wanted God like you wanted the holy mother",1.0,2.13,routine,routine,True
+benchmark/audio/yo_01.wav,yo,assemblyai,Warning problem.,1.0,2.88,routine,routine,True
+benchmark/audio/yo_01.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_02.wav,yo,sahara,"Ara yín lè dá lóró èmi kọ́ èmi ò lè gbà kí ọmọbìnrin kó ẹrù kó jáde àti kí ló wí that we put it just lither
+",1.0,2.04,routine,routine,True
+benchmark/audio/yo_02.wav,yo,whisper," Ara inle ndalo ro e miko Emi o legba, ki omo doni koku e u koja di a teki nogi? Koja di toki just like that",0.885,0.61,routine,routine,True
+benchmark/audio/yo_02.wav,yo,assemblyai,"Ara ile nda lo lo emiko. Emi olegba, kiyomo beni kokue ojade a dekinobi. Ujade ikobi just like that.",0.846,2.98,routine,routine,True
+benchmark/audio/yo_02.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_03.wav,yo,sahara,"Èmi tún nǹkan kan o torí àwọn ọ̀gá mi tán pé ìtọ́jú sí wà yìí a lè sọ wípé wọ́n ma sè ń jẹ́ kíákíá kó dẹ̀ má tètè sẹ́n dé èmi rò
+",0.927,2.25,routine,routine,True
+benchmark/audio/yo_03.wav,yo,whisper," Emi tswono nkoko, towi a onga miton pwetona omasendo o siwahi. Ali sowi pwemomasende kia kia, konde mati tisende. Emi wovipe.",0.927,1.06,routine,routine,True
+benchmark/audio/yo_03.wav,yo,assemblyai,"Emitso ngoNkokongo, tobi angonga mitonkhwethana ngomaseNdebele siwayi. Aliso bibe ngomaseNdegegeya, kude mate tesente. Eme ngobibele.",1.0,5.2,routine,routine,True
+benchmark/audio/yo_03.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_04.wav,yo,sahara,"Kílódé tó fi ànà wa láti operate US Àwọn ofe operate àwọn money kim dow account a fun it up due to mo ti máa ń sọ fún yín
+",0.879,2.06,routine,routine,True
+benchmark/audio/yo_04.wav,yo,whisper, Kilo deto vi ala wan la te opret kyo e. A ono ni ofe opret e a ono ni kindo waka wan opret e kon. It's your duty motiman sofunyi.,0.939,0.85,routine,routine,True
+benchmark/audio/yo_04.wav,yo,assemblyai,It's your duty.,0.97,3.94,routine,routine,True
+benchmark/audio/yo_04.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_05.wav,yo,sahara,"Kajoman Motter Commissamrila Alhambili
+",1.0,2.11,routine,routine,True
+benchmark/audio/yo_05.wav,yo,whisper," Bik bi se, mweni lukyotu. Awa po, ka jyoman koji soro. E ya, mweni lukyotu. Awa po, mweni lukyotu. Awa po, mweni lukyotu. Alhamdulillah, alhamdulillah, alhamdulillah wabin alamin.",0.978,1.63,routine,routine,True
+benchmark/audio/yo_05.wav,yo,assemblyai,"Merci, mon bon mon. Allez, comme ça. Bestie, nini. Alhamdulillah, alhamdulillah, alhamdulillah, Rabbil Alamin.",1.0,5.09,routine,routine,True
+benchmark/audio/yo_05.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_06.wav,yo,sahara,"kò mọ ọ̀nà tó máa fi
+",0.889,1.56,routine,routine,True
+benchmark/audio/yo_06.wav,yo,whisper," Ko omono, to ma vi para si skuku.",0.556,0.31,routine,routine,True
+benchmark/audio/yo_06.wav,yo,assemblyai,Comment on n'entend pas? Fais pas d'assises-coups.,1.0,2.83,routine,routine,True
+benchmark/audio/yo_06.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_07.wav,yo,sahara,"Tani mo fẹ́ pè báyìí ẹjọ́ motrost mi kò le jáde amakọrọ kò ní fi kọ́gi náà ni ó fi kọ́ lọ́sàn
+",0.85,2.32,routine,routine,True
+benchmark/audio/yo_07.wav,yo,whisper," Tani mwafekwe bayi, ejo, mwucho stokomi kulichani, ejo. Karantama ngu nani, alo wakoroko, nifiko genja nani ufiko? Makplos, makplos.",0.95,0.74,routine,routine,True
+benchmark/audio/yo_07.wav,yo,assemblyai,"Kwa hivyo, kwa hivyo. Kwa hivyo, kwa hivi.",1.0,3.05,routine,routine,True
+benchmark/audio/yo_07.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_08.wav,yo,sahara,"Ṣé ẹ ní láti ràn wá lọ́wọ́, ká wa náà ràn yín lọ́wọ́
+",1.083,1.96,routine,routine,True
+benchmark/audio/yo_08.wav,yo,whisper, ਸ੍ੋੇੱੇੱੇੱੀ ਸ੍ੋੇੱੀ ਸ੍ੋੇ ਸ੍ੋੇੱੀ,1.0,1.77,routine,routine,True
+benchmark/audio/yo_08.wav,yo,assemblyai,swi yelilatini wa lokha wanono yiloko,0.917,2.92,routine,routine,True
+benchmark/audio/yo_08.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_09.wav,yo,sahara,"Ṣé kí n máa sọ fún ẹ pé kò ṣòro mi ni? Okay mi ò lówó.
+",0.5,1.7,routine,routine,True
+benchmark/audio/yo_09.wav,yo,whisper, Se ki sema sofen pokos u lomi ni Ok Nyo lowo,1.0,0.32,routine,routine,True
+benchmark/audio/yo_09.wav,yo,assemblyai,"C'est qui Zéba, son frère? Pourquoi je vous nomme? OK.",1.0,2.86,routine,routine,True
+benchmark/audio/yo_09.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_10.wav,yo,sahara,"Possible a long of my life kán ṣòpin ayé mo fẹ́ jẹ́ kẹ mọ̀ ẹ̀ wò yín beautiful lady ni ẹ̀jẹ̀ tú kí ń ṣọ̀lẹ̀ for 2 months now
+",0.775,1.81,routine,routine,True
+benchmark/audio/yo_10.wav,yo,whisper," The love of my life. Billy baby. Kwa nshok piya ye mufajake mo. E wo ni, beautiful lady ni. E de tukin shole. For two months now.",0.625,1.44,routine,routine,True
+benchmark/audio/yo_10.wav,yo,assemblyai,"The love of my life. Ah, beautiful lady. For 2 months now.",0.8,2.98,routine,routine,True
+benchmark/audio/yo_10.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_11.wav,yo,sahara,"Ferry nǹkan ta fi pamọ́ lọ́jọ́ yẹn if not that there is a little delay, because you know, Nigeria happens to everyone Aba yín gbé wá lé ni ra mọ́tò kékeré kan fún mi
+",0.559,2.31,routine,routine,True
+benchmark/audio/yo_11.wav,yo,whisper, തതഈതલુੰો ຀തુੰોວોຩુຩુາુલુમોວુຣુັોວુુຯુວુວુຩુຩુ຦ુຕીതഇതીതેതેതોວુັુັુັુັુັુ຦ુັુຯુັ,1.0,2.33,routine,routine,True
+benchmark/audio/yo_11.wav,yo,assemblyai,"If not that, there is a little delay because you know Nigeria happens to everyone. Aba bai miwalini, pi ramoto ke kere kofun. Yes.",0.618,3.21,routine,routine,True
+benchmark/audio/yo_11.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_12.wav,yo,sahara,"Tó ń fún mi ń problem nínú gbogbo ọ̀rọ̀ yẹn gan nìyẹn pé kóbìnrin báwo ni ẹnu mi ṣe fẹ́ tọ́rọ̀ tá bá ṣè gbéyàwó tán lé mi pa
+",0.81,2.11,routine,routine,True
+benchmark/audio/yo_12.wav,yo,whisper," Ntun fume m problemi nubu boron e goni nye. Nbeko bè nishagba te rufu. A mi, pa wu nye nubu mi shife toro otaba si be ya wu ton. Kin ni mw shife tu ashe li mè pa. Yutije mw nsin.",0.952,0.9,routine,routine,True
+benchmark/audio/yo_12.wav,yo,assemblyai,"Ntoumfoumé, problème no bougouorongé gonne nge nge. Béko bénichakbatiru. Abi, baounieno mi chi fait torotha ba chi baya wouton. Qui nimo chi fait toa ché le mépa. Otiye minsi.",0.952,5.14,routine,routine,True
+benchmark/audio/yo_12.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_13.wav,yo,sahara,"Oṣù yẹn mi ò jẹ our gold pregnant bímọ
+",0.857,2.14,routine,routine,True
+benchmark/audio/yo_13.wav,yo,whisper," I got pregnant. I'll be more one year,",0.857,1.92,routine,routine,True
+benchmark/audio/yo_13.wav,yo,assemblyai,"Było 8 lat, kiedy urodziłam się. Miałam 1 lat.",1.0,2.95,routine,routine,True
+benchmark/audio/yo_13.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_14.wav,yo,sahara,"What mean next túkàn mi fi mí sílẹ̀ ó lọ
+",1.25,1.69,routine,routine,True
+benchmark/audio/yo_14.wav,yo,whisper," What? Hey, mine, suko mi finisi le olo.",0.875,0.37,routine,routine,True
+benchmark/audio/yo_14.wav,yo,assemblyai,"What? Hey, Mina, so come and finish the olo.",1.0,3.15,routine,routine,True
+benchmark/audio/yo_14.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_15.wav,yo,sahara,"O she next, ẹ bẹ̀rẹ̀ lé ni
+",1.0,1.95,routine,routine,True
+benchmark/audio/yo_15.wav,yo,whisper, Weshè next time. E berè lini.,0.75,0.38,routine,routine,True
+benchmark/audio/yo_15.wav,yo,assemblyai,"Wo ist sie denn jetzt dann? Ey, Birleni!",1.0,2.83,routine,routine,True
+benchmark/audio/yo_15.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_16.wav,yo,sahara,"Cur include our controm funny scholarship
+",0.833,2.05,routine,routine,True
+benchmark/audio/yo_16.wav,yo,whisper, Kon include the amount of tomorrow's funding and scholarship. Abii.,0.917,1.22,routine,routine,True
+benchmark/audio/yo_16.wav,yo,assemblyai,"Con include ma entente, ma funding scholarship. Ah oui.",0.833,2.88,routine,routine,True
+benchmark/audio/yo_16.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_17.wav,yo,sahara,"I know which is my temperature considering by temle saw I must be mokabies
+",1.167,1.74,routine,urgent,False
+benchmark/audio/yo_17.wav,yo,whisper, Hello? Mwati sewo mwati mi leshewo. Emo ebi mwaka besi.,1.0,0.56,routine,routine,True
+benchmark/audio/yo_17.wav,yo,assemblyai,Hello.,1.0,2.95,routine,routine,True
+benchmark/audio/yo_17.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_18.wav,yo,sahara,"Ṣé ìyẹn ni parife ẹ life ni ó wà married now kí ó tó jókòó tọpọ̀ ẹ bá rù báyìí ṣe máa dá
+",0.935,1.76,routine,routine,True
+benchmark/audio/yo_18.wav,yo,whisper, qo ຓ ba ທુ ba yhiy ਸੇ mother.,1.0,2.35,routine,routine,True
+benchmark/audio/yo_18.wav,yo,assemblyai,"But she, she ain't be married in life. But we are married now.",0.968,3.0,routine,routine,True
+benchmark/audio/yo_18.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_19.wav,yo,sahara,"Ẹ kú ojú lọ́nà Alright major also major also
+",0.727,1.9,routine,routine,True
+benchmark/audio/yo_19.wav,yo,whisper, Eko Julone Alright Major Oswaja Major Oswaja,0.727,0.48,routine,routine,True
+benchmark/audio/yo_19.wav,yo,assemblyai,"All right, Major or soldier? Major or soldier?",0.818,2.89,routine,routine,True
+benchmark/audio/yo_19.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_20.wav,yo,sahara,"Téyàn bá fẹ́ make impression as a big many occasion tó bá lò things a man look signal watch me
+",0.686,1.85,routine,routine,True
+benchmark/audio/yo_20.wav,yo,whisper," Ti o mafe make impression as a big girl Neni occasion tu balo One of the things tamangori si la Watch me o, shu on gumi",0.6,0.52,routine,routine,True
+benchmark/audio/yo_20.wav,yo,assemblyai,"Tia wamafe make impression as a big girl. Nyeni, occasion tubalu. One of the things tamaanuri. Sika. Na, watch me. Shungumi.",0.686,2.91,routine,routine,True
+benchmark/audio/yo_20.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_21.wav,yo,sahara,"Injoy movie and appet plus baby ayé yóò ní bàjẹ́ Gagramair this years wa lọ
+",0.879,2.13,routine,routine,True
+benchmark/audio/yo_21.wav,yo,whisper, Enjoy your movie on Apata TV Plus.,0.879,0.88,routine,routine,True
+benchmark/audio/yo_21.wav,yo,assemblyai,"Enjoy your movie on Apita TV Plus. Baby, I hear you in the budget. Grandma, Grandma. Kilo kwen, that's your business. E? Eme je kara gune ku buhu walolo.",0.758,3.23,routine,routine,True
+benchmark/audio/yo_21.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_22.wav,yo,sahara,"Apá fẹ́ kú sí lọ́rọ̀ bọ̀bọ́ ìyá mi mange maries to his own
+",0.85,1.7,routine,urgent,False
+benchmark/audio/yo_22.wav,yo,whisper, ਹੋ ੋ ਹੋ ུੋ རোরোསে અੰ੸ੇ ུੋ ུੋ ུੋ ུੋ ུੋ,1.0,5.13,routine,routine,True
+benchmark/audio/yo_22.wav,yo,assemblyai,What kind of a man gets married to his own aunt?,0.55,2.94,routine,routine,True
+benchmark/audio/yo_22.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_23.wav,yo,sahara,"Is okay nígbà tí wọ́n rí ọ̀bẹ lọ́wọ́ ọ̀gá ẹ̀ ò ṣe gba ọ̀bẹ yẹn ọlọ́gbàlijamba gualia wa gualigbobe
+",0.943,1.76,routine,routine,True
+benchmark/audio/yo_23.wav,yo,whisper, It's okay.,0.971,0.6,routine,routine,True
+benchmark/audio/yo_23.wav,yo,assemblyai,"It's okay. Make but you worry your bell or your guy. Kill it to shake bow benye. Ologba, dalinjo makula panimakula makuyoyo. Inu se ile kome o pami.",0.943,5.19,routine,routine,True
+benchmark/audio/yo_23.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_24.wav,yo,sahara,"Tá yín dọmọking you to please kẹ́ má stress rárá ẹ̀yin náà ṣàmò wípé gbogbo fọ́ọ̀tì kò sí kankan tí màda nínú ẹ. May that has not problem
+",0.833,1.76,routine,routine,True
+benchmark/audio/yo_24.wav,yo,whisper," Tashi, kutole dikbe atwa in do mo. So I am begging you to please, ke ma stress morara. E inosha mo ibe, buforte kwa si kokotin madam nene. Madam has no problem.",0.595,2.07,routine,routine,True
+benchmark/audio/yo_24.wav,yo,assemblyai,"Tashi, putole dipe a tswang domo. So I am begging you to please. Kema stress morara. E no shamo ipe bu bu forte ku si ko konti madame nwe nwe. Madame has no problem.",0.714,2.92,routine,routine,True
+benchmark/audio/yo_24.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_25.wav,yo,sahara,"Kílódé for the pos lẹ́kan
+",0.714,2.39,routine,routine,True
+benchmark/audio/yo_25.wav,yo,whisper, Ki lode for the past two years le kon,0.714,0.39,routine,routine,True
+benchmark/audio/yo_25.wav,yo,assemblyai,For the past 2 years.,0.429,2.87,routine,routine,True
+benchmark/audio/yo_25.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_26.wav,yo,sahara,"Kò tọpẹ olóre yín lè fi jẹ òun ni patient ilé àti ò ní pà tí ẹ ṣe jẹ́ kí n rí wàhálà àbúrò
+",0.804,1.99,routine,routine,True
+benchmark/audio/yo_26.wav,yo,whisper," Koto kwe, olo olo i le mi dje? Olo olo i batin i dje? Ami? Ilea tono i o ni batin i o? Ami? Be shi djeki rogu wala ya, bro i atebi i o ni rogu wala ya? A she wa? A she wa? Ike si se mo shor i o? A she wa? Nile a dje?",1.118,1.87,routine,routine,True
+benchmark/audio/yo_26.wav,yo,assemblyai,"Kotopa, olo olo ine mi je? Olo onipatini je. Ami? Ile kuno nyoni ipatia? Ami? Beji de ki rogu wa laya, buru nyate bi nyoni rogu wa laya. Ase wa, ase wa. Ase wa. Ni liya di ye?",1.0,5.09,routine,routine,True
+benchmark/audio/yo_26.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_27.wav,yo,sahara,"Kí ló dé many minute tí mo ti fi wanta tí mo fi gbọ́ a
+",0.783,2.11,routine,routine,True
+benchmark/audio/yo_27.wav,yo,whisper," Ndiya choki me, ki nudi, chomo, chomo amene mene, tivo si fin vanta, tivo fin buwa rugo ngon uli.",0.957,0.47,routine,routine,True
+benchmark/audio/yo_27.wav,yo,assemblyai,They are choking me.,1.0,2.97,routine,urgent,False
+benchmark/audio/yo_27.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_28.wav,yo,sahara,"
+",1.0,1.59,routine,routine,True
+benchmark/audio/yo_28.wav,yo,whisper, So I'll be putting you all,1.0,0.36,routine,routine,True
+benchmark/audio/yo_28.wav,yo,assemblyai,So what if we wash,0.8,2.81,routine,routine,True
+benchmark/audio/yo_28.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/yo_29.wav,yo,sahara,"Èmi kò fẹ́ fún ẹ ní ọ̀nà yẹn ni nítorí pé mo mọ gbogbo effort ẹ nínú iṣẹ́ ọlọ́pàá but kò bá òfin iṣẹ́ wa mu
+",0.839,1.73,routine,routine,True
+benchmark/audio/yo_29.wav,yo,whisper, But they still give the time to help me. Do you understand?,0.903,2.77,routine,routine,True
+benchmark/audio/yo_29.wav,yo,assemblyai,"Kwa hivyo kwa hivyo, kwa hivyo, kwa hiviyo, kwa hiviyo, kwa hiviyo.",1.0,3.45,routine,routine,True
+benchmark/audio/yo_29.wav,yo,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_00.wav,am,sahara,"እናንተን ሰው ናችሁ ብለው አስቡም ሲሉም ነው የተናገሩት። minister ሆናችሁ ወረዳና ዞንን ይዛችሁ የሰው ተላላኪ ከምትሆኑ ለምን እናንተ ላኪ አትሆኑም በማለት ሰልጣኞቹን የጠየቁት ጠቅላይ minister
+",0.214,14.48,routine,routine,True
+benchmark/audio/am_00.wav,am,whisper, እኚ እኣ የትካ እኊውውመነ እኊው እኊውመብ የትካ እኊኝውመብ የትካናልተትነእው እኬናልርኈ የትንበኊሱውትዎ እናልመብኢ የትያቸውመበንጰገው የት,1.0,2.58,routine,routine,True
+benchmark/audio/am_00.wav,am,assemblyai,"‎‎‎‎‎‎, ‎‎‎‏‎‎‎‎, ‎‎‎‎‎⏎‎, ‎‎‎‎‎, ‎‎⏎⏎, ‎‎‏‎, ‎⏎‎, ‎‎⏎‎, ‎‏‎‎, ‏‎‎‎,",1.0,2.98,routine,routine,True
+benchmark/audio/am_00.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_01.wav,am,sahara,"ብዙ ስራዎች ሰርተናል እና በመቆየት ሰው የሰጠው ስም ነው። activism activist ምናምን እኔ እስካሁን መጠሪያዬ ታማኝ በየነ ነው ትንሽ እድሜዬም እንግዲህ ሞቅ ስላለ አቶ ከፊት አስቸምራለሁ ሰው ግን በራሱ ፍላጎት activist ታማኝ ይለኛል
+",0.194,4.05,routine,routine,True
+benchmark/audio/am_01.wav,am,whisper, እንን እንንንውናልውልልኖንዬልኖልንያቚ እንንውልፋል፣ውውቈለፍንውልሁሜን በእንውኘን እንያጱካንንውንካልወል፣ሉፍንውልውንውንያንውል,1.0,2.81,routine,routine,True
+benchmark/audio/am_01.wav,am,assemblyai,Activism Activist,0.944,2.95,routine,routine,True
+benchmark/audio/am_01.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_02.wav,am,sahara,"professor አንድርያስ እስከ 2ኛ ደረጃ ትምህርታቸው ድረስ እዚሁ አዲስ አበባ የተማሩ ሲሆን ከዚያ በኋላም ወደ America በማቅናት በ Williams College እና በየል ዩኒቨርሲቲ ፍልስፍናን ተምረው ዶክትሬታቸውን አግኝተዋል።
+",0.179,1.75,routine,routine,True
+benchmark/audio/am_02.wav,am,whisper, ግራሲሀስተሾንሰቶውራስ ጊጋሚርስሮለሡ፣ያ ውለርስ ጊጊሁለመልልራሰስስትስመላውርስማያ ይማጋስትስማሰገትምርመስለውረርርሲምትስመ።,1.0,4.56,routine,routine,True
+benchmark/audio/am_02.wav,am,assemblyai,"Professor Andreas iska wletenga daraja timir tashcha odres, ziwo addisaway timarusyon, kazi abo halam wede Amerika be makinat, pe Williams College na Bayel University filsifinan timraw, doktri tashcho nagintowal.",0.929,2.88,routine,routine,True
+benchmark/audio/am_02.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_03.wav,am,sahara,"I negotiate but ultimately best decision best decision ከሰሞኑ በጎንደር አንዲት ህጻን ታግታ ተገድላ መገኘቷን ተከትሎ የተፈጠረው ቁጣና የተገደሉ ነዋሪዎችን በተመለከተ ሲናገሩም የክልሉ መንግስት ባመነው ሁኔታ እገታ ላይ እየተሳተፈ ነው በአደባባይ
+",0.281,3.87,routine,routine,True
+benchmark/audio/am_03.wav,am,whisper, እናደወጊኩደንርውጋመ፣ሉልንውውላብ፣ውላውጋመው፣መ፣ውመመ፣መውመ፣መውጋብመ፣ምውብመ፣መ፣መመ፣መ፣መ፣ውመ፣መ፣መ፣መ፣መ፣መ፣መ፣መ,1.0,2.11,routine,routine,True
+benchmark/audio/am_03.wav,am,assemblyai,"ḏḏḍḏᶜᶜᵏᶜ ḏᶦᶜᴱᶜḱᶜ ᶠᶦᵗ ᶠᵒᶜᷱᶜ ᶠᶠᵗᶜάᶜ. ḏᵏᵏ ᶜᶦᴱᵗᵗ ᵗᵒᵘᵗᴇᶱᶜ, ᶜᵒᴱᴱᷜᵗ᷇ᶱ ᶠᴬᵒᷱᵗ ᴀᶜựᵗ ᶠ ᶠḬᵒ ᶠᷠᵒ ᵗᶠᴰᵗὀ�",1.0,5.2,routine,routine,True
+benchmark/audio/am_03.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_04.wav,am,sahara,"መረከብ የቻለው Manchester United በ28 በሁለቱም ጾታ የ Premier League ዋንጫን እንዲያሸንፍ እየሰሩ መሆናቸውን የክለቡ ስራ አስፈጻሚ
+",0.111,1.82,routine,routine,True
+benchmark/audio/am_04.wav,am,whisper, ድስርመልፕማልርት ማያርሄርርርሜችስምመሚሽህነያውጊርች ናፍጊካያምነመልችኈምኛድናማልገርመምስስለነልጊርቶችፔውጅችትትምርርመመምመ,1.0,2.47,routine,routine,True
+benchmark/audio/am_04.wav,am,assemblyai,մանչեստեր ունեց երբը հայհայասկմ մենդ բոլոթումց ոտահի է պրիմալիկ ուանչ անենդյաշն նվի ես առումոն աջոնի է կլվուս ռասվսամից անագրու։,1.056,5.11,routine,routine,True
+benchmark/audio/am_04.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_05.wav,am,sahara,"Federal መንግስቱ ላይ ተጽዕኖ በመፍጠር ወደ ድርድር እንዲመጣና
+",0.0,1.91,routine,routine,True
+benchmark/audio/am_05.wav,am,whisper, የእደውጕውንደዚያይዚውርውርኡ የርውጕውርውውርውርውርልንውርውር የርንያይመውንውሒድንደደማውበሗን የትንደማ የርትት የርት ግናበዳ የት የ,1.125,2.26,routine,routine,True
+benchmark/audio/am_05.wav,am,assemblyai,فيدرال منقسطولاي تسألنو بامفتر وددجرجر انديمات عنا,1.0,2.9,routine,routine,True
+benchmark/audio/am_05.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_06.wav,am,sahara,"therapy ይባላል አብዛኞቹ የኛ ልጆች መናገር የማይችሉ ናቸው በትክክለኛው ቃላት እንዲያወጡና እንዲናገሩ ነው እዚህኛው ክፍል የምናደርጋቸው አንዳንድ ፊደሎቹን
+",0.211,1.72,routine,routine,True
+benchmark/audio/am_06.wav,am,whisper,,1.0,2.98,routine,routine,True
+benchmark/audio/am_06.wav,am,assemblyai,3-4-5-6-7-8,1.0,2.94,routine,routine,True
+benchmark/audio/am_06.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_07.wav,am,sahara,"ጦር የባረኩ መድፈኛ ጳጳሳት የ field martial ቦታ ተክተው ወጣቱ ወደ ግንባር እንዲዘምት የቀሰቀሱ ጠቅላይ ሚኒስትሩን በልጠው እንሞታታለን እንጂ 4 ኪሎ አትገቡም ሲሉ የተደመጡ አባቶች የታዩባቸው ያለፉት አመታት የኢትዮጵያን ጉዳይ ተስፋ አስቆራጭ ካደረጉ ክስተቶች አንዱ ነው።
+",0.108,2.01,routine,routine,True
+benchmark/audio/am_07.wav,am,whisper, ስሰስቷርርስብርተርንልህሚእላለሰጋስ ስስስችርስ ስስችርርተስ ስስርስትትትትችርስችት ስስችች ስስስችርትችትት ስስስትትስትትትችትትትት,1.0,2.3,routine,routine,True
+benchmark/audio/am_07.wav,am,assemblyai,The,1.0,3.05,routine,routine,True
+benchmark/audio/am_07.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_08.wav,am,sahara,"ቱኒዚያ Gana እና ደቡብ ሱዳን እንዲሁም የ Algeria የውጭ ጉዳይ Ministers እዚህ ቦሌ አለም አቀፍ አየር ማረፊያ ደርሷል። እነዚህን እንግዶች እንግዲህ አቀባበል ያደረጉላቸው የውጭ ጉዳይ Minister ዴታዋ
+",0.346,2.07,routine,routine,True
+benchmark/audio/am_08.wav,am,whisper, ቨለት ቨሌማሣ የለት ቨማሣት ነደውለተት ነደ ነነሳትትትትለሣት ነነዳትት ነውታት ኯናትሣገዚማት እነውታማዚ የማዣ የጣትትትትትት ነነውታት ቨነነ,1.0,2.53,routine,routine,True
+benchmark/audio/am_08.wav,am,assemblyai,"Tunisia, Ghana,",0.962,3.62,routine,routine,True
+benchmark/audio/am_08.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_09.wav,am,sahara,"እስከ 12 management information system ስ ሰርቼ የነበሩ United University ከዛ በኋላ ደግሞ በ finance 2ኛ degree ሰራሁ ከዛ ደግሞ business administration finance ላይ specialize አድርጌ ማሰር ሰርቻለሁ። በህይወት ደረጃ ደግሞ እንዴት ነበርክ ብትለኝ
+",0.424,1.93,routine,routine,True
+benchmark/audio/am_09.wav,am,whisper," ...SKUZ-rawledth, M&F Systems har tr'i Tchana barb bl unity University. Keza бү'x'aar ad wa mo by' finance sulat eng adegrarya si'r raw? Ka'r'haad mo Business Administration? Finance la'i specialize, Adergham Master s'yai si'r chaw law",1.03,3.31,routine,routine,True
+benchmark/audio/am_09.wav,am,assemblyai,"management information system, kemudian bisnis administration, kemudian berkabinetik,",0.939,3.02,routine,routine,True
+benchmark/audio/am_09.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_10.wav,am,sahara,"በትግራይ ክልል አርሶ አደሮች እርሻ እንዳያርሱ የሚደረገው ክልከላ ቀጥሏል። ሰሞኑን የተባበሩት መንግታት ድርጅት በክልሉ 90/100 የሚሆነው ሰብል በቃጠሎ እና በዘርፊያ መውደሙን 80/100 የክልሉ እንስሳትን መታረዳቸውን የሚገልጽ ሪፖርት አውጥቶ ነበር። ከሳምንታት በፊት ደግሞ
+",0.25,1.72,routine,routine,True
+benchmark/audio/am_10.wav,am,whisper, ስለውል ስለልልልል ስሰሰለልል ብደመለልኂና አዚለልል አለነሎዪ ዦለያል ስለልልምልልል አድመሀውብልም የጥጵለልም የእእእ፽ል የልላልላው የርል መሰየብ፣ህርዣ ለራም፣ሾም እምሥ፣ሞ፣ሤንብኡዚይዳል። ጵሯ፣ራም ኦየት፣ዎልም አ ያስማ቏ᔱው። ዪሾካም አዣርትዤሜ የባወችኬጞዶሴደዧዢ ዢስመያገ ያህያና እጣለግይማ የደጋስርያም እናጋእያም የስሗስምስያም ያህስምማመስስመያም ደናዥያንያም እናያም ያህትስስምስልም ያህድትስማው,1.062,8.83,routine,routine,True
+benchmark/audio/am_10.wav,am,assemblyai,բեցը գրեք լել արսով ադրություր շանդայարսի մի դրագու քլքալակատ դուլոլ։ Սամուն ունի թպապորութման գստա դրջիթ բկլով ուզետ անա բմտույ մի հոնուս հաբլ բկատգլունն ա բզեր ֆիամով դմուն։ Սաման,1.0,5.16,routine,routine,True
+benchmark/audio/am_10.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_11.wav,am,sahara,"Artificial intelligence ዘርፍ እያስመዘገበችው ያለው ውጤት እጅግ በጣም አበረታች በዚህ ደረጃ እየተሰሩ ያሉ ስራዎች መኖሩን ባቅም በዚህ ደረጃ መድረሳችንን
+",0.105,1.73,routine,routine,True
+benchmark/audio/am_11.wav,am,whisper," Artificial Intelligence Zarf, ясм зэггэвэц ю юг аль-лөгтэй, тэжэгэв ю гээ т'аам аббэрэд т' υ, б' зэдэрэж б' Я царлүй ю ю сэрэлэг мөнөөрөө нь б' гэм зэдэрэж амадрэс т' нэн",1.526,1.87,routine,routine,True
+benchmark/audio/am_11.wav,am,assemblyai,"արթեվշալ ինտելիջենց զրվ, ասպսը գվեց չույան դորտե, թժգվետ ամ ապպրտաչ, եթսորով էլ ու սրողը չմեն որում բակմ, բազի դրժա մեդրսաց չնեն։",1.105,5.76,routine,routine,True
+benchmark/audio/am_11.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_12.wav,am,sahara,"3ቱንም case አሸንፊያችኋለሁ ምን እችላለሁ ብዬ ስላመንኩ አደርገዋለሁ ብዬ ስላመንኩ እንጂ ይሄን ያልቀሎኝ አይደለም በወሊድ ምክንያትማ የኔ process ነው ያሳለፉት በቃ
+",0.455,2.2,routine,routine,True
+benchmark/audio/am_12.wav,am,whisper, እእ እእ ኩእ እእ ንእእ ᇳእእ ንነእ ጋኧልልጋጋእ ብእእ ነእእልጋለቱባለቕቮ ይተጋልጋኛ ካካስ ክኩማ የርህእ የክህጚ ዞስፈህችለመችና ነእእ በኯእ የ,1.0,2.52,routine,routine,True
+benchmark/audio/am_12.wav,am,assemblyai,‏‎‏‎‏‏‏‎‎‏‏‎‏‎‏‏‎‎‎‎‏‎⁎‎,1.0,2.91,routine,routine,True
+benchmark/audio/am_12.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_13.wav,am,sahara,"ነው የተማርኩት እና በጣም challenge አለው ይሄ የግድ ስለተወለደ ስለተገባ አይደለም በጣም challenge አለው አንደኛው ነገር በኔ side የነበረው challenge ልክ ጊዜዬን west እያደረኩኝ እንደሆነ የራሴን life
+",0.462,2.38,routine,routine,True
+benchmark/audio/am_13.wav,am,whisper, እንዚኊ ሃትቩን ነድለለነዎውተጥቍ፣ውተመደመያፈ በናዌ የናዚት በናውሠትትሲመነጎለውቶህጥ እንዋ፣ማ ይስ ነት ድትደመጥት፣ በኡ...,1.0,5.88,routine,routine,True
+benchmark/audio/am_13.wav,am,assemblyai,But I'm challenging you.,1.0,2.93,routine,routine,True
+benchmark/audio/am_13.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_14.wav,am,sahara,"of course ዲስታጊና ጥፋቱ ለኔ አንድ ጥፋት አለው of course እሱ የዘፈነው ዘፈን የሰላም ዘፈን ነው፣ የፍቅር ዘፈን ነው፣ አብሮ የመኖር ዘፈን
+",0.083,1.71,routine,routine,True
+benchmark/audio/am_14.wav,am,whisper, እካካካንውናውለንውለንውለነ ስካካንውንውለንውለለነስን ነጣድንደለፅነመጣንውነነውንዋህ፣ህ፣ህመሰነውህመመጣንውህመጣድንውነውህመጣ,1.0,2.12,routine,routine,True
+benchmark/audio/am_14.wav,am,assemblyai,Of course دي اشتاجينا تفاتوة لأني عندي تفاتة عنه. Of course السوء زفن وزفن يا سلام زفن ويا فكر زفن وعبري منور زفن.,0.833,3.11,routine,routine,True
+benchmark/audio/am_14.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_15.wav,am,sahara,"ያንን በደንብ የሚገልጽ ምሳሌ ሰጥተሽ የሚገልጽ example ሰጥተሽ ማብራራት ልጆች በሚገባቸው መልኩ አንዳንድ ጊዜ top ያለውን ልጅ ብቻ አይተን እረፍሊ ለዛ ነግረ ነው የምናርፍበት አጋጣሚ አለ። እሱ ከሆነ እያስተማር ነው።
+",0.276,1.71,routine,routine,True
+benchmark/audio/am_15.wav,am,whisper,,1.0,2.65,routine,routine,True
+benchmark/audio/am_15.wav,am,assemblyai,‏‏‏‍‍‍ ‏‏ ‏‏‏‍‏‍ ‏‏‏,1.0,2.96,routine,routine,True
+benchmark/audio/am_15.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_16.wav,am,sahara,"መንግስት ፈርሷልና ልተው ሊል አይችልም መንግስት መስተዳደሩ ስለወረደ እኛም ወደ የቤታችን ሊባል አይችልም ጠቅላይ ሚኒስትሩ ስልጣናቸው በይፋ ስላከተመ
+",0.316,1.77,routine,routine,True
+benchmark/audio/am_16.wav,am,whisper, ḫᵍ ḍሬᶳፋጰጥኔእ ለḍሇጋርላገ 1-5 ለጋመጅሽጚ ያᵍ ለጋመ።ዕጇእ፝ 1-4.,1.0,3.51,routine,routine,True
+benchmark/audio/am_16.wav,am,assemblyai,I'm,1.0,2.83,routine,routine,True
+benchmark/audio/am_16.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_17.wav,am,sahara,"ቀለም ፍለጋ ወደ ትምህርት ቤት ሲሄድ የሰፈር militia ያዘው በለብ ለብልጠና ከ camp ወጥቶ ባልጠና ትከሻው ጠመንጃ ይዞ ራሱን ጦር ሜዳ አገኘው አበባው በላይ ወንድም ነው እባላለሁ የመጣሁት ከወለጋ ነው። ስራ ምቴ
+",0.364,2.31,routine,routine,True
+benchmark/audio/am_17.wav,am,whisper, ካኚ፣ ሓነ ካ ማህለላ፣ ያሰች ጎደመታትመ ለማመመማል ተጎ ተድለ ለቡምመሌውች ብንኊንነት ማህለልመላ፣ህማመች. ዤለርረር ደደት ሰድ ጠንስጘ ደስጠር ሲስ ጠስጶ ነማ ነነምኘ ነ እስመልሼርር ሪክ ደደቸርስ ነንኖመልሊአ ቩሳጛ፝ እማ,1.0,4.92,routine,routine,True
+benchmark/audio/am_17.wav,am,assemblyai,كلام في اللقاء وده تمرتبة سيد يسافر ميل شيازه بلبلب بصرت أنا ككامبوتو بعت أن أتكشوا تأمن جايزوا راسون تقور ميداغينيو. أبابو بلاي وندمنو بلال يمتوت كوالقال سلام سامبي.,1.0,5.22,routine,routine,True
+benchmark/audio/am_17.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_18.wav,am,sahara,"በእርግጥ ሃይማኖት እና መንግስት በህገ መንግስትም የተለያዩ ስለመሆናቸው በተቀመጠባት ሀገር ፖለቲካ እና ብልጽግናን መለኮታዊ አድርጎ ማቅረብ እንደ ኢትዮጵያ ያሉ ሀገራት መሪዎች ወቅታዊ መገለጫ ነው። እንዳይበለጽግና እንዳይገሰግስ የፈጣሪ ደጆች የተዘጋበት ሀገር እንዳያድግ የፈጣሪ ቸርነት የተነፈገው ሀገር አለው
+",0.353,1.75,routine,routine,True
+benchmark/audio/am_18.wav,am,whisper, ለወለለሒስለ ሧልመ እንእን ሡልረግመ፣ሳልሯም እመመ እንንብስልመልመ፣መልማም. ስስስስስስስ ስስስስስ መምስስስስ ስስስስስስ መመሬና የሚ፣ስ መልስስስ ብደማራብ ያምንንዳሰስ እንያሃ፣ሳ ንደስስስ ጒጰርረርረርሳ ብንደስ ስመ,1.0,4.68,routine,routine,True
+benchmark/audio/am_18.wav,am,assemblyai,"Bërgit xaymanot na mënggist bëgga mënggist më yitla yuslamu xona tshubë të këmet të bët hagar poletikan na bëlzë gënnan mëleko të oya dërgumakar avë ëndey tibi alu hagar atmerwë tshukta yma gële tʃanu. ëndey bëlzë gënnan dey gësëgës yifet ari dëdʒu tʃit të zikga bët hagar, ëndey adi yifet ari tʃernet yitë nəfəgëw hagar alu.",1.647,5.09,routine,routine,True
+benchmark/audio/am_18.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_19.wav,am,sahara,"ወደ ደሞ አፋር ስትመጡ ደግሞ Ajib የሆነ መሬት ነው ያለው ውሃውም አለ። በዚህ በግብርናው ዙሪያ ላይ ማተከር ቢቻል ብለን 2 campass ተጨማሪ ቢከፈቱ ብለን እንግዲህ የኛ proposal ተቀምጧል።
+",0.276,1.72,routine,routine,True
+benchmark/audio/am_19.wav,am,whisper, ስስሆርለለርርሳሁ ስስለርሰርልልልልላለርልላህ እርለርልልልላላርልልልልልብሄግርልልሽ ርስሚርርሼስስ፽ እስርሳርልልልልልል ነያስስለር,1.0,1.97,routine,routine,True
+benchmark/audio/am_19.wav,am,assemblyai,مدارب آفرست مدرمو عجائب,1.0,3.04,routine,routine,True
+benchmark/audio/am_19.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_20.wav,am,sahara,"Saudi Arabia Qatar እና Jourdan ውጪ ወደ የትኛውም አረብ ሀገራት የስራ ስምሪት በሚያደርጉ አካላት ላይ ህጋዊ እርምጃ ይወሰዳል ብለዋል። በ tourist በዘመድ ጥያቄ በጉብኝትና በነጋዴ visa ወደ ኩየት ባህሬን
+",0.577,2.04,routine,routine,True
+benchmark/audio/am_20.wav,am,whisper,,1.0,2.13,routine,routine,True
+benchmark/audio/am_20.wav,am,assemblyai,سادة ربيع قواترنا جوردان ووچ وديتين يوم مربحة قرات يسرى سموريت بميادر ڭواى قرات اللهي قارم جاهنى واسرى لبلوان. بطوريشت بزمرت ايكا بگوبنجتنا بنگا دى فيزاوى دى كويت بحرين,1.115,2.96,routine,routine,True
+benchmark/audio/am_20.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_21.wav,am,sahara,"በብሄር ማንነትና በፖለቲካ ላይ ያነጣጠሩ እንደነበሩም በሪፖርቱ ተገልጿል። ሪፖርቱን ያቀረቡት የኢትዮጵያ መገናኛ ብዙሃን ባለስልጣን የበይነ መረብ መገናኛ ብዙሃን ክትትልና አቅም ግንባታ director ኤደን አማረ የጥላቻ ንግግር በኢትዮጵያ
+",0.179,1.79,routine,routine,True
+benchmark/audio/am_21.wav,am,whisper, እንእስ እንንንልስ እንንንስኖሶፚ ያንንውንዊር። ያንንውባ ግርየ፣ህ ያንንውስ ያንስን ያንያቲንውው። እንእን ኪኣዚያለ እክክኘ እክክኝ እክኘ እክኝ እክኘ ያኯሀጎ ልክገልገ ፨ሰምለሏን ያክኘ እኞያለ ያኆሁዛያስ፣ዚያላ ያ዁ለክዚልሚንያው፣ ያኁንኝእ,1.0,5.0,routine,routine,True
+benchmark/audio/am_21.wav,am,assemblyai,բա պիրմանիննեց նա բա փոլիտիկալ է են նտա տարունդեն բարում բա ռիպորտության։ Հիպոռտունեք առավութ եյթոպյան մեկնանջաբ ձոհան բալստան։ Եվ եյն ամերը մեկընանճաբ ձոհան քտտտել են Նա ակմ գմբ,1.0,5.13,routine,routine,True
+benchmark/audio/am_21.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_22.wav,am,sahara,"ባህል ሙዚቃ ውስጥ ያለን ሙዚቃ መጥተህ እዚህ ውስጥ ባቲ lidea ን መሰለኝ I think እዛ ውስጥ ከተሁ ሌላ አይነት ሙዚቃ ሌላ አይነት
+",0.391,1.71,routine,routine,True
+benchmark/audio/am_22.wav,am,whisper, ስለስ፽ የመሡል። እኈዚጚብጜ ስጝ ርኂ።ስጝ የመ፽—ትርሴ። እኈዳግ። የመንነግ።ንያ እኈዚት እእኊው።ኼ ነው። የመ፽ ብነጞሚጛ እ ጛ እዥ ጛስጛኅ ስስ፽,1.0,2.83,routine,routine,True
+benchmark/audio/am_22.wav,am,assemblyai,‏‏‏‍‍‍ ‏‍‏‍ ‍‏‏ ‍‏,1.0,2.97,routine,routine,True
+benchmark/audio/am_22.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_23.wav,am,sahara,"ትጥቅ disarm እንዲደረግ 3ኛ በጉዳዩ ላይ በወንጀል እና በጥፋት ላይ በህግ ተፈላጊ የሆኑትን አካላት ለህግ ለማቅረብ እንደሆነ ይሄም ደግሞ ባልተራዘመ ሁኔታ በአጭር ጊዜ እንዲጠናቀቅ እና
+",0.04,2.12,routine,routine,True
+benchmark/audio/am_23.wav,am,whisper, ርስስ ባስስ ጣስስሡገምግርገገግገግጉፋጋግገጥ ርስቕደስ እ፪ጋገ፣ያስግጊግግገ፫ጁስግጊስርብካስማጏምስካመግርጉስስም፽ህገግገግገጉስል,1.0,3.0,routine,routine,True
+benchmark/audio/am_23.wav,am,assemblyai,I am the more,1.0,2.98,routine,routine,True
+benchmark/audio/am_23.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_24.wav,am,sahara,"very innest like አሁን እዚህ በመጣቸው በ energy fiel ያረጋሉ ይሄ ሰውን አልወድም ይሉኛል ለምን? ነው አልወድም በግልጽልኝ ሰው አንገት የለውም ወይንም እሱን አዋርዶኛል አፍንጫዋን አፍንጫማማ አፍንጫዋን እንደዚህ በእንግሊዝ ደግሞ እግዚአብሔርም የሆነ ጊዜ ማለት ነው።
+",0.578,4.38,routine,routine,True
+benchmark/audio/am_24.wav,am,whisper," Laman, no no, allot. Althar m'echay g'yuz. Begilis allum y'yagum. E so'n'gyi angathillum. Wainim, aran d'e summa sinthi awar d'ognat. E, a'a finch'o'an, e'a finch'o'an, mamma'a finch'o'an. N'dezi, begilis d'yammo. ስስስስስ ስስስስ ስስስስ ስስስ ሕረረረሁሩስ ጠሲረስስ ስሩስስ በሰስስ ዠሧሜሚስ ሰማሁስ በሺ ሰማስሩስስ በ ስስስስ በሙምስ እሁሪደምሴ እስመስም እ",1.067,5.47,routine,routine,True
+benchmark/audio/am_24.wav,am,assemblyai,"Kwa hivyo, hivyo, kwa hivyo",1.0,3.06,routine,routine,True
+benchmark/audio/am_24.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_25.wav,am,sahara,"ከዚህ በኋላም ከግብጽ ጋር ውይይት በማድረግ የሁለቱንም ህዝቦች ተጠቃሚ ለማድረግ መስራት እንደሚገባ አንስተዋል። እንዲሁም ለንግግር ለውይትና የህዳሴ ግድቡን ለማስጎብኘት የኢትዮጵያ በር ክፍት ነው ሲሉ መልእክት አስተላልፈዋል።
+",0.222,2.05,routine,routine,True
+benchmark/audio/am_25.wav,am,whisper, እኂውቨ እደፉካት ካድዣገኩት ነደግተልተግተስ ነደግተልተንካት ነነውተችችትትችትትትትትትትትት እና በድ ነደስለውተትትትትትትትትትትትትት,1.0,2.51,routine,routine,True
+benchmark/audio/am_25.wav,am,assemblyai,"‎‎‎‎‎‎, ‎‎‎, ‏‎‎‎‎, ‎‎‎‏‎‎‎, ‎‎‎‎‏, ‎‎‏‎, ‎‎‎‎‎, ‎‎‎‎‎, ‎‎‎‎, ‎‎∀‎, ‎‎‎, ‎‏‎,‎ ‎‏‎, ‏‎‎‎, ‎‎‎, ‏‎‎‎, ‎✎‎",1.0,5.09,routine,routine,True
+benchmark/audio/am_25.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_26.wav,am,sahara,"በአዲስ አበባ University መምህር እንደሆኑ ሲፈቅዱላቸውም የኢህአዴግ ባለስልጣናት በግቢው እየመጡ በተጋባዥነት እንዲሳተፉ በማድረግ ቅርበታቸውን ስር ሰደድ ለማድረግ ሞክረው እንደነበረም ያስታውሳል ይሁን እንጂ አሁንም ሞልቶ ከፈሰሰው የኢህአዴግ ስልጣን ለ doctor ብርሃኑ ነጋ የሚተርፍ አልተገኘም
+",0.176,1.76,routine,routine,True
+benchmark/audio/am_26.wav,am,whisper, እንን ኒወናውሌእግ ኈንባተለነናስጛብፓን፣ልልተ ግተክኖናሉሎፊሚዢህተተተካልልተትልቭልᏍተጓልተካለ ተርም።ህተክምተትራ፣ ልቤምቲትምእ,1.0,3.17,routine,routine,True
+benchmark/audio/am_26.wav,am,assemblyai,University,0.971,3.18,routine,routine,True
+benchmark/audio/am_26.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_27.wav,am,sahara,"መንገዶችን ከመገንባት ባለፈ በየጊዜው ጥገና እየተደረገባቸው በቂ አገልግሎት መስጠት አለባቸው ያሉት ሚኒስትሯ ዛሬ የተበረከቱት ማሽነሪዎችም ለመንገድ ጥገና አቅም ይፈጥራሉ ብለዋል። ይህ ርክክብ፣ ክልሎችና ከተማ አስተዳደሮች በመንገድ ልማትም ሆነ እንክብካቤ
+",0.273,1.75,routine,routine,True
+benchmark/audio/am_27.wav,am,whisper, ልሆለለለ ልልልሏልል ልለልልልልልልል እእእእእእለል ልልመልልል ልልመልልልልልልልልልልልልቀለለቀብእእስም በየን ርሰጼርርብእም፣ደም በየ,1.0,2.72,routine,routine,True
+benchmark/audio/am_27.wav,am,assemblyai,‏‎‏‎‏‏‏‎‍‏‏ ‏‎‍‏‏‎‏‏‎‏‍‏‏‎‍‏,1.0,3.01,routine,routine,True
+benchmark/audio/am_27.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_28.wav,am,sahara,"ብንወያይ ብዬ ከማሰባቸው ሰዎች መካከል አንዱ ናቸው እና ያደምጡናል ይሰሙናል ብዬ ተስፋ አደርጋለሁ እንግዲህ አንድ ቀን ብንገናኝ በጣም ደስ ይላል በጣም በጣም ጥሩ ነገር share ያደርገናል በጣም
+",0.444,1.91,routine,routine,True
+benchmark/audio/am_28.wav,am,whisper, ልለለመልተልተንተትተ ለላግተድተናልልኈለልለትተ ተልንደድ ልለለልውን ልለተንደልተልተተ እደዚእውልወልገን ነውተ ለዥፍኖተግንደውፊልልል,1.0,2.52,routine,routine,True
+benchmark/audio/am_28.wav,am,assemblyai,بالنوع يبي كما صبرتوا سووش مكاكر لندوناتشونا يدمتونا لسه من البيت أسفادر قال لهم قريان دا كان بن الجانين بتعم بس بتعم بتعم بتعم ترونها غير الشيرع للجنال نقدرش عارفش شو تكابجو,1.185,5.13,routine,routine,True
+benchmark/audio/am_28.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_29.wav,am,sahara,"ለነገ በማይባለው የኢትዮጵያ የትምህርት ሁኔታ ውስጥ diaspora እንደ ከዚህ ቀደሙ ሁሉ ተሳትፎውን አጠናክሮ እንዲቀጥል ጠይቀዋል። ለዚህ ስራ መቃናት embassy የበኩሉን ድርሻ ለመወጣት ዝግጁነቱንም አረጋግጠዋል። ንጋት በቃና Washington DC
+",0.1,1.87,routine,routine,True
+benchmark/audio/am_29.wav,am,whisper, እናእና ረኘስ ስለልግግሁቂለቀ ይረርባባተጥሡሽትለሄግንልርቚህትለቂተላለልብዪምቁይች እናእእእእእእ ናጫልግሊውግግተልልችግሊቱእም የስ,1.0,3.36,routine,routine,True
+benchmark/audio/am_29.wav,am,assemblyai,"Washington, D.C.",1.0,3.02,routine,routine,True
+benchmark/audio/am_29.wav,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/pcm_00.wav,pcm,sahara,"People redemption council, PRC this one this one this one soldier go soldier come all na name and name no change anything you know so that's the thing so
+",0.333,1.83,routine,routine,True
+benchmark/audio/pcm_00.wav,pcm,whisper," People redemption council, PRC, this one, this one, this one, all now soldier go soldier come. All now name and name no change anything. You know so and that's the thing so",0.467,0.84,routine,routine,True
+benchmark/audio/pcm_00.wav,pcm,assemblyai,"PIPO, Redemption Council, PRC, kwa hivyo, kwa hiyo, kwa hiyo, kwa hiyo, kwa hivi, kwa hizi, kwa higi, kwa hizi, kwa hiji, kwa hizi, higi, kwa hizi, kwa hii, kwa hizi, kwa hizi, kawa kwa hizi, kuwa hizi, kuwa hizi.",1.267,5.1,routine,routine,True
+benchmark/audio/pcm_00.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_01.wav,pcm,sahara,"When we come back, everyone go answer us how long it go?
+",0.385,1.68,routine,routine,True
+benchmark/audio/pcm_01.wav,pcm,whisper," When we come back, Obi-Wan will answer us how long it will take.",0.462,0.39,routine,routine,True
+benchmark/audio/pcm_01.wav,pcm,assemblyai,"When we come back, Obiwan go answer us how long it go take",0.231,3.09,routine,routine,True
+benchmark/audio/pcm_01.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_02.wav,pcm,sahara,"Good evening and welcome to as e dey hot
+",0.2,1.68,routine,routine,True
+benchmark/audio/pcm_02.wav,pcm,whisper, Good evening and welcome to I See The Heart. Hello.,0.4,0.3,routine,routine,True
+benchmark/audio/pcm_02.wav,pcm,assemblyai,Good evening and welcome to Acid Heart. Hello.,0.4,2.9,routine,routine,True
+benchmark/audio/pcm_02.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_03.wav,pcm,sahara,"Imagine this statement Igbo's are being victimized. So they'll come as I talk, say Oh, is it because he's an Igbo? Na Igbo man. That na why they want actually victimize am like that, which is not actually true. But for as long as we continue to use stripe take they
+",0.321,7.47,routine,routine,True
+benchmark/audio/pcm_03.wav,pcm,whisper," Imagine this statement, Igbos are being victimized. So they'll come and say, oh is it because he's an Igbo, an Igbo man, that's why they want to actually victimize him like that? Which is not actually true. But for as long as we continue to use tribe,",0.415,0.56,routine,routine,True
+benchmark/audio/pcm_03.wav,pcm,assemblyai,"Imagine this statement: Igbos are being victimized. So they'll come outside and say, oh, is it because he's an Igbo, now Igbo man, that's now why they want to actually, uh, um, they victimize them like that? Which is not actually true. But for as long as we continue to use tribe",0.434,5.15,routine,routine,True
+benchmark/audio/pcm_03.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_04.wav,pcm,sahara,"Must perform must get,nd performance. So now that one be comedy
+",0.429,1.78,routine,routine,True
+benchmark/audio/pcm_04.wav,pcm,whisper," must perform, must get command performance. So now that won't become an issue.",0.571,0.44,routine,routine,True
+benchmark/audio/pcm_04.wav,pcm,assemblyai,"must perform, must get command performance. Okay, so now that will become an issue.",0.571,2.84,routine,routine,True
+benchmark/audio/pcm_04.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_05.wav,pcm,sahara,"The truth be say whatever it is you believe in, everybody believes in a supernatural force, and that is why as a life coach or a psychotherapist, we come from that point of view and know say God, God, God. Yes, I be Christian
+",0.159,1.83,routine,routine,True
+benchmark/audio/pcm_05.wav,pcm,whisper," The truth is that whatever it is you believe in, everybody believes in a supernatural force. And that is why as a life coach or a psychotherapist, we come from that point of view and not say, God, God, God, yes, I'd be pleased then.",0.341,1.63,routine,routine,True
+benchmark/audio/pcm_05.wav,pcm,assemblyai,"The truth be said, whatever it is you believe in, everybody believes in a supernatural force. And that's why as a life coach or a psychotherapist, we come from that point of view and no say God, God, God. Yes, I'll be Christian.",0.205,3.02,routine,routine,True
+benchmark/audio/pcm_05.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_06.wav,pcm,sahara,"
+",1.0,3.06,routine,routine,True
+benchmark/audio/pcm_06.wav,pcm,whisper, as a pure heart.,1.0,0.43,routine,routine,True
+benchmark/audio/pcm_06.wav,pcm,assemblyai,Do their little— yeah.,1.0,2.83,routine,routine,True
+benchmark/audio/pcm_06.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_07.wav,pcm,sahara,"And it good make every other Nigerian we don't hear this one make they try to answer the question, even though you no call us to tell us, but answer am for your heart. Discuss with your brothers and sisters, make everybody give sincere answers. Remember wetin he talk. Honesty integrity and transparency, make we begin tell ourselves
+",0.339,1.78,routine,routine,True
+benchmark/audio/pcm_07.wav,pcm,whisper," And it's good to make every Nigerian who doesn't hear this one, try to answer the question, even though you don't call us to tell us, but answer them from your heart. Discuss with your brothers and sisters, make everybody give sincere answers. Remember what we talked about, honesty, integrity and transparency, make we begin to tell ourselves",0.5,0.61,routine,routine,True
+benchmark/audio/pcm_07.wav,pcm,assemblyai,"And it go good, make every other Nigerian— we not hear this one— make they try to answer the question, even though you no call us to tell us, but answer them for your heart. Discuss with your brothers and sisters, make everybody give sincere answers. Remember, waiting in talk, honesty, integrity, and transparency make we begin to tell ourselves the truth.",0.403,5.18,routine,routine,True
+benchmark/audio/pcm_07.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_08.wav,pcm,sahara,"Nothing inside. The idea is to fill the empty one with the other basket where balls dey, but now
+",0.294,1.83,routine,routine,True
+benchmark/audio/pcm_08.wav,pcm,whisper, nothing inside the idea is to fill the empty one with the other basket where balls they but now,0.294,0.38,routine,routine,True
+benchmark/audio/pcm_08.wav,pcm,assemblyai,"Nothing inside. The idea is to fill the empty one with the other basket where balls there, but now",0.294,2.85,routine,routine,True
+benchmark/audio/pcm_08.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_09.wav,pcm,sahara,"Ok, Ovo dont talk about you know the beauty, the goodness of African fashion, African design even in the international scene. But of course there is no goodness without challenges. Wetin you will feel say be the challenges wey African fashion don encounter in light? maybe in the past 10 years
+",0.143,2.22,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7140, Requested 916. Please try again in 420ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",routine,False
+benchmark/audio/pcm_09.wav,pcm,whisper," Yuki, although we don't talk about the beauty, the goodness of African fashion, African design, even in the international scene, but of course there's no goodness without challenges. What do you feel will be the challenges we African fashion don't encounter, maybe in the past 10 years, maybe?",0.408,0.55,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7140, Requested 916. Please try again in 420ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",routine,False
+benchmark/audio/pcm_09.wav,pcm,assemblyai,"Uh, okay, uh, don't talk about, you know, the beauty, the goodness of African fashion, African design, even in the international scene. But of course, there's no goodness without challenges. Uh, what do you feel will be the challenges where African fashion, uh, don't, don't encounter in like maybe in the past 10 years, maybe?",0.469,5.2,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7140, Requested 916. Please try again in 420ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",routine,False
+benchmark/audio/pcm_09.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7140, Requested 916. Please try again in 420ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",error,False
+benchmark/audio/pcm_10.wav,pcm,sahara,"Now we still came out to say no, do this so that this will not happen. Do this. Thats to tell you how great minded Nigerians are. It gives you something that there is still an human side of the Nigerian people, and I feel that a reprisal
+",0.149,1.74,routine,routine,True
+benchmark/audio/pcm_10.wav,pcm,whisper," Now, we still came out to say, no, do this so that this will not happen. Do this. That's to tell you how great-minded Nigerians are. It gives you something that is still a human side of the Nigerian people. And I feel that a reprisal.",0.191,0.81,routine,routine,True
+benchmark/audio/pcm_10.wav,pcm,assemblyai,"Now we still came out to say, no, do this so that this will not happen. Do this. That's to tell you how great-minded Nigerians are. It gives you something that there's still a human side of the Nigerian people. And I feel that a reprisal",0.149,3.37,routine,routine,True
+benchmark/audio/pcm_10.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_11.wav,pcm,sahara,"The world, na just the level with it they happen they differ for some places it is ranked so high and for some places it ranked so low
+",0.258,1.78,routine,routine,True
+benchmark/audio/pcm_11.wav,pcm,whisper," the world. Now just the level with which they happen, now they differ. For some places it is ranked so high and for some places it's ranked so low.",0.355,1.49,routine,routine,True
+benchmark/audio/pcm_11.wav,pcm,assemblyai,"the world. Now, just the level with which they happen, now they differ. For some places it is ranked so high, and for some places it ranks so low.",0.452,2.95,routine,routine,True
+benchmark/audio/pcm_11.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_12.wav,pcm,sahara,"Information going to like a warehouse. They say do you have a warehouse in Somolu? We say yes we get warehouse for Somoluctoral materials we dey keep there
+",0.226,2.3,routine,routine,True
+benchmark/audio/pcm_12.wav,pcm,whisper," information goes to. It's like a warehouse. They said, do you have a warehouse in Shomolu? We said yes, we have a warehouse for Shomolu. Now, electrical materials, we keep there.",0.355,0.67,routine,routine,True
+benchmark/audio/pcm_12.wav,pcm,assemblyai,"Information goes, goes, goes, goes to. It's like a warehouse. They said, do you have a warehouse in Shomolu? We say yes, we have a warehouse for Shomolu. Now, electoral materials, we keep there.",0.387,5.18,routine,routine,True
+benchmark/audio/pcm_12.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_13.wav,pcm,sahara,"Is the devils one shop. So we must tackle unemployment. Then we also talk about the agencies, those agencies. They must wake up to make sure say they tackle this unemployment, I mean a drug abuse issue. Oga Sunday, what we all do here be say
+",0.356,1.75,routine,routine,True
+benchmark/audio/pcm_13.wav,pcm,whisper," is the devil's workshop. So we must tackle unemployment. Then we also talk about the agencies. Those agencies, they must wake up to make sure they tackle this unemployment, I mean, drug abuse issue. Okay, so what we're going to do here is say,",0.4,0.54,routine,routine,True
+benchmark/audio/pcm_13.wav,pcm,assemblyai,"Is the devil's workshop. So we must tackle unemployment. Then we also talk about the the agencies, those agencies. They must wake up to make sure say they tackle this unemployment. I mean a drug abuse issue. Oka Sony, what you guys do here? We say.",0.444,5.15,routine,routine,True
+benchmark/audio/pcm_13.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_14.wav,pcm,sahara,"They been not show face. Now people come outside on top twitter. They talk say does that state have a govern?
+",0.455,1.68,routine,routine,True
+benchmark/audio/pcm_14.wav,pcm,whisper," they will not show face. Now people come outside and talk on Twitter, they talk and say, does that state have a government at all?",0.5,0.73,routine,routine,True
+benchmark/audio/pcm_14.wav,pcm,assemblyai,"They may not show face. Now people come outside on top Twitter, they talk, say, does that state have a government at all?",0.364,2.87,routine,routine,True
+benchmark/audio/pcm_14.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_15.wav,pcm,sahara,"Why e be say we don get consecutive general elections
+",0.1,2.01,routine,routine,True
+benchmark/audio/pcm_15.wav,pcm,whisper, Why he be say we don't get consecutive general elections?,0.4,0.8,routine,routine,True
+benchmark/audio/pcm_15.wav,pcm,assemblyai,Why he be say we don't get consecutive general elections?,0.4,2.85,routine,routine,True
+benchmark/audio/pcm_15.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_16.wav,pcm,sahara,"Come out make sure say he follow this case in follow am wella is a plus plus other governors suppose to join body understand to make sure say the I people, because when you see
+",0.444,1.93,routine,routine,True
+benchmark/audio/pcm_16.wav,pcm,whisper, ingo come out make sure say in follow this case in full and well is a plus plus true so other governors supposed to join or they you understand to make sure say the people because when you see,0.528,0.85,routine,routine,True
+benchmark/audio/pcm_16.wav,pcm,assemblyai,"Ingo come out, make sure say infollow this case. Infola and Wela is a plus plus. True. So other governors supposed to join body, you understand, to make sure say the people— because when you, when you see",0.528,3.02,routine,routine,True
+benchmark/audio/pcm_16.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_17.wav,pcm,sahara,"So this is going to Nigerians. Me just draw on our ear draw on her ear
+",0.588,1.92,routine,routine,True
+benchmark/audio/pcm_17.wav,pcm,whisper, So this is going to Nigerians. I just draw here. I draw here.,0.647,0.43,routine,routine,True
+benchmark/audio/pcm_17.wav,pcm,assemblyai,"So this is going to Nigerians. Me just draw here, make draw here.",0.588,2.77,routine,routine,True
+benchmark/audio/pcm_17.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_18.wav,pcm,sahara,"You know I needed people to know wetin dey inside my brain and how can they know that by giving them small for free on social media. So I even went into classrooms
+",0.147,2.01,routine,routine,True
+benchmark/audio/pcm_18.wav,pcm,whisper, you know so i needed people to know what's in the inside my brain and how can they know that by giving them small but free on social media so i even went into classrooms,0.265,1.07,routine,routine,True
+benchmark/audio/pcm_18.wav,pcm,assemblyai,"You know, so I needed people to know Waiting Day inside my brain. And how can they know that? By giving them small but free on social media. So I even went into classrooms.",0.176,3.01,routine,routine,True
+benchmark/audio/pcm_18.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_19.wav,pcm,sahara,"I would like to have your number so I can reach the person who sells the belt Oh, really okay, I can just give you the person long way.
+",0.556,2.05,routine,routine,True
+benchmark/audio/pcm_19.wav,pcm,whisper," I would like to have your number so I can reach the person who sells the belts. Oh, really? Okay, I can just give you the person's number.",0.519,0.46,routine,routine,True
+benchmark/audio/pcm_19.wav,pcm,assemblyai,"I would like to have your number so I can reach the person who sells the belt. Oh, really? Okay, I can just give you the person's number.",0.481,2.92,routine,routine,True
+benchmark/audio/pcm_19.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_20.wav,pcm,sahara,"To enjoy more of dis our ogbonge videos wen you just watch
+",0.167,2.09,routine,routine,True
+benchmark/audio/pcm_20.wav,pcm,whisper," To enjoy more of these, I will go and get videos when you just watch.",0.667,0.31,routine,routine,True
+benchmark/audio/pcm_20.wav,pcm,assemblyai,"To enjoy more of these, our Ubonge videos, when you just watch",0.333,2.99,routine,routine,True
+benchmark/audio/pcm_20.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_21.wav,pcm,sahara,"But they don't change am because everybody they try find common ground. The truth be say
+",0.25,1.79,routine,routine,True
+benchmark/audio/pcm_21.wav,pcm,whisper," but they don't change that because everybody they try find common ground. The truth be said,",0.375,0.48,routine,routine,True
+benchmark/audio/pcm_21.wav,pcm,assemblyai,"But they don't change them because everybody, they try find common ground. The truth be say",0.375,2.91,routine,routine,True
+benchmark/audio/pcm_21.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_22.wav,pcm,sahara,"To the world, not only to Nigeria how good them be because the former ministers be fail Nigeria. Thank you so much for that comment. Alright, we also get Samuel
+",0.194,2.02,routine,routine,True
+benchmark/audio/pcm_22.wav,pcm,whisper," to the world, not only to Nigeria. How good would they be? Because the former ministers, they befell Nigeria. Thank you so much for that comment. Alright, we also get somewhere.",0.387,0.89,routine,routine,True
+benchmark/audio/pcm_22.wav,pcm,assemblyai,"to the world, not only to Nigeria. How good them be, because the former ministers, they be fail Nigeria. Thank you so much for that comment. All right, um, we also get somewhere",0.355,5.08,routine,routine,True
+benchmark/audio/pcm_22.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_23.wav,pcm,sahara,"The current situation of The Economic and Financial Crimes Commission that the EFCC and it has been in the news say Okay, they don't carry the chairmo of EFCC for questioning regarding some situations wey they happen
+",0.268,2.13,routine,routine,True
+benchmark/audio/pcm_23.wav,pcm,whisper," the current situation of the Economic and Financial Crimes Commission, that's the EFCC, and it has been in the news. They say, okay, they don't carry the chamo of EFCC for questioning regarding some situations where they happen.",0.463,0.47,routine,routine,True
+benchmark/audio/pcm_23.wav,pcm,assemblyai,"The current situation of the Economic and Financial Crimes Commission, that's the EFCC, and it has been in the news. They say, okay, they don't carry the chairman of EFCC for questioning regarding some situations where they happen.",0.463,40.21,routine,routine,True
+benchmark/audio/pcm_23.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_24.wav,pcm,sahara,"As long As we still dey under di umbrella of nigerians
+",0.182,1.99,routine,routine,True
+benchmark/audio/pcm_24.wav,pcm,whisper," As long as we stay there under the umbrella of Nigerians,",0.273,0.35,routine,routine,True
+benchmark/audio/pcm_24.wav,pcm,assemblyai,As long as we still there under the umbrella of Nigerians.,0.182,3.22,routine,routine,True
+benchmark/audio/pcm_24.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_25.wav,pcm,sahara,"We must sign this particular budget, and based on say Professor Yemi Oshibu the
+",0.25,1.74,routine,routine,True
+benchmark/audio/pcm_25.wav,pcm,whisper," We must sign this particular budget. And there's also Professor Yemi Oshibajo, the acting president,",0.312,0.6,routine,routine,True
+benchmark/audio/pcm_25.wav,pcm,assemblyai,"We must sign this particular budget. And based on, say, Professor Yemi Osinbajo, the acting president,",0.188,2.96,routine,routine,True
+benchmark/audio/pcm_25.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_26.wav,pcm,sahara,"And Abuja will grow to a point that the land mass will expand to all of these area. I believe them very strongly. I think what we do? People can come to Abi when you come to Abuja, I try find out. Yes when we come, like what the last person we talk there, things hard for all of us
+",0.29,1.76,routine,routine,True
+benchmark/audio/pcm_26.wav,pcm,whisper," and Abuja will grow to a point that the land mass will expand to all of this area. I believe that very strongly. I think what we'll do, people can come to Abuja. When you come to Abuja, try to find out, yes, when we come, like what the last person we talked to, things are hard for all of us.",0.323,0.7,routine,routine,True
+benchmark/audio/pcm_26.wav,pcm,assemblyai,"and Abuja will grow to a point that the landmass will expand to all of this area. I believe them very strongly. I think what we'll do, people can come to Abuja. When you come to Abuja, try to find out. Yes, when we come, like what the last person, when you talk there, things hard for all of us.",0.306,5.26,routine,routine,True
+benchmark/audio/pcm_26.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_27.wav,pcm,sahara,"Can overpower well trained police officers. Now look when it when it comes to calculation, when it comes to calculation of whether its military or policing, right, example, you have
+",0.581,1.69,routine,routine,True
+benchmark/audio/pcm_27.wav,pcm,whisper," can overpower well-trained police officers. Now look, when it comes to calculation, when it comes to calculation of whether it's military or policing, right, for example, you have,",0.677,0.52,routine,routine,True
+benchmark/audio/pcm_27.wav,pcm,assemblyai,"can overpower well-trained police officers. Now look, when it comes to calculation, when it comes to calculation of, um, whether it's military or policing, right, for example, you have",0.71,2.94,routine,routine,True
+benchmark/audio/pcm_27.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_28.wav,pcm,sahara,"Monies that have not been properly used
+",0.714,1.67,routine,routine,True
+benchmark/audio/pcm_28.wav,pcm,whisper, Monies that have not been properly used.,0.857,0.32,routine,routine,True
+benchmark/audio/pcm_28.wav,pcm,assemblyai,Monies that have not been properly used.,0.857,2.86,routine,routine,True
+benchmark/audio/pcm_28.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_29.wav,pcm,sahara,"Melvin, what be your final? What be your final answer
+",0.455,2.02,routine,routine,True
+benchmark/audio/pcm_29.wav,pcm,whisper," Melvin, what will be your final answer? What will be your final answer?",0.636,0.38,routine,routine,True
+benchmark/audio/pcm_29.wav,pcm,assemblyai,"Melvin, what will be your final answer? What will be your final answer?",0.636,2.91,routine,routine,True
+benchmark/audio/pcm_29.wav,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/yo_01.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_01.mp3',,,urgent,error,False
+benchmark/audio/yo_01.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_01.mp3',,,urgent,error,False
+benchmark/audio/yo_01.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_01.mp3',,,urgent,error,False
+benchmark/audio/yo_01.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_01.mp3',,,urgent,error,False
+benchmark/audio/yo_02.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_02.mp3',,,routine,error,False
+benchmark/audio/yo_02.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_02.mp3',,,routine,error,False
+benchmark/audio/yo_02.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_02.mp3',,,routine,error,False
+benchmark/audio/yo_02.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_02.mp3',,,routine,error,False
+benchmark/audio/yo_03.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_03.mp3',,,routine,error,False
+benchmark/audio/yo_03.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_03.mp3',,,routine,error,False
+benchmark/audio/yo_03.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_03.mp3',,,routine,error,False
+benchmark/audio/yo_03.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_03.mp3',,,routine,error,False
+benchmark/audio/yo_04.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_04.mp3',,,routine,error,False
+benchmark/audio/yo_04.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_04.mp3',,,routine,error,False
+benchmark/audio/yo_04.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_04.mp3',,,routine,error,False
+benchmark/audio/yo_04.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_04.mp3',,,routine,error,False
+benchmark/audio/yo_05.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_05.mp3',,,routine,error,False
+benchmark/audio/yo_05.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_05.mp3',,,routine,error,False
+benchmark/audio/yo_05.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_05.mp3',,,routine,error,False
+benchmark/audio/yo_05.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_05.mp3',,,routine,error,False
+benchmark/audio/yo_06.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_06.mp3',,,routine,error,False
+benchmark/audio/yo_06.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_06.mp3',,,routine,error,False
+benchmark/audio/yo_06.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_06.mp3',,,routine,error,False
+benchmark/audio/yo_06.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_06.mp3',,,routine,error,False
+benchmark/audio/yo_07.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_07.mp3',,,routine,error,False
+benchmark/audio/yo_07.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_07.mp3',,,routine,error,False
+benchmark/audio/yo_07.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_07.mp3',,,routine,error,False
+benchmark/audio/yo_07.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_07.mp3',,,routine,error,False
+benchmark/audio/yo_08.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_08.mp3',,,routine,error,False
+benchmark/audio/yo_08.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_08.mp3',,,routine,error,False
+benchmark/audio/yo_08.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_08.mp3',,,routine,error,False
+benchmark/audio/yo_08.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_08.mp3',,,routine,error,False
+benchmark/audio/yo_09.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_09.mp3',,,routine,error,False
+benchmark/audio/yo_09.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_09.mp3',,,routine,error,False
+benchmark/audio/yo_09.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_09.mp3',,,routine,error,False
+benchmark/audio/yo_09.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_09.mp3',,,routine,error,False
+benchmark/audio/yo_10.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_10.mp3',,,routine,error,False
+benchmark/audio/yo_10.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_10.mp3',,,routine,error,False
+benchmark/audio/yo_10.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_10.mp3',,,routine,error,False
+benchmark/audio/yo_10.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_10.mp3',,,routine,error,False
+benchmark/audio/yo_11.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_11.mp3',,,routine,error,False
+benchmark/audio/yo_11.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_11.mp3',,,routine,error,False
+benchmark/audio/yo_11.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_11.mp3',,,routine,error,False
+benchmark/audio/yo_11.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_11.mp3',,,routine,error,False
+benchmark/audio/yo_12.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_12.mp3',,,routine,error,False
+benchmark/audio/yo_12.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_12.mp3',,,routine,error,False
+benchmark/audio/yo_12.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_12.mp3',,,routine,error,False
+benchmark/audio/yo_12.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_12.mp3',,,routine,error,False
+benchmark/audio/yo_13.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_13.mp3',,,routine,error,False
+benchmark/audio/yo_13.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_13.mp3',,,routine,error,False
+benchmark/audio/yo_13.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_13.mp3',,,routine,error,False
+benchmark/audio/yo_13.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_13.mp3',,,routine,error,False
+benchmark/audio/yo_14.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_14.mp3',,,routine,error,False
+benchmark/audio/yo_14.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_14.mp3',,,routine,error,False
+benchmark/audio/yo_14.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_14.mp3',,,routine,error,False
+benchmark/audio/yo_14.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_14.mp3',,,routine,error,False
+benchmark/audio/yo_15.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_15.mp3',,,routine,error,False
+benchmark/audio/yo_15.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_15.mp3',,,routine,error,False
+benchmark/audio/yo_15.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_15.mp3',,,routine,error,False
+benchmark/audio/yo_15.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_15.mp3',,,routine,error,False
+benchmark/audio/yo_16.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_16.mp3',,,routine,error,False
+benchmark/audio/yo_16.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_16.mp3',,,routine,error,False
+benchmark/audio/yo_16.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_16.mp3',,,routine,error,False
+benchmark/audio/yo_16.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_16.mp3',,,routine,error,False
+benchmark/audio/yo_17.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_17.mp3',,,routine,error,False
+benchmark/audio/yo_17.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_17.mp3',,,routine,error,False
+benchmark/audio/yo_17.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_17.mp3',,,routine,error,False
+benchmark/audio/yo_17.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_17.mp3',,,routine,error,False
+benchmark/audio/yo_18.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_18.mp3',,,routine,error,False
+benchmark/audio/yo_18.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_18.mp3',,,routine,error,False
+benchmark/audio/yo_18.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_18.mp3',,,routine,error,False
+benchmark/audio/yo_18.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_18.mp3',,,routine,error,False
+benchmark/audio/yo_19.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_19.mp3',,,routine,error,False
+benchmark/audio/yo_19.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_19.mp3',,,routine,error,False
+benchmark/audio/yo_19.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_19.mp3',,,routine,error,False
+benchmark/audio/yo_19.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_19.mp3',,,routine,error,False
+benchmark/audio/yo_20.mp3,yo,sahara,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_20.mp3',,,routine,error,False
+benchmark/audio/yo_20.mp3,yo,whisper,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_20.mp3',,,routine,error,False
+benchmark/audio/yo_20.mp3,yo,assemblyai,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_20.mp3',,,routine,error,False
+benchmark/audio/yo_20.mp3,yo,huggingface_mms,ERROR: [Errno 2] No such file or directory: 'benchmark/audio/yo_20.mp3',,,routine,error,False
+benchmark/audio/pcm_01.mp3,pcm,sahara,"I don dey get headache and my vision dey blurry for three days
+",0.077,2.78,routine,routine,True
+benchmark/audio/pcm_01.mp3,pcm,whisper, I don't get headache and my vision day blurry for three days.,0.231,0.77,routine,routine,True
+benchmark/audio/pcm_01.mp3,pcm,assemblyai,I dont dey get headache and my vision dey blurry for three days,0.154,2.84,routine,routine,True
+benchmark/audio/pcm_01.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_02.mp3,pcm,sahara,"My stomach don dey pain me since this morning and the pain dey very sharp
+",0.067,2.68,urgent,urgent,True
+benchmark/audio/pcm_02.mp3,pcm,whisper, My stomach done the pain me since this morning and the pain they very sharp.,0.2,0.75,urgent,urgent,True
+benchmark/audio/pcm_02.mp3,pcm,assemblyai,"Kwa hivyo, kwa hivyo hivyo, hivyo, hivyo, hivyo.",1.0,2.93,urgent,routine,False
+benchmark/audio/pcm_02.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,urgent,error,False
+benchmark/audio/pcm_03.mp3,pcm,sahara,"I don't dey cough and my body weak since
+",0.2,2.05,routine,routine,True
+benchmark/audio/pcm_03.mp3,pcm,whisper, I don't day cough and my body weak since yesterday.,0.2,0.41,routine,routine,True
+benchmark/audio/pcm_03.mp3,pcm,assemblyai,Kwa hivyo ni kufa na wakati ya wakati kwa hivyo.,1.0,2.88,routine,routine,True
+benchmark/audio/pcm_03.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_04.mp3,pcm,sahara,"I dey get fever and my body dey shake since last night.
+",0.0,2.18,routine,routine,True
+benchmark/audio/pcm_04.mp3,pcm,whisper, I dey get fever and my body dey shake since last night.,0.0,0.54,routine,routine,True
+benchmark/audio/pcm_04.mp3,pcm,assemblyai,I dey get fever and my body dey shake since last night.,0.0,2.85,routine,routine,True
+benchmark/audio/pcm_04.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_05.mp3,pcm,sahara,"I get injury for leg and blood dey comot well well im scared
+",0.231,2.17,urgent,routine,False
+benchmark/audio/pcm_05.mp3,pcm,whisper, I get injury for leg and blood they come out way way. I'm scared.,0.385,0.39,urgent,urgent,True
+benchmark/audio/pcm_05.mp3,pcm,assemblyai,I get injury for leg and blood dey come out weh weh am scared.,0.385,2.88,urgent,routine,False
+benchmark/audio/pcm_05.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,urgent,error,False
+benchmark/audio/pcm_06.mp3,pcm,sahara,"My chest dey pain me and my breathing no normal
+",0.1,2.48,urgent,urgent,True
+benchmark/audio/pcm_06.mp3,pcm,whisper," My chest, they pain me and my breathing no normal.",0.2,0.31,urgent,urgent,True
+benchmark/audio/pcm_06.mp3,pcm,assemblyai,"Kwa hivyo kutoka kwa hivyo, na kwa hivyo kwa hivya, hivyo kwa hivayo.",1.3,2.88,urgent,routine,False
+benchmark/audio/pcm_06.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,urgent,error,False
+benchmark/audio/pcm_07.mp3,pcm,sahara,"I dey shit water water sheet since 2 days now and i feel dizzy
+",0.214,2.43,routine,routine,True
+benchmark/audio/pcm_07.mp3,pcm,whisper, I did shit water water shit since two days now and I feel dizzy.,0.071,0.29,routine,routine,True
+benchmark/audio/pcm_07.mp3,pcm,assemblyai,I dey shit water water shit since 2 days now and I feel dizzy.,0.071,2.94,routine,routine,True
+benchmark/audio/pcm_07.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_08.mp3,pcm,sahara,"My head dey turn me and i no fit stand up properly
+",0.083,2.45,routine,routine,True
+benchmark/audio/pcm_08.mp3,pcm,whisper, My head they turn me and I no feel stand up properly.,0.167,0.52,routine,routine,True
+benchmark/audio/pcm_08.mp3,pcm,assemblyai,My head dey turn me and I no fit stand up properly.,0.0,2.87,routine,routine,True
+benchmark/audio/pcm_08.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_09.mp3,pcm,sahara,"I don dey vomit since yesterday and i no get appetite
+",0.091,2.19,routine,routine,True
+benchmark/audio/pcm_09.mp3,pcm,whisper, I don't dey vomit since yesterday and I no get appetite.,0.091,0.4,routine,routine,True
+benchmark/audio/pcm_09.mp3,pcm,assemblyai,"Kwa hivyo kwa hivyo hivyo, na hivyo kutumia kutumia.",1.0,2.98,routine,routine,True
+benchmark/audio/pcm_09.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_10.mp3,pcm,sahara,"I dey feel weak and tired for some days now
+",0.1,2.18,routine,routine,True
+benchmark/audio/pcm_10.mp3,pcm,whisper, I dey feel weak and tired for some days now.,0.0,0.31,routine,routine,True
+benchmark/audio/pcm_10.mp3,pcm,assemblyai,I de feel weak and tired for some days now.,0.1,2.92,routine,routine,True
+benchmark/audio/pcm_10.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_11.mp3,pcm,sahara,"My back dey pain me very well since i wake up this
+",0.077,2.37,moderate,moderate,True
+benchmark/audio/pcm_11.mp3,pcm,whisper," My back, they pay me very well since I wake up this morning.",0.231,0.36,moderate,routine,False
+benchmark/audio/pcm_11.mp3,pcm,assemblyai,"Kwa hivyo, kwa hivyo kwa hivyo, kwa hiviyo kwa hivi.",1.0,2.89,moderate,routine,False
+benchmark/audio/pcm_11.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,moderate,error,False
+benchmark/audio/pcm_12.mp3,pcm,sahara,"I get sore throat and e dey pain me wen i swallow food
+",0.154,2.2,routine,routine,True
+benchmark/audio/pcm_12.mp3,pcm,whisper, I get sore throat and it a pain me when I swallow food.,0.154,0.51,routine,routine,True
+benchmark/audio/pcm_12.mp3,pcm,assemblyai,"Kwa hivyo kwa hivyo, kwa hivyo, kwa hiviyo, kwa hiviyo, kwa",1.0,2.96,routine,routine,True
+benchmark/audio/pcm_12.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_13.mp3,pcm,sahara,"I dey hear ringing sound for my ear and i no fit hear well
+",0.071,2.11,routine,routine,True
+benchmark/audio/pcm_13.mp3,pcm,whisper, I did hear ringing sound from my ear and I know if it hear well.,0.357,0.42,routine,routine,True
+benchmark/audio/pcm_13.mp3,pcm,assemblyai,I dey hear ringing sound for my ear and I no fit hear well.,0.0,2.89,routine,routine,True
+benchmark/audio/pcm_13.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_14.mp3,pcm,sahara,"I just dey piss plenty plenty times and e dey pepper me
+",0.083,2.08,routine,routine,True
+benchmark/audio/pcm_14.mp3,pcm,whisper, I just they piss plenty plenty times and he they pepper me.,0.25,0.4,routine,routine,True
+benchmark/audio/pcm_14.mp3,pcm,assemblyai,"I just dey piss plenty, plenty times and e dey pepper me.",0.083,5.07,routine,routine,True
+benchmark/audio/pcm_14.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_15.mp3,pcm,sahara,"My eyes dey very red and it's been itching me since yesterday.
+",0.0,2.59,routine,routine,True
+benchmark/audio/pcm_15.mp3,pcm,whisper, My eyes stay very red and it's been itching me since yesterday.,0.083,0.63,routine,routine,True
+benchmark/audio/pcm_15.mp3,pcm,assemblyai,My eye is still very red and it's been itching me since yesterday.,0.25,2.8,routine,routine,True
+benchmark/audio/pcm_15.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_16.mp3,pcm,sahara,"I suddenly felt very dizzy and i almost fall for ground
+",0.091,2.09,routine,routine,True
+benchmark/audio/pcm_16.mp3,pcm,whisper, I suddenly felt very dizzy and I almost fell for ground.,0.091,0.72,routine,moderate,False
+benchmark/audio/pcm_16.mp3,pcm,assemblyai,"Kwa hivyo, kwa hivyo kwa hivyo, kwa hiviyo kwa hivio, kwa hiviyo kwa hiviyo.",1.273,2.92,routine,routine,True
+benchmark/audio/pcm_16.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_17.mp3,pcm,sahara,"I get wound for leg wey swell up and e dey comot water.
+",0.0,2.13,routine,routine,True
+benchmark/audio/pcm_17.mp3,pcm,whisper," I get wound for leg, waist swell up and idde kummo wota.",0.462,0.34,routine,routine,True
+benchmark/audio/pcm_17.mp3,pcm,assemblyai,I get wound for leg waist swell up and ide come more water.,0.308,2.92,routine,routine,True
+benchmark/audio/pcm_17.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/pcm_18.mp3,pcm,sahara,"I dey get serious tooth pain and my face don dey swell up
+",0.077,2.54,urgent,urgent,False
+benchmark/audio/pcm_18.mp3,pcm,whisper, I dey get serious tooth pain and my face don dey swell up.,0.0,0.47,urgent,urgent,False
+benchmark/audio/pcm_18.mp3,pcm,assemblyai,I dey get serious tooth pain and my face don dey swell up.,0.0,2.86,urgent,urgent,False
+benchmark/audio/pcm_18.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,urgent,error,False
+benchmark/audio/pcm_19.mp3,pcm,sahara,"I dey struggle to breathe especially when i wan waka or climb staircase.
+",0.0,2.14,urgent,urgent,True
+benchmark/audio/pcm_19.mp3,pcm,whisper," I did struggle to breathe, especially when I won waka or climb staircase.",0.231,0.34,urgent,urgent,True
+benchmark/audio/pcm_19.mp3,pcm,assemblyai,I dey struggle to breathe especially when I won worka or climb staircase.,0.154,2.89,urgent,urgent,True
+benchmark/audio/pcm_19.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,urgent,error,False
+benchmark/audio/pcm_20.mp3,pcm,sahara,"I take one medicine now i come dey get crawcro for body and my mouth dey swell up
+",0.278,2.07,routine,routine,True
+benchmark/audio/pcm_20.mp3,pcm,whisper," I take one medicine. Now I can't digret, crawl for body and my mouth they swell up.",0.333,0.54,routine,routine,True
+benchmark/audio/pcm_20.mp3,pcm,assemblyai,"I take one medicine, now I can't get crawl crawl for body and my mouth they swell up.",0.389,2.93,routine,routine,True
+benchmark/audio/pcm_20.mp3,pcm,huggingface_mms,"ERROR: 422: Hugging Face MMS has no language adapter for 'pcm' — documented model gap, not a bug.",,,routine,error,False
+benchmark/audio/ak_01.mp3,ak,sahara,"Me ti paa me na m’ani so abere me bɛyɛ swidan.
+",0.538,10.4,routine,urgent,False
+benchmark/audio/ak_01.mp3,ak,whisper, I am going to take a break for three days.,0.846,0.3,routine,routine,True
+benchmark/audio/ak_01.mp3,ak,assemblyai,mitsiphae minamenisusu ebrimi beya three days,0.923,2.81,routine,routine,True
+benchmark/audio/ak_01.mp3,ak,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/ak_02.mp3,ak,sahara,"Me yam ayɛ me ya fiti anɔpa, na ano yɛ den.
+",0.364,3.14,routine,urgent,False
+benchmark/audio/ak_02.mp3,ak,whisper," I am a woman, I am a woman, I am a woman.",1.091,0.35,routine,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 200000, Requested 460. Please try again in 3m18.72s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_02.mp3,ak,assemblyai,meemayeme ya futsianopanaano ya dinao,0.909,3.01,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199993, Requested 663. Please try again in 4m43.392s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199993, Requested 460. Please try again in 3m15.696s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_02.mp3,ak,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,urgent,error,False
+benchmark/audio/ak_03.mp3,ak,sahara,"Me bɔ wa na mayɛ mmerɛ ɛhyɛ aseɛ nnora.
+",0.625,3.0,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199986, Requested 751. Please try again in 5m18.384s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199986, Requested 754. Please try again in 5m19.68s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_03.mp3,ak,whisper," May Bowa, Nama Yemre, Eshaseye Enrua.",1.0,0.33,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199985, Requested 665. Please try again in 4m40.8s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199985, Requested 665. Please try again in 4m40.8s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",True
+benchmark/audio/ak_03.mp3,ak,assemblyai,mebowa namayemre ehlasiye nna,1.0,2.83,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199978, Requested 700. Please try again in 4m52.895999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199978, Requested 662. Please try again in 4m36.48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_03.mp3,ak,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/ak_04.mp3,ak,sahara,"Menyem, na mente akwadaa no nkekaeɛ fiti nnora anadwo.
+",0.636,3.72,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199969, Requested 757. Please try again in 5m13.632s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199969, Requested 757. Please try again in 5m13.632s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",True
+benchmark/audio/ak_04.mp3,ak,whisper, My name is Enra Anadjo.,1.0,0.36,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199968, Requested 706. Please try again in 4m51.168s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199968, Requested 743. Please try again in 5m7.152s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_04.mp3,ak,assemblyai,"Menyem, na mente akolanen kikaye fiti enra anadjo.",0.818,2.98,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199961, Requested 757. Please try again in 5m10.176s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199961, Requested 668. Please try again in 4m31.728s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_04.mp3,ak,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,urgent,error,False
+benchmark/audio/ak_05.mp3,ak,sahara,"Mewɔ hi feba, na mehopo fiti nura anadwo.
+",0.727,3.08,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199954, Requested 702. Please try again in 4m43.392s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199953, Requested 755. Please try again in 5m5.856s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_05.mp3,ak,whisper, I have high fever and I can't walk because I'm not wearing a mask.,1.091,0.74,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199952, Requested 702. Please try again in 4m42.528s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199952, Requested 664. Please try again in 4m26.111999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_05.mp3,ak,assemblyai,mewohai fever na mehoepopo futsi enwa anatjho,0.818,2.82,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199945, Requested 667. Please try again in 4m24.383999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199945, Requested 753. Please try again in 5m1.536s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_05.mp3,ak,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,urgent,error,False
+benchmark/audio/ak_06.mp3,ak,sahara,"Mogya retu me, na mesuro.
+",0.667,3.08,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199938, Requested 660. Please try again in 4m18.336s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199937, Requested 696. Please try again in 4m33.455999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_06.mp3,ak,whisper, Moja e etumi na mishuro.,0.833,0.33,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199936, Requested 746. Please try again in 4m54.623999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199936, Requested 658. Please try again in 4m16.608s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_06.mp3,ak,assemblyai,moja e e tshomi namisišo yo,1.0,2.77,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199930, Requested 660. Please try again in 4m14.88s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199930, Requested 694. Please try again in 4m29.567999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_06.mp3,ak,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/ak_07.mp3,ak,sahara,"Me kɔdɛ me ye
+",0.8,2.92,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199923, Requested 696. Please try again in 4m27.408s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199923, Requested 658. Please try again in 4m10.992s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_07.mp3,ak,whisper, My name is Yasemi Humedien.,1.0,0.53,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199921, Requested 696. Please try again in 4m26.543999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199921, Requested 658. Please try again in 4m10.128s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_07.mp3,ak,assemblyai,mekoko e ya mehase mehumeding ya,0.9,2.82,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199914, Requested 696. Please try again in 4m23.52s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199914, Requested 695. Please try again in 4m23.088s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_07.mp3,ak,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/ak_08.mp3,ak,sahara,"Manya Dia for de pastuda na m'ani so abri me.
+",0.714,3.67,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199906, Requested 700. Please try again in 4m21.792s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199906, Requested 666. Please try again in 4m7.104s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_08.mp3,ak,whisper, I have had diarrhea for the past two days and I have to take a break.,0.714,0.55,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199904, Requested 700. Please try again in 4m20.928s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199904, Requested 666. Please try again in 4m6.24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_08.mp3,ak,assemblyai,Menya diarrhea for the past 2 days.,0.714,3.04,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199897, Requested 751. Please try again in 4m39.936s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199896, Requested 694. Please try again in 4m14.88s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_08.mp3,ak,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/ak_09.mp3,ak,sahara,"Menyem, na me nan ne me nsa nyinaa honoo.
+",0.3,2.57,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199890, Requested 750. Please try again in 4m36.48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199890, Requested 752. Please try again in 4m37.344s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_09.mp3,ak,whisper, I am the one who has the power to do good.,1.1,0.39,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199889, Requested 664. Please try again in 3m58.896s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199889, Requested 661. Please try again in 3m57.6s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_09.mp3,ak,assemblyai,menyemna menaene mensanina hong hong,1.0,2.86,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199882, Requested 699. Please try again in 4m10.992s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199882, Requested 661. Please try again in 3m54.576s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/ak_09.mp3,ak,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/ak_10.mp3,ak,sahara,"M’ani so biri me, na mentumi nnyina yie.
+",0.8,11.37,urgent,routine,False
+benchmark/audio/ak_10.mp3,ak,whisper, I am Brimi and I am a teacher at EA.,1.0,0.24,urgent,routine,False
+benchmark/audio/ak_10.mp3,ak,assemblyai,menisubhrimi namindzimindzina iye,1.0,2.86,urgent,routine,False
+benchmark/audio/ak_10.mp3,ak,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,urgent,error,False
+benchmark/audio/am_01.mp3,am,sahara,"ለ3 ቀናት headache ወይስ ራስ ምታት ነበረኝ የማየት ችሎታም ደብዛዛ ወይስ እምቡላሪ ነው።
+",0.692,18.91,routine,routine,True
+benchmark/audio/am_01.mp3,am,whisper, lehs wos kanāt A.D.E.A.D.C.Y. ''RASMITATS NABERN'' Ya ma it ድርስ ድስስስ ድመአስፚእ፣ ድስስ ድስስትስስ ጠ ድስስስስትስረድ ስስትስስ ድ' በደስ ድስት በዹትት ስኈት ድስት ድትስት ይስስ..,1.923,4.87,routine,routine,True
+benchmark/audio/am_01.mp3,am,assemblyai,"Leso skanat, edik wais rasmitat nabare. Yamait chulo taem, dubzadza wais blari nau.",1.0,3.04,routine,routine,True
+benchmark/audio/am_01.mp3,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_02.mp3,am,sahara,"ከጥዋት ጀምሮ ሆዴን በጣም እያመ የሚል ነው። በጣም ይወጋኛል sharp stomach pain
+",0.538,2.72,urgent,moderate,False
+benchmark/audio/am_02.mp3,am,whisper, ስስረሰስሴዻሽስሩዹ ስስስስችሳ ስስሳስችስሯችሶቱ ድሸስሩሰዙችሰዱደሼሰዥለሰችሬሪዣ.,1.0,2.5,urgent,routine,False
+benchmark/audio/am_02.mp3,am,assemblyai,"Kad va, džemro, udin bet amin jame minu. Bet amin juo ganyar. It is very sharp stomach pain.",1.077,2.94,urgent,urgent,True
+benchmark/audio/am_02.mp3,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,urgent,error,False
+benchmark/audio/am_03.mp3,am,sahara,"እያሳልኩ ነው እና በጣም የድካም ስሜትም ይሰማኛል ትላንትና ነው ደሞ የጀመረኝ Im so feel very weak
+",0.5,2.47,moderate,moderate,True
+benchmark/audio/am_03.mp3,am,whisper, ኅልኖ ውኖ፱ ጜሴናዱ ስናኝስሚ እኝኗ ንጣጋላራጀን እኝፊዼ ለኑውጁደን ጛጇስጋኑል፛ምን ፈናደጀል መጨደቅኚቊራ እነግገስ ለኑዱቪ ደማጋውኖ፡ላ ስኝ,1.0,3.06,moderate,routine,False
+benchmark/audio/am_03.mp3,am,assemblyai,या सब खुनो ना बताम इदिकाम सुमेतिम सम्मान्यार तनां तनानो रमो मेजिम मरें आम सो फिल वेरी वीक,1.125,5.19,moderate,moderate,True
+benchmark/audio/am_03.mp3,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,moderate,error,False
+benchmark/audio/am_04.mp3,am,sahara,"ከትናንት ጀምሮ እያስታወኩ ነው፣ እናም ምንም አይነት ምግብ ሆዴ ውስጥ መቆየት አልቻለም
+",0.25,2.62,routine,routine,True
+benchmark/audio/am_04.mp3,am,whisper, ስሣሰስሆነስንለ፣ ስርምስለልምያሪ ስለስስስትያ ስሲምችችችትችችችትቶ ነነነዉያ እርሪ የሚኬስ ነነነስንልረሚንንንደች እነነው፣ ነነድስችች,1.0,2.44,routine,routine,True
+benchmark/audio/am_04.mp3,am,assemblyai,"Katunan tujamro, yasta wakno. Nam, manamayenet mukup horius, mukoyet alchalam.",1.0,2.93,routine,routine,True
+benchmark/audio/am_04.mp3,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_05.mp3,am,sahara,"Since ከ2 ቀናት በፊት ጀምሮ ከፍተኛ favor ትኩረት አለብኝ እና ለስናት ከትላንትና ማታ ጀምሮ ደግሞ እየተቀጠቀጥክ ነው።
+",0.5,2.44,urgent,urgent,True
+benchmark/audio/am_05.mp3,am,whisper,,1.0,2.97,urgent,routine,False
+benchmark/audio/am_05.mp3,am,assemblyai,"ḏḴḏḳḱḱᶜḱ ḍḱᵐᶜᶜᵐᵉ ḍᶱᵐ ḍᵃᶜᴱᶜ ḍᴱᵐ, ḍựᵐ ḍᵒᶜựᶜ ḍʱᵐ.",1.0,5.28,urgent,routine,False
+benchmark/audio/am_05.mp3,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,urgent,error,False
+benchmark/audio/am_06.mp3,am,sahara,"አሞኑ my predebili ላይ ነኝ እና ከፍተኛ የደም መፍሰስ ወይስ bleeding እያጋጠመኝ ነው። ፈርቻለሁ በጣም
+",0.588,13.88,urgent,urgent,False
+benchmark/audio/am_06.mp3,am,whisper," Амон Майпрээд ягар обайлайний. Нъ, гациг тайна ядм навсስ, вэለዎለሔላለ ማመምልለላለለለወለርሎሎላለሻማ፽ሎ. Қарчалууда.",1.0,3.72,urgent,routine,False
+benchmark/audio/am_06.mp3,am,assemblyai,Amur my pride. Ya oraba ilayni. Na kafzanya yedam. Nafsas wis bleeding ya katamina. Fertjaluta.,0.882,3.05,urgent,routine,False
+benchmark/audio/am_06.mp3,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,urgent,error,False
+benchmark/audio/am_07.mp3,am,sahara,"በጥልቀት ስታነፈስ ደረቴን ያመኛል stabbing pain በጣም ይወጋኛል
+",0.6,2.54,urgent,urgent,True
+benchmark/audio/am_07.mp3,am,whisper, ቨመሚህና ልርህከርል ማረጋከጋስም እሊመዅለጋሞእሰራሉምለሱቫ አደኖ እመስትርባስልክልህማግሊሡ? Like stopping pain Бацайн вэ гайнал,1.1,4.73,urgent,routine,False
+benchmark/audio/am_07.mp3,am,assemblyai,"But it'll cut, it'll fast, 13, yeah, man. It's like stabbing pain, but I'm okay now.",1.3,2.93,urgent,moderate,False
+benchmark/audio/am_07.mp3,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,urgent,error,False
+benchmark/audio/am_08.mp3,am,sahara,"ለ2 ቀናት ጥቅማት ወይስ አዳሪያ እያጋጠመኝ ነው። እና የማዞር ስሜትም አለብኝ ስላይ ክፍል dizy
+",0.733,2.62,routine,routine,True
+benchmark/audio/am_08.mp3,am,whisper, ሳልለለ ሲለለ ርለሊሰመልልል እንእነነላመ ርሎለልልለልልል በላሊመልል በለሊላለለል ነደለል በላመልልልልለልል እንነለልልልልልልልልልልልል,1.0,2.03,routine,routine,True
+benchmark/audio/am_08.mp3,am,assemblyai,მეეადი მაექი ამა მქარი ქაალანასავაიამ არ დაულისიქრაორქოატლქტათაშიទრა면ოქ,1.0,5.2,routine,routine,True
+benchmark/audio/am_08.mp3,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_09.mp3,am,sahara,"pregnant ነኝ ወይስ ማለቴ ነፍስ ጦር ነኝ እናማ በእግሮች እና በእጆቼ ላይ swilling ወይስ እብጠት አለብኝ
+",0.562,2.84,routine,routine,True
+benchmark/audio/am_09.mp3,am,whisper,ልንደላኢለሴህሚለማህርላሚልንደህርሲልዲላረያለላር መርለሚልልልህጠያሊደርመለሡራምአልልለሳራም የረሮርመረማሜሁልንደማማስሁልለህም,1.0,5.08,routine,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199657, Requested 949. Please try again in 4m21.792s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/am_09.mp3,am,assemblyai,"परग्नांत नहीं, वो इस मालते हैं नब्बे से तोड़ नहीं। नामा विग्रोचना विजुचलाई स्वीलिंगोइस दफ्तर तालपी।",1.0,5.25,routine,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199644, Requested 737. Please try again in 2m44.592s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/am_09.mp3,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,routine,error,False
+benchmark/audio/am_10.mp3,am,sahara,"confuse እገኛለሁ ግራ ጋር ተጋብቻለሁ እና በትክክል መቆም አልቻልኩም
+",0.75,2.68,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199644, Requested 766. Please try again in 2m57.12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199638, Requested 801. Please try again in 3m9.648s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/am_10.mp3,am,whisper," Конфис газ н'эдёг, рэх, дэ гăгб ид'чагдx. Нэд, хэдэг цъгхал мукум алиц царгус.",1.625,3.18,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199644, Requested 766. Please try again in 2m57.12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199630, Requested 771. Please try again in 2m53.232s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/am_10.mp3,am,assemblyai,"Konfisk ganiava, praga tagavį čia. Na, pati, kad kalbam alčiarkom.",1.25,2.95,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199644, Requested 766. Please try again in 2m57.12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}","ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199623, Requested 753. Please try again in 2m42.432s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",False
+benchmark/audio/am_10.mp3,am,huggingface_mms,"ERROR: 502: Hugging Face MMS error: {""error"":""Model not supported by provider hf-inference""}",,,"ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kssyk4jxem4s3sqwqcmm9q4f` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199644, Requested 766. Please try again in 2m57.12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",error,False
