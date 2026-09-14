@@ -91,18 +91,17 @@ for i, text in enumerate(AKAN_TEXTS, start=1):
 
 # --- Amharic (Ibsa) — rows 4 and 5 corrected per confirmed audio content ---
 AMHARIC_TEXTS = [
-    "ለሶስት ቀናት headache ወይም ራስ ምታት ነበረብኝ:: የማየት ችሎታዬም ድብዛዛ ወይም blurry ነው::",
-    "ከጥዋት ጀምሮ ሆዴን በጣም እያመመኝ ነው:: በጣምም ይወጋኛል:: It's very sharp stomach pain.",
-    "እያሳልኩኝ ነው:: እና በጣም የድካም ስሜትም ይሰማኛል:: ትናንትና ነው ደግሞም የጀመረኝ:: I'm so feel very weak.",
+    "ለሶስት ቀናት headache ወይም ራሴን ምታት ነበረብኝ:: የማየት ችሎታዬም ድብዛዛ ወይም blurry ነው::",
+    "ከጥዋት ጀምሮ ሆዴን በጣም እያመመኝ ነው:: በጣም ይወጋኛል:: It's very sharp stomach pain.",
+    "እያሳልኩኝ ነው:: እና በጣም የድካም ስሜትም ይሰማኛል:: ትናንትና ነው ደግሞ የጀመረኝ:: I'm so feel very weak.",
     "ከትናንት ጀምሮ እያስታወክኩ ነው:: እናም ምንም አይነት ምግብ ሆዴ ውስጥ መቆየት አልቻለም::",
     "Since ከሁለት ቀናት በፊት ጀምሮ ከፍተኛ fever ትኩሳት አለብኝ:: እና last night ከትናንትና ማታ ጀምሮ ደግሞ እየተንቀጠቀጥኩ ነው::",
     "I'm on my period. የወር አበባዬ ላይ ነኝ:: እና ከፍተኛ የደም መፍሰስ ወይም bleeding አጋጥሞኛል:: ፈርቻለሁ በጣም::",
-    "በጥልቀት ስተነፍስ ደረቴን ያመኛል:: It's like stabbing pain. በጣምም ይወጋኛል::",
+    "በጥልቀት ስተነፍስ ደረቴን ያመኛል:: It's like stabbing pain. በጣም ይወጋኛል::",
     "ለሁለት ቀናት ጥቅምጥ ወይም diarrhea እያጋጠመኝ ነው:: እና የማዞር ስሜት አለብኝ:: It's like feel dizzy.",
     "Pregnant ነኝ:: ወይም ማለቴ ነፍሰ ጡር ነኝ:: እናማ በእግሮቼ እና በእጆቼ ላይ swelling ወይም እብጠት አለብኝ::",
     "Confused ሆኛለሁ:: በጣም ተጋብቻለሁ:: እና በትክክል መቆም አልቻልኩም::",
 ]
-
 for i, text in enumerate(AMHARIC_TEXTS, start=1):
     TEAM_ROWS.append({
         "audio_path": f"benchmark/audio/am_{i:02d}.mp3",

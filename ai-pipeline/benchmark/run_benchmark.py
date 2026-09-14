@@ -58,6 +58,22 @@ def word_error_rate(reference: str, hypothesis: str) -> float:
     return d[len(ref_words)][len(hyp_words)] / max(len(ref_words), 1)
 
 
+def transcribe_with_sahara_retrying(audio_path, language, max_retries=3):
+    """Wraps transcribe_with_sahara with retry-on-429 handling, since
+    Sahara's sync endpoint is rate-limited to 30 requests/minute and a
+    benchmark run fires many calls back-to-back."""
+    for attempt in range(max_retries + 1):
+        try:
+            return transcribe_with_sahara(audio_path, language_code=language)
+        except Exception as e:
+            if "429" in str(e) and attempt < max_retries:
+                wait = 3 * (attempt + 1)
+                print(f"  [sahara] rate limited, waiting {wait}s (attempt {attempt + 1}/{max_retries})")
+                time.sleep(wait)
+                continue
+            raise
+
+
 def get_downstream_result(transcript: str, language_code: str) -> dict:
     """Runs any transcript through the real triage pipeline."""
     lang_name = get_full_language_name(language_code)
@@ -85,8 +101,11 @@ def run():
 
             reference = get_downstream_result(ground_truth, language)
 
+            # Small proactive delay to stay under Sahara's 30/min rate limit.
+            time.sleep(2.1)
+
             engines = [
-                ("sahara", lambda: transcribe_with_sahara(audio_path, language_code=language)),
+                ("sahara", lambda: transcribe_with_sahara_retrying(audio_path, language)),
                 ("whisper", lambda: transcribe_with_whisper(audio_path, language)),
                 ("assemblyai", lambda: transcribe_with_assemblyai(audio_path, language)),
                 ("huggingface_mms", lambda: transcribe_with_huggingface(audio_path, language)),
