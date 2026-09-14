@@ -88,10 +88,46 @@ export default function ResponsePlayer({ text, language }) {
       }
     } catch (error) {
       setPlayState('idle');
+      
+      const langKey = language ? language.toLowerCase() : 'english';
+
+      // Localized messages map for network and technical/voice errors
+      const errorMessages = {
+        english: {
+          network: "🌐 Your internet connection seems unstable. Please check your network and try again.",
+          voice: "⚙️ Sorry, I am having technical trouble with my voice right now. Please try again in a few minutes!"
+        },
+        yoruba: {
+          network: "🌐 Ayelujara rẹ ko duro deede. Jọwọ ṣayẹwo nẹtiwọki rẹ ki o tun gbiyanju lẹẹkan si.",
+          voice: "⚙️ Má bínú, mo ní ìṣòro pẹlu ohun mi ni bayi. Jọwọ tún gbiyanju rẹ lẹẹkan si ní ìṣẹ́jú díẹ̀!"
+        },
+        amharic: {
+          network: "🌐 የኢንተርኔት ግንኙነትዎ የተረጋጋ አይመስልም። እባክዎ አውታረ መረብዎን ይፈትሹ እና እንደገና ይሞክሩ።",
+          voice: "⚙️ ይቅርታ፣ በአሁኑ ጊዜ በድምፄ ላይ የቴክኒክ ችግር አጋጥሞኛል። እባክዎ ከጥቂት ደቂቃዎች በኋላ እንደገና ይሞክሩ!"
+        },
+        akan: {
+          network: "🌐 W'intan nkitahodzi no nteɛ yie. Mesrɛ sɛ hwɛ wo ntan no na sɔ hwɛ bio.",
+          voice: "⚙️ Mesrɛ wo kyɛw, me nne ho haw bi asɔre seesei ara. Mesrɛ sɛ sɔ hwɛ bio simma kakra akyi!"
+        },
+        pidgin: {
+          network: "🌐 Dis internet connection dey shaky small. Abeg check your network and try again.",
+          voice: "⚙️ Sorry o, my voice dey face small technical issue right now. Abeg try again in a few minutes!"
+        }
+      };
+
+      // Match language loosely, default to English if not found
+      let selectedLang = 'english';
+      if (langKey.includes('yoruba')) selectedLang = 'yoruba';
+      else if (langKey.includes('amharic')) selectedLang = 'amharic';
+      else if (langKey.includes('akan') || langKey.includes('twi')) selectedLang = 'akan';
+      else if (langKey.includes('pidgin')) selectedLang = 'pidgin';
+
+      const messages = errorMessages[selectedLang];
+
       if (!navigator.onLine || error.message.includes('Failed to fetch')) {
-        setErrorToast("🌐 Your internet connection seems unstable. Please check your network and try again.");
+        setErrorToast(messages.network);
       } else {
-        setErrorToast("⚙️ Sorry, I am having technical trouble with my voice right now. Please try again in a few minutes!");
+        setErrorToast(messages.voice);
       }
     }
   }, [text, language, playState, speed]);
