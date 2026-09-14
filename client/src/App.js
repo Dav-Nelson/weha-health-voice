@@ -141,7 +141,6 @@ export default function App() {
       }, 1500);
     }, 1000);
   };
-
   const handleSendMessage = async (textToProcess) => {
     if (!textToProcess.trim()) return;
 
