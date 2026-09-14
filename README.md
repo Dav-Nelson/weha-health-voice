@@ -1,8 +1,8 @@
-# Weha Health app
+# Weha Health
 
 Speak in your language. Get maternal-health guidance that acts.
 
-A voice-first health agent. Weha Health combines a general RAG-based healtha companion with a maternal-health voice triage agent that extracts symptoms across a natural, multi-turn conversation, assesses urgency against WHO-aligned danger signs, and when a result is urgent, autonomously alerts a care team via WhatsApp and Telegram, looks up the nearest health facility, and generates a shareable visit record.
+A voice-first health agent. Weha Health combines a general RAG-based health companion with a maternal-health voice triage agent that extracts symptoms across a natural, multi-turn conversation, assesses urgency against WHO-aligned danger signs, and when a result is urgent, autonomously alerts a care team via WhatsApp and Telegram, looks up the nearest health facility, and generates a shareable visit record.
 
 Live: https://weha-health-voice.vercel.app (custom domain https://wehahealth.me coming before submission)
 GitHub: https://github.com/Dav-Nelson/weha-health-voice
@@ -17,7 +17,8 @@ Pregnant women and their families across Nigeria, Ghana, and Ethiopia often don'
 
 Weha Health has two integrated flows:
 
-**Voice Triage (the flagship, agentic flow).** A user describes symptoms by voice, in whatever language mix feels natural. The system asks follow-up questions across multiple turns until it has enough structured information, checks it against WHO-aligned maternal and general danger signs, and on an urgent result:
+**Voice Triage** (the flagship, agentic flow). A user describes symptoms by voice, in whatever language mix feels natural. The system asks follow-up questions across multiple turns until it has enough structured information, checks it against WHO-aligned maternal and general danger signs, and on an urgent result:
+
 - Sends an alert with the extracted symptoms to the user's care team over WhatsApp and Telegram, independently, so one channel's outage doesn't lose the alert
 - Looks up the nearest hospital or clinic using OpenStreetMap, with a map link, and falls back to a curated list of known facilities per language/region if the live lookup is unavailable
 - Generates a plain-language Visit Summary the user can share or copy to show a health worker
@@ -37,6 +38,7 @@ Voice transcription and synthesis quality varies by language, documented honestl
 ## How It Works
 
 ```
+
 User speaks or types
         |
 React Frontend (Vercel)
@@ -67,6 +69,7 @@ FastAPI AI Pipeline (Render, Dockerized)
 Text response shown immediately; voice playback on demand;
 urgent results trigger care-team alerts, facility lookup, and a
 shareable Visit Summary
+
 ```
 
 ## Tech Stack
@@ -98,9 +101,11 @@ Compared across four speech-to-text engines on code-switched audio in our five t
 - **Intron Sahara v2.5** — purpose-built for African code-switching, used in the live product
 - **Whisper-large-v3** (via Groq)
 - **AssemblyAI** — no native support for our four African languages; relies on automatic language detection, included specifically to document that gap
-- **Hugging Face MMS-1b-all** — no dedicated Nigerian Pidgin adapter, a documented model limitation, not a bug
+- **Hugging Face MMS-1b-all** — mid-benchmark, Hugging Face fully retired its legacy Serverless Inference API in favor of a provider-routed system. Under the new system, this model is not deployed by any Inference Provider and returns an error on every request, regardless of language. We updated our integration to Hugging Face's own documented replacement endpoint and confirmed the failure is at the model-hosting level, not our integration. Separately, and independent of that issue, Nigerian Pidgin has no dedicated MMS adapter at all, a documented model gap, not a bug.
 
-Benchmark audio combines Intron's AfriSwitch dataset (CC BY-NC-SA 4.0, real-world code-switched speech, used here for evaluation, covering Pidgin, Yoruba, and Amharic) with team-recorded, consented, simulated clips in all four target languages — Akan relies solely on team recordings, since no Intron dataset covers it. Full methodology and results in `docs/benchmark-report.md`.
+Benchmark audio combines Intron's AfriSwitch dataset (CC BY-NC-SA 4.0, real-world code-switched speech, used here for evaluation, covering Pidgin, Yoruba, and Amharic) with team-recorded, consented, simulated clips in all four target languages, 150 samples total. Akan relies solely on team recordings, since no Intron dataset covers it. The Yoruba team recordings turned out to be monolingual, not code-switched, a recording-process gap we caught after collection; they are reported separately as supplementary data, and AfriSwitch remains the primary code-switched Yoruba benchmark source. Full methodology and results in `docs/benchmark-report.md`.
+
+Our 60 team-recorded, consented health utterances (Yoruba, Pidgin, Akan, Amharic) are also published as an open dataset: https://huggingface.co/datasets/techwithnel/weha-health-benchmark-audio
 
 ## Data and Privacy
 
@@ -112,17 +117,19 @@ Full detail in `docs/ethics-inclusion-note.md`.
 
 ## Known Limitations
 
-- **Nigerian Pidgin has no dedicated MMS-TTS voice**, so Pidgin relies entirely on Sahara TTS as primary, with English-voice gTTS as the only fallback if Sahara is unavailable.
-- **Akan has no Sahara TTS voice**, so Akan relies on MMS-TTS as primary, with English-voice gTTS as fallback.
-- **AssemblyAI** has no native language support for Pidgin, Yoruba, Akan, or Amharic; benchmark results for these languages reflect automatic-detection fallback, not a fair native comparison.
-- **Hugging Face MMS** has no Nigerian Pidgin adapter (STT or TTS).
-- **WhatsApp escalation** uses Twilio's Sandbox, which requires each recipient to send a one-time join code and expires after 3 days of inactivity — a known constraint of the free-tier prototype, not the production design.
-- **Facility lookup** depends on OpenStreetMap's health-facility tagging density, which varies by region; a static, language-matched fallback list covers cases where the live lookup fails or returns nothing.
+- Nigerian Pidgin has no dedicated MMS-TTS voice, so Pidgin relies entirely on Sahara TTS as primary, with English-voice gTTS as the only fallback if Sahara is unavailable.
+- Akan has no Sahara TTS voice, so Akan relies on MMS-TTS as primary, with English-voice gTTS as fallback. MMS-TTS is currently affected by the same Hugging Face Inference Provider hosting gap described above, so Akan voice output currently falls back to an English-only gTTS voice.
+- AssemblyAI has no native language support for Pidgin, Yoruba, Akan, or Amharic; benchmark results for these languages reflect automatic-detection fallback, not a fair native comparison.
+- Hugging Face MMS is currently unreachable for speech-to-text across every language we tested, due to a Hugging Face infrastructure change, not a code issue on our end. Full detail in the Speech Benchmark section above.
+- The Yoruba team-recorded benchmark set is monolingual, not code-switched, due to a recording process gap caught after collection. It's reported as supplementary data only; AfriSwitch remains the primary code-switched Yoruba source.
+- WhatsApp escalation uses Twilio's Sandbox, which requires each recipient to send a one-time join code and expires after 3 days of inactivity — a known constraint of the free-tier prototype, not the production design.
+- Facility lookup depends on OpenStreetMap's health-facility tagging density, which varies by region; a static, language-matched fallback list covers cases where the live lookup fails or returns nothing.
 - No user authentication; sessions are device-bound via localStorage.
 
 ## Project Structure
 
 ```
+
 weha-health-voice/
 ├── client/                      React frontend (Vercel)
 │   ├── public/
@@ -159,7 +166,10 @@ weha-health-voice/
 │   ├── tts/speak.py                 Sahara TTS / MMS-TTS / gTTS chain
 │   ├── benchmark/
 │   │   ├── run_benchmark.py
+│   │   ├── download_samples.py
+│   │   ├── add_team_samples.py
 │   │   ├── samples.csv
+│   │   ├── results.csv
 │   │   └── audio/
 │   └── knowledge-base/
 ├── docs/
@@ -167,6 +177,7 @@ weha-health-voice/
 │   ├── ethics-inclusion-note.md
 │   └── benchmark-report.md
 └── tests/
+
 ```
 
 ## Getting Started
@@ -197,22 +208,22 @@ cd client && npm start
 uvicorn api.main:app --reload --port 8000
 ```
 
-### Environment Variables
+## Environment Variables
 
-**Root `.env` (server):**
+Root `.env` (server):
 ```
 DATABASE_URL=
 AI_PIPELINE_URL=https://weha-health-voice-ai-pipeline.onrender.com
 ```
 
-**`client/.env`:**
+`client/.env`:
 ```
 REACT_APP_API_URL=https://weha-health-voice.onrender.com
 REACT_APP_POSTHOG_KEY=
 REACT_APP_POSTHOG_HOST=https://eu.i.posthog.com
 ```
 
-**`ai-pipeline/.env`:**
+`ai-pipeline/.env`:
 ```
 GROQ_API_KEY=
 GEMINI_API_KEY=
@@ -228,25 +239,25 @@ TWILIO_WHATSAPP_FROM=whatsapp:+14155238886
 TEAM_WHATSAPP_NUMBERS=
 ```
 
-### Ingesting the Knowledge Base
+## Ingesting the Knowledge Base
 
 ```bash
 cd ai-pipeline
 python -m rag.ingest_to_db
 ```
-
 Clears existing chunks, re-embeds all knowledge-base documents via Gemini embedding-001, stores vectors in Neon.
 
-### Running the Benchmark
+## Running the Benchmark
 
 ```bash
 cd ai-pipeline
-python -m benchmark.run_benchmark
+python -m benchmark.download_samples    # pulls AfriSwitch samples
+python -m benchmark.add_team_samples    # appends team-recorded rows
+python -m benchmark.run_benchmark       # runs all 4 engines, writes results.csv
 ```
-
 Reads `benchmark/samples.csv`, tests all four speech engines against each sample, writes `benchmark/results.csv`.
 
-### Running Tests
+## Running Tests
 
 ```bash
 npm test
@@ -255,11 +266,11 @@ cd client && npm test -- --watchAll=false
 
 ## Architecture Decisions and Trade-offs
 
-**Why `openai/gpt-oss-120b` via Groq instead of Llama-3.3-70b:** Llama-3.3-70b was decommissioned in August 2026. This model is already integrated with our Groq client and requires no architecture change.
+**Why openai/gpt-oss-120b via Groq instead of Llama-3.3-70b:** Llama-3.3-70b was decommissioned in August 2026. This model is already integrated with our Groq client and requires no architecture change.
 
-**Why Gemini embedding-001 for retrieval instead of local sentence-transformers:** `sentence-transformers` requires torch, which exceeded Render's free-tier memory limit and crashed the container on cold start. Gemini's API-based embeddings have no local memory footprint.
+**Why Gemini embedding-001 for retrieval instead of local sentence-transformers:** sentence-transformers requires torch, which exceeded Render's free-tier memory limit and crashed the container on cold start. Gemini's API-based embeddings have no local memory footprint.
 
-**Why Twilio WhatsApp Sandbox instead of Meta's WhatsApp Business API directly:** Meta's Business API requires business verification and template approval that can take days. Twilio's Sandbox is free, requires no card, and is functional within minutes — sufficient for this prototype. Production deployment would move to WhatsApp Business Cloud API.
+**Why Twilio WhatsApp Sandbox instead of Meta's WhatsApp Business API directly:** Meta's Business API requires business verification and template approval that can take days. Twilio's Sandbox is free, requires no card, and is functional within minutes, sufficient for this prototype. Production deployment would move to WhatsApp Business Cloud API.
 
 **Why Telegram alongside WhatsApp:** redundancy. Twilio's Sandbox expires after 3 days of inactivity; Telegram has no such constraint, so alerts still reach the team if the WhatsApp sandbox session has lapsed.
 
@@ -279,13 +290,15 @@ Weha Health is an information and triage tool only. It does not diagnose, prescr
 
 | Name | Country | Role |
 |---|---|---|
-| David Nelson | Nigeria | Team lead, backend, AI pipeline, escalation, deployment |
-| Ibukun Oluwafemi | Nigeria | Frontend, UI/UX, Yoruba/Pidgin validation |
+| David Nelson | Nigeria | Team lead, backend, AI pipeline, escalation, deployment | Pidgin Validation 
+| Ibukun Oluwafemi | Nigeria | Frontend, UI/UX, Yoruba validation |
 | Ibsa Magarsa | Ethiopia | AI pipeline engineering, Amharic validation |
-| Peggy Eyram Attah | Ghana | User research, tester recruitment, Akan validation |
+| Peggy Eyram Attah | Ghana | User research, Akan validation |
 
 ## License
 
-MIT. See LICENSE.
+MIT. See `LICENSE`.
+
+---
 
 Built across Nigeria, Ghana, and Ethiopia. Submitted to the Sahara CodeSwitch Africa Challenge, hosted by Intron Health.
