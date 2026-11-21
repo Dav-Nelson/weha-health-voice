@@ -290,7 +290,7 @@ Weha Health is an information and triage tool only. It does not diagnose, prescr
 
 | Name | Country | Role |
 |---|---|---|
-| David Nelson | Nigeria | Team lead, backend, AI pipeline, escalation, deployment | Pidgin Validation 
+| David Nelson | Nigeria | Backend, AI pipeline, escalation, deployment | Pidgin Validation 
 | Ibukun Oluwafemi | Nigeria | Frontend, UI/UX, Yoruba validation |
 | Ibsa Magarsa | Ethiopia | AI pipeline engineering, Amharic validation |
 | Peggy Eyram Attah | Ghana | User research, Akan validation |
